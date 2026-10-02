@@ -1,21 +1,110 @@
-# Unidad 16 — Timeouts, errores y resiliencia básica
+# Unidad 16 — Timeouts, retries y resiliencia básica
 
-## Timeout
-Toda dependencia remota puede tardar demasiado.
+## Qué aprenderás
+Diseñar comportamiento ante dependencias lentas o fallidas sin empeorar el incidente.
 
-Considera:
+# 1. La red falla
+
+Una dependencia puede no conectar, tardar, cortar conexión, devolver 429/500 o responder datos inválidos.
+
+Diseñar solo el camino feliz no es suficiente.
+
+# 2. Timeout
+
+Sin límites, recursos pueden quedar esperando demasiado.
+
+Distingue según cliente:
 - conexión;
 - lectura/respuesta;
-- límite total según cliente.
+- límite total de operación.
 
-## Retry
-Reintentar no siempre es seguro. Pregunta si la operación es idempotente y si el fallo es transitorio.
+Configura según contexto, no copiando un número universal.
 
-## Circuit breaker
-Puede evitar insistir sobre un servicio claramente degradado, pero añade estados y configuración.
+# 3. Retry
 
-## Fallback
-No inventes datos “normales” para ocultar un fallo. Un fallback debe preservar semántica.
+Reintentar puede ayudar ante fallos transitorios.
 
-## Reto
-Diseña comportamiento para timeout, 404 externo, 429 y 500.
+Pero una operación de cobro repetida podría duplicar efectos si no existe idempotencia.
+
+Pregunta:
+- ¿operación idempotente?
+- ¿fallo transitorio?
+- ¿cuántos intentos?
+- ¿qué espera entre intentos?
+
+# 4. Backoff y jitter
+
+Reintentar inmediatamente desde muchos clientes puede empeorar una caída.
+
+Backoff aumenta espera; jitter distribuye reintentos.
+
+# 5. 429
+
+Too Many Requests puede incluir `Retry-After`.
+
+Respeta el contrato del proveedor cuando aplique.
+
+# 6. Circuit breaker
+
+Estados conceptuales:
+
+```text
+CLOSED → llamadas normales
+OPEN → falla rápido
+HALF_OPEN → prueba recuperación
+```
+
+Evita insistir sobre una dependencia degradada, pero añade estado/configuración.
+
+# 7. Fallback
+
+Válido:
+> usar último dato, claramente marcado como desactualizado.
+
+Peligroso:
+> inventar precio 0 como si fuera real.
+
+Debe preservar semántica.
+
+# 8. Bulkhead
+
+Separar recursos puede impedir que una dependencia lenta consuma toda la capacidad.
+
+# 9. Librerías
+
+Herramientas como Resilience4j implementan patrones.
+
+Primero diseña política; después configura librería.
+
+# 10. Práctica guiada
+
+Para timeout, 404, 429 y 500 define:
+- si reintentas;
+- qué devuelve tu aplicación;
+- qué registras/mides.
+
+# 11. Errores frecuentes
+- retry para todo;
+- sin timeout;
+- fallback que miente;
+- circuit breaker sin necesidad;
+- reintentos amplificando carga.
+
+# 12. Reto
+Política completa para una dependencia con pruebas simulando fallos.
+
+# 13. Autoevaluación
+1. ¿Por qué timeout?
+2. ¿Cuándo retry es peligroso?
+3. ¿Qué es backoff?
+4. ¿Qué significa 429?
+5. ¿Qué hace circuit breaker?
+6. ¿Qué exige un fallback?
+
+# 14. Checklist
+- [ ] Limito espera.
+- [ ] Reintento con criterio.
+- [ ] No invento datos.
+- [ ] Diseño degradación.
+
+Continúa con tareas.
