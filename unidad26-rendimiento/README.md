@@ -1,24 +1,127 @@
 # Unidad 26 — Rendimiento y pruebas de carga
 
-## Antes de optimizar
-Mide.
+## Qué aprenderás
+Medir antes de optimizar, diseñar carga reproducible y correlacionar latencia/throughput/errores con recursos y SQL.
 
-## Métricas
-- latencia;
-- throughput;
-- errores;
-- recursos.
+# 1. Rendimiento es un requisito
 
-## k6 u otra herramienta
-Una prueba debe documentar:
-- escenario;
+Pregunta:
+- ¿cuántas solicitudes?
+- ¿qué latencia?
+- ¿qué percentil?
+- ¿qué tasa de error?
+- ¿qué entorno?
+
+“Que sea rápido” no es medible.
+
+# 2. Métricas
+
+**Latencia:** tiempo de respuesta.  
+**Throughput:** trabajo por unidad de tiempo.  
+**Errores:** respuestas/fallos.  
+**Saturación:** CPU, memoria, pools, conexiones, etc.
+
+Aumentar throughput puede empeorar latencia.
+
+# 3. Carga vs estrés
+
+Carga: comportamiento bajo demanda esperada.
+
+Estrés: empujar más allá para observar límites/degradación.
+
+Spike/soak son otros escenarios.
+
+Define qué estás probando.
+
+# 4. k6 u otra herramienta
+
+Un escenario debe documentar:
+- versión de app;
+- datos;
 - usuarios/tasa;
 - duración;
-- ambiente;
-- umbrales.
+- ramp-up;
+- umbrales;
+- máquina/entorno.
 
-## No extrapoles
-Una prueba local pequeña no demuestra capacidad de producción.
+# 5. Warm-up
 
-## Reto
-Diseña carga gradual y correlaciona resultados con métricas de aplicación.
+JVM/JIT, caches y pools pueden cambiar comportamiento inicial.
+
+No descartes warm-up automáticamente; decide si quieres medir arranque frío o estado estable.
+
+# 6. Cuello de botella
+
+Puede estar en:
+- SQL/N+1;
+- pool de conexiones;
+- API externa;
+- CPU;
+- GC/memoria;
+- locks;
+- logging;
+- red.
+
+No optimices Java si la consulta tarda 2 segundos.
+
+# 7. Correlación
+
+Durante carga mira:
+```text
+latencia ↔ CPU
+latencia ↔ conexiones DB
+errores ↔ timeout externo
+throughput ↔ saturación
+```
+
+# 8. Optimización
+
+Ciclo:
+```text
+medir → hipótesis → cambio → repetir misma prueba → comparar
+```
+
+Cambia una cosa importante por vez.
+
+# 9. No extrapoles
+
+Una prueba local con 10 usuarios no demuestra capacidad productiva con 10 000.
+
+Sirve para aprender, comparar y encontrar algunos cuellos de botella bajo ese entorno.
+
+# 10. Práctica guiada
+
+Endpoint paginado:
+1. baseline;
+2. carga gradual;
+3. observa métricas/SQL;
+4. identifica cuello;
+5. cambio;
+6. repite.
+
+# 11. Errores frecuentes
+- optimizar sin baseline;
+- solo promedio;
+- cambiar varias cosas;
+- ignorar errores;
+- test sin datos representativos;
+- extrapolar local.
+
+# 12. Reto
+Informe antes/después con escenario reproducible y conclusión limitada a evidencia.
+
+# 13. Autoevaluación
+1. ¿Latencia/throughput?
+2. ¿Qué es saturación?
+3. ¿Carga/estrés?
+4. ¿Por qué warm-up?
+5. ¿Qué es baseline?
+6. ¿Prueba local demuestra producción?
+
+# 14. Checklist
+- [ ] Defino escenario.
+- [ ] Mido varias métricas.
+- [ ] Correlaciono.
+- [ ] Optimizo con evidencia.
+
+Continúa con producción.
