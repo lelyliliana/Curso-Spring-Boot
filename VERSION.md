@@ -1,6 +1,6 @@
 # Versión 1.0
 
-Estado: **completa y disponible**.
+Estado: **completa, autodidacta y disponible**.
 
 ## Alcance
 - 31 unidades en siete niveles;
@@ -23,3 +23,7 @@ Estado: **completa y disponible**.
 El curso cubre el recorrido definido desde fundamentos Spring Boot hasta construcción, prueba, operación y entrega de una API backend.
 
 Las correcciones posteriores se consideran mantenimiento.
+
+## Experiencia de aprendizaje
+
+El curso puede recorrerse de forma autónoma desde HTTP, IoC y configuración hasta persistencia, integraciones, pruebas, seguridad, observabilidad, rendimiento y ejecución en contenedores. Las unidades priorizan contratos, comprensión de lo que Spring automatiza, práctica guiada, diagnóstico y decisiones justificadas.
