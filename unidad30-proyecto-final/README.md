@@ -1,30 +1,203 @@
 # Unidad 30 — Proyecto final
 
-Construye una API backend completa.
+## Propósito
 
-## Requisitos
-- Java 21;
-- Spring Boot 3.x;
-- Maven;
-- DTO;
-- validación;
-- errores globales;
-- capas claras;
+Construir una API Spring Boot reproducible desde el contrato HTTP hasta su operación en contenedor.
+
+No es obligatorio usar cada característica del curso. Cada componente debe responder a un requisito.
+
+# Etapa 1 — Problema
+
+Elige dominio ficticio/no sensible:
+- inventario;
+- reservas;
+- biblioteca;
+- pedidos;
+- sensores simulados.
+
+Define usuario, necesidad, alcance y exclusiones.
+
+# Etapa 2 — Contrato HTTP
+
+Antes del código documenta:
+```text
+método | URI | request | status | response | errores
+```
+
+Incluye al menos:
+- colección;
+- recurso individual;
+- creación;
+- actualización;
+- eliminación;
+- búsqueda/paginación.
+
+# Etapa 3 — Modelo y reglas
+
+Define:
+- entidades de dominio;
+- invariantes;
+- cardinalidades;
+- estados;
+- transacciones necesarias.
+
+Dibuja modelo relacional.
+
+# Etapa 4 — Migraciones
+
+Crea esquema con Flyway/Liquibase.
+
+Incluye al menos dos migraciones para demostrar evolución sin destruir datos.
+
+# Etapa 5 — JPA
+
+Mapea relaciones desde el modelo relacional.
+
+Justifica:
+- fetch;
+- cascada;
+- navegación;
+- índices/queries.
+
+Observa SQL.
+
+# Etapa 6 — Capas
+
+Organiza controller, casos de uso/service, persistencia y adaptadores.
+
+No crees capas sin responsabilidad.
+
+# Etapa 7 — DTO y validación
+
+Separa request/response cuando el contrato lo necesite.
+
+Distingue:
+- validación de forma;
+- regla de negocio.
+
+# Etapa 8 — Errores
+
+Contrato consistente:
+- 400;
+- 404;
+- 409;
+- 500.
+
+No expongas stack traces ni SQL.
+
+# Etapa 9 — Integración externa
+
+Solo si aporta al dominio.
+
+Aísla cliente y define:
+- timeout;
+- errores;
+- traducción;
+- pruebas sin Internet.
+
+# Etapa 10 — Seguridad
+
+Define matriz endpoint→permiso.
+
+Protege credenciales y prueba 401/403.
+
+No se exige un sistema de identidad complejo si el proyecto no lo necesita.
+
+# Etapa 11 — Pruebas
+
+Incluye:
+- unitarias de reglas;
+- web/MockMvc;
 - JPA;
+- integración de al menos un flujo crítico.
+
+Usa PostgreSQL representativo para riesgos específicos de base cuando corresponda.
+
+# Etapa 12 — Observabilidad
+
+Configura:
+- health;
+- métricas útiles;
+- logs con contexto;
+- correlation id si aporta.
+
+No uses IDs únicos como tags de métricas.
+
+# Etapa 13 — Rendimiento
+
+Selecciona un flujo relevante:
+1. baseline;
+2. carga documentada;
+3. métricas/SQL;
+4. hipótesis;
+5. mejora;
+6. repetición.
+
+Una conclusión “no mejoró” es válida si está sustentada.
+
+# Etapa 14 — Configuración
+
+Todo valor por entorno debe externalizarse.
+
+No:
+- contraseñas en Git;
+- rutas personales;
+- endpoints rígidos cuando son configuración.
+
+# Etapa 15 — Build
+
+Debe pasar:
+
+```bash
+mvn test
+mvn package
+```
+
+Documenta Java y Maven.
+
+# Etapa 16 — Docker
+
+Construye imagen sin secretos.
+
+Ejecuta con configuración externa y conecta servicios por red correcta.
+
+# Etapa 17 — README reproducible
+
+Otra persona debe poder:
+1. entender arquitectura;
+2. preparar requisitos;
+3. iniciar PostgreSQL/configuración;
+4. ejecutar migraciones/app;
+5. probar API;
+6. ejecutar tests;
+7. construir imagen.
+
+# Etapa 18 — Revisión
+
+Usa `PLANTILLA_PROYECTO.md`, `RUBRICA.md` y `CHECKLIST.md`.
+
+Pregúntate:
+- ¿el contrato HTTP es coherente?
+- ¿puedo explicar cada query?
+- ¿hay N+1?
+- ¿las transacciones corresponden a casos de uso?
+- ¿las pruebas cubren riesgos?
+- ¿hay secretos?
+- ¿health/metrics/logs son seguros?
+- ¿el mismo artefacto funciona con otra configuración?
+
+# Entregables
+
+- código Maven;
 - migraciones;
+- modelo;
+- contrato API;
 - pruebas;
-- seguridad apropiada al caso;
-- Actuator;
-- métricas/logging;
-- configuración externa;
-- Docker;
-- README reproducible.
+- configuración de ejemplo sin secretos;
+- evidencia operativa;
+- Dockerfile;
+- README.
 
-## Opcional según problema
-- API externa;
-- tareas programadas;
-- resiliencia;
-- carga/rendimiento.
+# Cierre
 
-## Regla
-No añadas tecnologías solo para cumplir una lista. Si un requisito no aplica, documenta y justifica.
+> Una API profesional no es la que acumula anotaciones de Spring, sino la que tiene contratos claros, datos íntegros, fallos controlados, pruebas útiles y operación reproducible.
