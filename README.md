@@ -1,5 +1,7 @@
 # Curso de Spring Boot y APIs REST
 
+**Versión 1.0**
+
 Curso abierto para aprender a construir **aplicaciones backend y APIs REST con Java y Spring Boot**, desde la creación del proyecto hasta persistencia, integración con servicios externos, pruebas, observabilidad, seguridad básica, rendimiento y despliegue en contenedores.
 
 ## Requisito recomendado
