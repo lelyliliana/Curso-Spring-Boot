@@ -1,21 +1,129 @@
 # Unidad 07 — DTO y mapeo
 
-## Por qué DTO
-La entidad de persistencia y el contrato HTTP tienen responsabilidades distintas.
+## Qué aprenderás
+Diseñar modelos de entrada/salida independientes del dominio/persistencia y mapearlos explícitamente.
 
-```java
-record CrearProductoRequest(String nombre, BigDecimal precio) {}
-record ProductoResponse(Long id, String nombre, BigDecimal precio) {}
+# 1. Tres modelos pueden coexistir
+
+```text
+HTTP Request DTO
+      ↓
+modelo dominio/aplicación
+      ↓
+entidad persistencia
+      ↓
+HTTP Response DTO
 ```
 
-## Ventajas
-- contrato explícito;
-- evita exponer campos internos;
-- permite evolucionar persistencia/API por separado;
-- validación específica de entrada.
+No siempre necesitas cuatro clases distintas para todo, pero sí comprender las responsabilidades.
 
-## Mapeo
-Puede ser manual o con herramienta. Para modelos pequeños, mapeo manual es transparente.
+# 2. Request de creación
 
-## Reto
-Diseña request/response distintos para creación y consulta.
+```java
+public record CrearProductoRequest(
+    String nombre,
+    BigDecimal precio
+) {}
+```
+
+No incluye `id` si el cliente no debe decidirlo.
+
+# 3. Response
+
+```java
+public record ProductoResponse(
+    Long id,
+    String nombre,
+    BigDecimal precio
+) {}
+```
+
+Puede excluir campos internos y añadir datos derivados necesarios para contrato.
+
+# 4. ¿Por qué no entidad?
+
+Exponer entidad JPA:
+- acopla contrato/esquema;
+- puede exponer campos;
+- complica relaciones/serialización;
+- permite entrada sobre propiedades que no deberían modificarse;
+- dificulta evolución independiente.
+
+# 5. Mapeo manual
+
+```java
+static ProductoResponse toResponse(Producto p) {
+    return new ProductoResponse(
+        p.getId(),
+        p.getNombre(),
+        p.getPrecio()
+    );
+}
+```
+
+Para modelos pequeños es transparente y fácil de depurar.
+
+# 6. Herramientas de mapeo
+
+Pueden reducir código repetitivo, pero añaden configuración/generación.
+
+No introduzcas una librería solo para evitar tres líneas.
+
+# 7. DTO distintos por operación
+
+Crear:
+```text
+nombre, precio
+```
+
+Actualizar precio:
+```text
+precio
+```
+
+Respuesta:
+```text
+id, nombre, precio, ...
+```
+
+Un “ProductoDto universal” puede terminar aceptando campos que no aplican.
+
+# 8. Versionado/evolución
+
+Separar DTO permite cambiar persistencia sin cambiar inmediatamente contrato público, y viceversa.
+
+No elimina todo impacto: debes gestionar semántica/versionado conscientemente.
+
+# 9. Práctica guiada
+
+Diseña:
+- CrearProductoRequest;
+- ActualizarPrecioRequest;
+- ProductoResponse.
+
+Marca quién puede escribir cada campo.
+
+# 10. Errores frecuentes
+- entidad como DTO;
+- un DTO gigante para todo;
+- mapper con reglas de negocio ocultas;
+- librería de mapeo prematura;
+- campos internos en respuesta.
+
+# 11. Reto
+Diseña contratos de creación/consulta distintos y mapeo probado.
+
+# 12. Autoevaluación
+1. ¿DTO vs entidad?
+2. ¿Por qué request/response distintos?
+3. ¿Mapeo manual está mal?
+4. ¿Qué riesgo tiene DTO universal?
+5. ¿Separación elimina todo acoplamiento?
+
+# 13. Checklist
+- [ ] Diseño frontera HTTP.
+- [ ] No expongo entidad.
+- [ ] Mapeo explícitamente.
+- [ ] DTO por caso de uso cuando aporta.
+
+Continúa con validación.
