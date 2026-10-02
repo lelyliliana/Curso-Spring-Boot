@@ -1,20 +1,110 @@
 # Unidad 25 — Logging y trazabilidad
 
-## Logging
-Registra eventos útiles con contexto.
+## Qué aprenderás
+Registrar eventos con contexto útil, correlacionar solicitudes y proteger información sensible.
 
-## Evita
+# 1. Log no es println
+
+Spring Boot usa infraestructura de logging configurable.
+
+Ventajas:
+- niveles;
+- formato;
+- destinos;
+- contexto;
+- integración operativa.
+
+# 2. Niveles
+
+ERROR: fallo significativo.  
+WARN: condición anómala/recuperable.  
+INFO: evento operacional útil.  
+DEBUG/TRACE: diagnóstico detallado.
+
+No conviertas cada excepción esperada en ERROR.
+
+# 3. Logging estructurado
+
+En producción, campos estructurados facilitan consulta:
+```text
+event=pedido_creado pedidoId=42 resultado=ok
+```
+
+Evita concatenar datos sin contexto.
+
+# 4. Correlation ID
+
+Un identificador por solicitud puede propagarse mediante MDC/contexto y aparecer en logs.
+
+No uses como tag de métrica de alta cardinalidad.
+
+# 5. Qué registrar
+
+Ejemplo integración externa:
+- proveedor;
+- operación;
+- duración;
+- status/categoría de error;
+- correlation id.
+
+No necesitas registrar cuerpo completo.
+
+# 6. Nunca
+
+- password;
+- token;
+- Authorization;
+- cookies sensibles;
+- datos personales innecesarios.
+
+Enmascarar parcialmente puede ser necesario según dato/política.
+
+# 7. Stack traces
+
+En error inesperado, registra excepción con causa en servidor.
+
+No envíes stack trace al cliente.
+
+# 8. Duplicación
+
+Si registras la misma excepción en cada capa, puedes generar tres stack traces por un fallo.
+
+Decide dónde existe suficiente contexto para registrar.
+
+# 9. Práctica guiada
+
+Flujo crear pedido + proveedor externo.
+
+Diseña logs:
+- inicio relevante;
+- resultado;
+- fallo;
+- contexto.
+
+Revisa cada campo por sensibilidad/cardinalidad.
+
+# 10. Errores frecuentes
+- todo ERROR;
+- bodies completos;
 - secretos;
-- contraseñas;
-- tokens;
-- datos personales innecesarios;
-- stack traces como respuesta HTTP.
+- excepción logueada en cada capa;
+- logs sin correlation;
+- usar logs como única métrica.
 
-## Correlación
-Un identificador de solicitud puede ayudar a seguir un flujo entre logs.
+# 11. Reto
+Estrategia de logs para un flujo con fallo externo y error interno.
 
-## Niveles
-Usa niveles con intención; no conviertas todo en ERROR.
+# 12. Autoevaluación
+1. ¿INFO/DEBUG?
+2. ¿Qué es MDC/correlation?
+3. ¿Qué no registrar?
+4. ¿Stack trace al cliente?
+5. ¿Por qué evitar log duplicado?
 
-## Reto
-Diseña estrategia de logs para creación de pedido y fallo de API externa.
+# 13. Checklist
+- [ ] Niveles con intención.
+- [ ] Contexto útil.
+- [ ] Protejo datos.
+- [ ] Correlaciono.
+
+Continúa con rendimiento.
