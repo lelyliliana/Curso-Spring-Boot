@@ -1,5 +1,7 @@
 # Unidad 23 — Actuator y health checks
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Exponer información operativa mínima, distinguir liveness/readiness y evitar publicar detalles sensibles.
 
@@ -94,3 +96,12 @@ Diseña política de salud para API con PostgreSQL y proveedor externo.
 - [ ] Diseño semántica.
 
 Continúa con métricas.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 22 — Seguridad básica con Spring Security](../unidad22-seguridad/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 24 — Métricas y observabilidad](../unidad24-metricas/README.md)

@@ -1,5 +1,7 @@
 # Unidad 21 — Pruebas de integración
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Comprobar colaboración real entre capas y elegir el menor alcance que cubra el riesgo.
 
@@ -106,3 +108,12 @@ Prueba creación→persistencia→consulta con PostgreSQL efímero si el entorno
 - [ ] Mantengo suite sostenible.
 
 Continúa con seguridad.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 20 — Pruebas de persistencia JPA](../unidad20-pruebas-jpa/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 22 — Seguridad básica con Spring Security](../unidad22-seguridad/README.md)

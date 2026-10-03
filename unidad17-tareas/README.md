@@ -1,5 +1,7 @@
 # Unidad 17 — Tareas programadas y procesamiento periódico
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Programar trabajos, comprender solapamiento y múltiples instancias, y diseñar idempotencia/trazabilidad.
 
@@ -125,3 +127,12 @@ Sincronización periódica repetible con trazabilidad y política de fallo.
 - [ ] Mantengo trazabilidad.
 
 Continúa con pruebas.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 16 — Timeouts, retries y resiliencia básica](../unidad16-resiliencia/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 18 — Pruebas unitarias de servicios](../unidad18-pruebas-unitarias/README.md)

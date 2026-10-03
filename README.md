@@ -1,5 +1,11 @@
 # Curso de Spring Boot y APIs REST
 
+**[Comenzar el curso: Unidad 00 — Entorno y primer proyecto Spring Boot](unidad00-entorno/README.md)**
+
+Puedes leer las lecciones aquí sin conocer GitHub. Al terminar cada unidad, usa **Siguiente unidad** para avanzar; **Unidad anterior** y **Volver al índice** te permiten regresar.
+
+[Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 **Versión 1.0**
 
 Curso abierto para aprender a construir **aplicaciones backend y APIs REST con Java y Spring Boot**, desde la creación del proyecto hasta persistencia, integración con servicios externos, pruebas, observabilidad, seguridad básica, rendimiento y despliegue en contenedores.

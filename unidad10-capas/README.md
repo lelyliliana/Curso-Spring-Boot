@@ -1,5 +1,7 @@
 # Unidad 10 — Capas y responsabilidades
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Separar HTTP, casos de uso, dominio y persistencia sin convertir la arquitectura en carpetas vacías.
 
@@ -106,3 +108,12 @@ Refactoriza un controller monolítico y prueba la lógica sin levantar servidor.
 - [ ] Pruebo lógica sin HTTP.
 
 Continúa con JPA.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 09 — Manejo global de errores](../unidad09-errores/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 11 — Spring Data JPA y persistencia](../unidad11-jpa/README.md)

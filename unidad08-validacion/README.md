@@ -1,5 +1,7 @@
 # Unidad 08 — Validación de entrada y reglas de negocio
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Usar Bean Validation para forma de entrada y separar esas restricciones de reglas que requieren estado/negocio.
 
@@ -107,3 +109,12 @@ Valida creación de producto y devuelve errores por campo en formato consistente
 - [ ] Produzco errores útiles.
 
 Continúa con manejo global.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 07 — DTO y mapeo](../unidad07-dto/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 09 — Manejo global de errores](../unidad09-errores/README.md)

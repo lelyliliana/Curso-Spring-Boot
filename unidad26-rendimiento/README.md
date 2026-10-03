@@ -1,5 +1,7 @@
 # Unidad 26 — Rendimiento y pruebas de carga
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Medir antes de optimizar, diseñar carga reproducible y correlacionar latencia/throughput/errores con recursos y SQL.
 
@@ -125,3 +127,12 @@ Informe antes/después con escenario reproducible y conclusión limitada a evide
 - [ ] Optimizo con evidencia.
 
 Continúa con producción.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 25 — Logging y trazabilidad](../unidad25-logging/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 27 — Empaquetado y configuración de producción](../unidad27-produccion/README.md)

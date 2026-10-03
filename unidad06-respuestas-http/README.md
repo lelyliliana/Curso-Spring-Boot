@@ -1,5 +1,7 @@
 # Unidad 06 — ResponseEntity, headers y códigos HTTP
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Construir respuestas explícitas y representar creación, ausencia, eliminación y conflictos con semántica HTTP.
 
@@ -123,3 +125,12 @@ Implementa tabla de escenarios y prueba status/headers.
 - [ ] Pruebo contrato.
 
 Continúa con DTO.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 05 — Controllers y endpoints](../unidad05-controllers/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 07 — DTO y mapeo](../unidad07-dto/README.md)

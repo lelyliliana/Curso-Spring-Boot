@@ -1,5 +1,7 @@
 # Unidad 01 — Spring, Spring Boot y contenedor IoC
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Distinguir Spring/Spring Boot, comprender inversión de control, beans y por qué no todo objeto debe administrarlo el contenedor.
 
@@ -143,3 +145,12 @@ Dibuja grafo de beans de una API pequeña y separa objetos administrados de obje
 - [ ] No convierto dominio en infraestructura.
 
 Continúa con configuración.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 00 — Entorno y primer proyecto Spring Boot](../unidad00-entorno/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 02 — Configuración, properties y perfiles](../unidad02-configuracion/README.md)

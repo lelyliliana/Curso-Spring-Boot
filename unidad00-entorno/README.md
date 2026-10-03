@@ -1,5 +1,7 @@
 # Unidad 00 — Entorno y primer proyecto Spring Boot
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Crear, ejecutar, probar y diagnosticar una aplicación Spring Boot con Java 21 y Maven.
 
@@ -146,3 +148,11 @@ Crea aplicación mínima reproducible y documenta comandos exactos para ejecutar
 - [ ] Clasifico errores.
 
 Continúa con Spring e IoC.
+
+
+---
+
+## Continuar el curso
+
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 01 — Spring, Spring Boot y contenedor IoC](../unidad01-spring-ioc/README.md)

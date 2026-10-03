@@ -1,5 +1,7 @@
 # Unidad 18 — Pruebas unitarias de servicios
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Probar reglas/casos de uso sin levantar Spring cuando el contenedor no aporta al escenario.
 
@@ -106,3 +108,12 @@ Suite del service que siga pasando si refactorizas internamente sin cambiar comp
 - [ ] Mantengo tests rápidos.
 
 Continúa con MockMvc.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 17 — Tareas programadas y procesamiento periódico](../unidad17-tareas/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 19 — Pruebas web con MockMvc](../unidad19-mockmvc/README.md)

@@ -1,5 +1,7 @@
 # Unidad 30 — Proyecto final
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Propósito
 
 Construir una API Spring Boot reproducible desde el contrato HTTP hasta su operación en contenedor.
@@ -201,3 +203,13 @@ Pregúntate:
 # Cierre
 
 > Una API profesional no es la que acumula anotaciones de Spring, sino la que tiene contratos claros, datos íntegros, fallos controlados, pruebas útiles y operación reproducible.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 29 — Taller integrador de APIs](../unidad29-taller/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+
+Llegaste a la última unidad. Revisa tu proyecto y la lista de comprobación antes de dar por terminado el curso.

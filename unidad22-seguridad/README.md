@@ -1,5 +1,7 @@
 # Unidad 22 — Seguridad básica con Spring Security
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Distinguir autenticación/autorización, comprender la cadena de filtros y proteger una API sin desactivar controles por ensayo y error.
 
@@ -131,3 +133,12 @@ Protege lectura/escritura y documenta matriz endpoint→permiso.
 - [ ] Pruebo acceso.
 
 Continúa con operación/observabilidad.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 21 — Pruebas de integración](../unidad21-integracion-tests/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 23 — Actuator y health checks](../unidad23-actuator/README.md)

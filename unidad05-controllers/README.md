@@ -1,5 +1,7 @@
 # Unidad 05 — Controllers y endpoints
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Mapear HTTP a métodos Java, extraer parámetros y mantener controllers como adaptadores delgados.
 
@@ -132,3 +134,12 @@ CRUD HTTP en memoria con controller que solo adapta/delega.
 - [ ] Mantengo contrato separado.
 
 Continúa con respuestas.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 04 — HTTP y diseño de APIs REST](../unidad04-http-rest/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 06 — ResponseEntity, headers y códigos HTTP](../unidad06-respuestas-http/README.md)

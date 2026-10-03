@@ -1,5 +1,7 @@
 # Unidad 07 — DTO y mapeo
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Diseñar modelos de entrada/salida independientes del dominio/persistencia y mapearlos explícitamente.
 
@@ -127,3 +129,12 @@ Diseña contratos de creación/consulta distintos y mapeo probado.
 - [ ] DTO por caso de uso cuando aporta.
 
 Continúa con validación.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 06 — ResponseEntity, headers y códigos HTTP](../unidad06-respuestas-http/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 08 — Validación de entrada y reglas de negocio](../unidad08-validacion/README.md)

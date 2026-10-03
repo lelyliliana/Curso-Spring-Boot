@@ -1,5 +1,7 @@
 # Unidad 29 — Taller integrador de APIs
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Propósito
 
 Resolver problemas sin que el enunciado indique qué anotación o capa usar.
@@ -128,3 +130,12 @@ Después crea imagen Docker sin secretos.
 - [ ] Reproducibilidad.
 
 Continúa con proyecto final.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 28 — Docker para una API Spring Boot](../unidad28-docker/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 30 — Proyecto final](../unidad30-proyecto-final/README.md)

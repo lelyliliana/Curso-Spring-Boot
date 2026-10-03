@@ -1,5 +1,7 @@
 # Unidad 13 — Consultas, paginación y N+1
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Diseñar consultas Spring Data desde necesidades reales, paginar y observar el SQL para detectar N+1.
 
@@ -129,3 +131,12 @@ Endpoint paginado y evidencia del número de consultas antes/después de una mej
 - [ ] Observo SQL/N+1.
 
 Continúa con migraciones.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 12 — Relaciones JPA y cardinalidad](../unidad12-relaciones/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 14 — Base de datos real y migraciones](../unidad14-base-datos/README.md)

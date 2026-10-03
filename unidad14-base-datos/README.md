@@ -1,5 +1,7 @@
 # Unidad 14 — Base de datos real y migraciones
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Configurar PostgreSQL, versionar el esquema y separar ciclo de vida de datos del arranque de la aplicación.
 
@@ -114,3 +116,12 @@ Dos migraciones consecutivas conservando datos y añadiendo una restricción.
 - [ ] No dependo de ddl-auto destructivo.
 
 Continúa con APIs externas.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 13 — Consultas, paginación y N+1](../unidad13-consultas/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 15 — Consumo de APIs externas](../unidad15-apis-externas/README.md)

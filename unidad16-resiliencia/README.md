@@ -1,5 +1,7 @@
 # Unidad 16 — Timeouts, retries y resiliencia básica
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Diseñar comportamiento ante dependencias lentas o fallidas sin empeorar el incidente.
 
@@ -108,3 +110,12 @@ Política completa para una dependencia con pruebas simulando fallos.
 - [ ] Diseño degradación.
 
 Continúa con tareas.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 15 — Consumo de APIs externas](../unidad15-apis-externas/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 17 — Tareas programadas y procesamiento periódico](../unidad17-tareas/README.md)

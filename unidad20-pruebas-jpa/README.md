@@ -1,5 +1,7 @@
 # Unidad 20 — Pruebas de persistencia JPA
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Verificar mapeos, constraints y consultas con una base de pruebas adecuada.
 
@@ -95,3 +97,12 @@ Suite repository con una consulta no trivial y una restricción real.
 - [ ] Elijo DB representativa.
 
 Continúa con integración.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 19 — Pruebas web con MockMvc](../unidad19-mockmvc/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 21 — Pruebas de integración](../unidad21-integracion-tests/README.md)

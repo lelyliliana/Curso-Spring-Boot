@@ -1,5 +1,7 @@
 # Unidad 19 — Pruebas web con MockMvc
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Probar contrato MVC: rutas, serialización, validación, status, headers y manejo de errores.
 
@@ -104,3 +106,12 @@ Suite del contrato HTTP que detecte cambios incompatibles.
 - [ ] Mantengo alcance web.
 
 Continúa con JPA tests.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 18 — Pruebas unitarias de servicios](../unidad18-pruebas-unitarias/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 20 — Pruebas de persistencia JPA](../unidad20-pruebas-jpa/README.md)

@@ -1,5 +1,7 @@
 # Unidad 28 — Docker para una API Spring Boot
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Construir una imagen reproducible, entender imagen/contenedor/red y pasar configuración sin incrustar secretos.
 
@@ -114,3 +116,12 @@ Imagen reproducible que reciba toda configuración por entorno y no contenga cre
 - [ ] No incrusto secretos.
 
 Continúa con taller.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 27 — Empaquetado y configuración de producción](../unidad27-produccion/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 29 — Taller integrador de APIs](../unidad29-taller/README.md)

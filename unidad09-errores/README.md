@@ -1,5 +1,7 @@
 # Unidad 09 — Manejo global de errores
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Traducir fallos de aplicación a un contrato HTTP consistente sin filtrar detalles internos.
 
@@ -129,3 +131,12 @@ Formato estable de error con tests de cuatro escenarios.
 - [ ] Pruebo errores.
 
 Continúa con capas y persistencia.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 08 — Validación de entrada y reglas de negocio](../unidad08-validacion/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 10 — Capas y responsabilidades](../unidad10-capas/README.md)

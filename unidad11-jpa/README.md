@@ -1,5 +1,7 @@
 # Unidad 11 — Spring Data JPA y persistencia
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Relacionar objetos con tablas, comprender contexto de persistencia/repositorios y evitar tratar JPA como sustituto de SQL.
 
@@ -122,3 +124,12 @@ CRUD persistente explicando SQL generado y límites transaccionales.
 - [ ] Mantengo DTO separado.
 
 Continúa con relaciones.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 10 — Capas y responsabilidades](../unidad10-capas/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 12 — Relaciones JPA y cardinalidad](../unidad12-relaciones/README.md)

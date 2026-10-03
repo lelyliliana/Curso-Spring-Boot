@@ -1,5 +1,7 @@
 # Unidad 25 — Logging y trazabilidad
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Registrar eventos con contexto útil, correlacionar solicitudes y proteger información sensible.
 
@@ -108,3 +110,12 @@ Estrategia de logs para un flujo con fallo externo y error interno.
 - [ ] Correlaciono.
 
 Continúa con rendimiento.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 24 — Métricas y observabilidad](../unidad24-metricas/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 26 — Rendimiento y pruebas de carga](../unidad26-rendimiento/README.md)

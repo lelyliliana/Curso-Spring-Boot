@@ -1,5 +1,7 @@
 # Unidad 04 — HTTP y diseño de APIs REST
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Diseñar contratos HTTP antes de controllers: recursos, métodos, códigos, headers e idempotencia.
 
@@ -129,3 +131,12 @@ Contrato completo de tareas antes de escribir anotaciones.
 - [ ] Comprendo HTTP sin Spring.
 
 Continúa con controllers.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 03 — Inyección de dependencias y componentes](../unidad03-dependencias/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 05 — Controllers y endpoints](../unidad05-controllers/README.md)

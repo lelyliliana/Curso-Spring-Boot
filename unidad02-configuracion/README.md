@@ -1,5 +1,7 @@
 # Unidad 02 — Configuración, properties y perfiles
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Externalizar valores, crear configuración tipada y separar secretos del repositorio.
 
@@ -112,3 +114,12 @@ Configuración tipada/validada que cambie entre ejecución y test sin modificar 
 - [ ] Compruebo valores efectivos.
 
 Continúa con inyección.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 01 — Spring, Spring Boot y contenedor IoC](../unidad01-spring-ioc/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 03 — Inyección de dependencias y componentes](../unidad03-dependencias/README.md)

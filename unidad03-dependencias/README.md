@@ -1,5 +1,7 @@
 # Unidad 03 — Inyección de dependencias y componentes
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Hacer dependencias explícitas, elegir estereotipos y resolver ambigüedades sin acoplar clases innecesariamente.
 
@@ -122,3 +124,12 @@ Servicio con repositorio y Clock inyectados, probado sin levantar Spring.
 - [ ] Diagnostico ambigüedad/ciclos.
 
 Continúa con HTTP.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 02 — Configuración, properties y perfiles](../unidad02-configuracion/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 04 — HTTP y diseño de APIs REST](../unidad04-http-rest/README.md)

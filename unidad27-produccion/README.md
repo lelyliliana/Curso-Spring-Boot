@@ -1,5 +1,7 @@
 # Unidad 27 — Empaquetado y configuración de producción
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Construir un artefacto reproducible, externalizar configuración y cerrar la aplicación de forma controlada.
 
@@ -107,3 +109,12 @@ Checklist de release reproducible desde test hasta ejecución con configuración
 - [ ] Cierre controlado.
 
 Continúa con Docker.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 26 — Rendimiento y pruebas de carga](../unidad26-rendimiento/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 28 — Docker para una API Spring Boot](../unidad28-docker/README.md)

@@ -1,5 +1,7 @@
 # Unidad 12 — Relaciones JPA y cardinalidad
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Mapear FK y cardinalidades conscientemente y controlar navegación, fetch, cascada y propiedad de relaciones.
 
@@ -118,3 +120,12 @@ Modela Pedido→Detalle justificando cada decisión desde el modelo relacional.
 - [ ] Justifico cascada/fetch.
 
 Continúa con consultas.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 11 — Spring Data JPA y persistencia](../unidad11-jpa/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 13 — Consultas, paginación y N+1](../unidad13-consultas/README.md)

@@ -1,5 +1,7 @@
 # Unidad 24 — Métricas y observabilidad
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Definir métricas que respondan preguntas operativas y evitar cardinalidad descontrolada.
 
@@ -115,3 +117,12 @@ Cinco métricas con pregunta, tipo, tags y decisión que permiten tomar.
 - [ ] Interpreto distribuciones.
 
 Continúa con logging.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 23 — Actuator y health checks](../unidad23-actuator/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 25 — Logging y trazabilidad](../unidad25-logging/README.md)

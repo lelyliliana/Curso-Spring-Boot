@@ -1,5 +1,7 @@
 # Unidad 15 — Consumo de APIs externas
 
+[Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
+
 ## Qué aprenderás
 Aislar dependencias HTTP externas, validar contratos y traducir sus modelos/errores al lenguaje interno.
 
@@ -120,3 +122,12 @@ Adaptador externo completamente sustituible con traducción de errores documenta
 - [ ] Pruebo sin red real.
 
 Continúa con resiliencia.
+
+
+---
+
+## Continuar el curso
+
+- **Unidad anterior:** [Unidad 14 — Base de datos real y migraciones](../unidad14-base-datos/README.md)
+- **Volver al índice:** [Todas las unidades](../README.md)
+- **Siguiente unidad:** [Unidad 16 — Timeouts, retries y resiliencia básica](../unidad16-resiliencia/README.md)
