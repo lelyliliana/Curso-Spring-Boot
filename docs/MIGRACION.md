@@ -1,6 +1,6 @@
 # Reconocer proyectos Spring Boot 3.5 y 4.1
 
-La base del curso es 4.1.1 con Java 21. Si comparas con un proyecto 3.5, no cambies solo el número del parent sin revisar dependencias e imports. Primero actualiza la línea 3.5, elimina usos deprecados y sigue la guía oficial antes del salto a 4; el curso público no modifica tus repositorios académicos existentes.
+La base del curso es 4.1.1 con Java 21. Si comparas con un proyecto 3.5, no cambies solo el número del parent sin revisar dependencias e imports. Primero actualiza la línea 3.5, elimina usos deprecados y sigue la guía oficial antes del salto a 4.
 
 | Tema | Base de este curso |
 |---|---|

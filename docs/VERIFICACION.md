@@ -10,6 +10,8 @@ python scripts/verificar.py
 
 En Ubuntu/macOS puedes usar python3. El programa revisa enlaces locales y los cuatro archivos de cada una de las 31 unidades; ejecuta mvn verify en ambos proyectos, lee informes de pruebas y arranca los JAR en puertos locales temporales. Usa claves ficticias generadas durante la ejecución, conserva cookies y obtiene el token CSRF antes de escribir. Detiene los procesos al terminar.
 
+Mockito se carga mediante un agente declarado en Surefire, en lugar de depender de adjuntarlo dinámicamente durante la ejecución. El parent de Spring Boot administra su versión y el agente solo pertenece al proceso de pruebas. No lo agregues al comando del JAR de producción.
+
 Las 52 pruebas Maven cubren configuración, servicios, validación, controllers, repositorios, seguridad, integración y respuestas de un proveedor simulado en un servidor HTTP local. No dependen de una API pública ni de credenciales reales.
 
 La comprobación HTTP adicional prueba creación/consulta/actualización/eliminación, 201 y Location, validación, permisos, CSRF, paginación, 409 por versión antigua, métricas protegidas, salud y fallo controlado del proveedor. Los archivos de salidas contienen registros y resultado.json; están excluidos de Git.
