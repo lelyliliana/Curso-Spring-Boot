@@ -1,4 +1,4 @@
-# Unidad 01 — Spring, Spring Boot y contenedor IoC
+# Unidad 01: Spring, Spring Boot y contenedor IoC
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -149,8 +149,31 @@ Continúa con configuración.
 
 ---
 
+## Caso desarrollado: Ver qué objetos administra el contenedor
+
+FundamentosApplication declara Clock mediante @Bean. SaludoService se descubre por @Service y el constructor recibe Clock y SaludoProperties. Saludo es un record creado por petición, no un bean. El singleton del servicio es por contenedor/definición; debe evitar guardar estado mutable específico de un usuario. ContenedorTest comprueba identidad del bean y existencia de Clock.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f laboratorios/fundamentos/pom.xml "-Dtest=ContenedorTest#beansSingleton" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Dibuja el grafo del saludo y explica por qué el DTO no lleva @Component.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 00 — Entorno y primer proyecto Spring Boot](../unidad00-entorno/README.md)
+- **Unidad anterior:** [Unidad 00: Entorno y primer proyecto Spring Boot](../unidad00-entorno/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 02 — Configuración, properties y perfiles](../unidad02-configuracion/README.md)
+- **Siguiente unidad:** [Unidad 02: Configuración, properties y perfiles](../unidad02-configuracion/README.md)

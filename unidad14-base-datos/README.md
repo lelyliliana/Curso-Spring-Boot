@@ -1,4 +1,4 @@
-# Unidad 14 — Base de datos real y migraciones
+# Unidad 14: Base de datos real y migraciones
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -120,8 +120,31 @@ Continúa con APIs externas.
 
 ---
 
+## Caso desarrollado: Evolucionar un esquema con migraciones
+
+V1 crea tablas, FK y UNIQUE; V2 agrega activo y un índice; Hibernate ddl-auto=validate verifica mapeo sin modificar estructura; Flyway aplica versiones y registra checksum. V3 es carga ficticia solo en perfil dev. No edites una migración ya aplicada: crea la siguiente. H2 facilita comenzar, pero no demuestra compatibilidad PostgreSQL; el verificador arranca el mismo JAR contra una base PostgreSQL nueva.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Explica qué ocurre al promover el JAR a prod y por qué no se promueve también la base dev.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 13 — Consultas, paginación y N+1](../unidad13-consultas/README.md)
+- **Unidad anterior:** [Unidad 13: Consultas, paginación y N+1](../unidad13-consultas/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 15 — Consumo de APIs externas](../unidad15-apis-externas/README.md)
+- **Siguiente unidad:** [Unidad 15: Consumo de APIs externas](../unidad15-apis-externas/README.md)

@@ -1,4 +1,4 @@
-# Unidad 09 — Manejo global de errores
+# Unidad 09: Manejo global de errores
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -135,8 +135,31 @@ Continúa con capas y persistencia.
 
 ---
 
+## Caso desarrollado: Representar errores sin divulgar información interna
+
+ApiErrorHandler usa ProblemDetail para 400/404/409/503 y fallos inesperados 500. ResponseEntityExceptionHandler conserva manejo de errores del protocolo como JSON ilegible, tipo incorrecto, método no permitido o formato no soportado. No se retorna e.getMessage de una excepción SQL. Los errores de la cadena de seguridad requieren handlers propios porque ocurren antes de MVC.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#jsonMalformado400" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Escribe qué debe conocer un cliente de un conflicto sin recibir SQL o stack trace.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 08 — Validación de entrada y reglas de negocio](../unidad08-validacion/README.md)
+- **Unidad anterior:** [Unidad 08: Validación de entrada y reglas de negocio](../unidad08-validacion/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 10 — Capas y responsabilidades](../unidad10-capas/README.md)
+- **Siguiente unidad:** [Unidad 10: Capas y responsabilidades](../unidad10-capas/README.md)

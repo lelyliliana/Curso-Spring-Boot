@@ -1,4 +1,4 @@
-# Unidad 10 — Capas y responsabilidades
+# Unidad 10: Capas y responsabilidades
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -112,8 +112,31 @@ Continúa con JPA.
 
 ---
 
+## Caso desarrollado: Asignar una responsabilidad concreta a cada capa
+
+Controller adapta transporte; Service delimita crear/actualizar/eliminar y transacciones; Repository expresa consultas; Producto protege invariantes; ProveedorClient adapta HTTP externo. El servicio devuelve DTO sin ResponseEntity y no conoce status. CategoriaController es deliberadamente un CRUD pequeño de catálogo que usa repository directamente; explica ese compromiso antes de añadir una capa vacía.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoServiceTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Ubica la comprobación SKU, el UNIQUE y el 409 en capas y explica la carrera.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 09 — Manejo global de errores](../unidad09-errores/README.md)
+- **Unidad anterior:** [Unidad 09: Manejo global de errores](../unidad09-errores/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 11 — Spring Data JPA y persistencia](../unidad11-jpa/README.md)
+- **Siguiente unidad:** [Unidad 11: Spring Data JPA y persistencia](../unidad11-jpa/README.md)

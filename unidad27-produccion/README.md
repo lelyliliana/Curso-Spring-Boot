@@ -1,4 +1,4 @@
-# Unidad 27 — Empaquetado y configuración de producción
+# Unidad 27: Empaquetado y configuración de producción
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -113,8 +113,31 @@ Continúa con Docker.
 
 ---
 
+## Caso desarrollado: Promover un artefacto con configuración distinta
+
+mvn verify ejecuta pruebas y produce target/api-productos.jar. El perfil prod usa PostgreSQL, valida mapeo y exige configuración externa. El mismo JAR se comprueba con H2 y PostgreSQL, sin recompilar por credenciales. server.shutdown=graceful y tiempo de espera controlan cierre, pero el balanceador y plataforma deben coordinar señales/tráfico.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Documenta el arranque prod y distingue valor secreto de una opción no secreta.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 26 — Rendimiento y pruebas de carga](../unidad26-rendimiento/README.md)
+- **Unidad anterior:** [Unidad 26: Rendimiento y pruebas de carga](../unidad26-rendimiento/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 28 — Docker para una API Spring Boot](../unidad28-docker/README.md)
+- **Siguiente unidad:** [Unidad 28: Docker para una API Spring Boot](../unidad28-docker/README.md)

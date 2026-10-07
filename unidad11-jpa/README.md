@@ -1,4 +1,4 @@
-# Unidad 11 — Spring Data JPA y persistencia
+# Unidad 11: Spring Data JPA y persistencia
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -128,8 +128,31 @@ Continúa con relaciones.
 
 ---
 
+## Caso desarrollado: Observar SQL, identidad y unidad transaccional
+
+@Entity mapea Producto; @Id y @GeneratedValue usan identidad; repository genera consultas; @Transactional rodea caso de uso. save no significa que cada cambio se haya confirmado: flush envía SQL y commit confirma la unidad. readOnly es una indicación de optimización, no un sistema de permisos que impide toda escritura. @Version detecta actualizaciones concurrentes cuando la base aplica su comparación de versión.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoRepositoryTest#relacionPersistida" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Describe dónde se confirma la creación y por qué se usa saveAndFlush.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 10 — Capas y responsabilidades](../unidad10-capas/README.md)
+- **Unidad anterior:** [Unidad 10: Capas y responsabilidades](../unidad10-capas/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 12 — Relaciones JPA y cardinalidad](../unidad12-relaciones/README.md)
+- **Siguiente unidad:** [Unidad 12: Relaciones JPA y cardinalidad](../unidad12-relaciones/README.md)

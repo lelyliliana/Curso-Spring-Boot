@@ -1,4 +1,4 @@
-# Unidad 20 — Pruebas de persistencia JPA
+# Unidad 20: Pruebas de persistencia JPA
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -101,8 +101,31 @@ Continúa con integración.
 
 ---
 
+## Caso desarrollado: Probar una consulta y una restricción del modelo
+
+DataJpaTest utiliza base embebida aislada y rollback por prueba. Flyway se importa para que el esquema/migraciones sean el objeto de la prueba, no un DDL creado libremente por Hibernate. saveAndFlush fuerza una restricción en el momento observado. categoriaConHijosProtegida demuestra la FK; duplicadoReal demuestra UNIQUE. Una prueba que inserta y consulta sin límite de negocio puede limitarse a repetir funcionalidad del framework.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoRepositoryTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Enumera los riesgos que H2 no cubre y cómo se verifica PostgreSQL.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 19 — Pruebas web con MockMvc](../unidad19-mockmvc/README.md)
+- **Unidad anterior:** [Unidad 19: Pruebas web con MockMvc](../unidad19-mockmvc/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 21 — Pruebas de integración](../unidad21-integracion-tests/README.md)
+- **Siguiente unidad:** [Unidad 21: Pruebas de integración](../unidad21-integracion-tests/README.md)

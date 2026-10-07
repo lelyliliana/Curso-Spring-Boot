@@ -1,4 +1,4 @@
-# Unidad 00 — Entorno y primer proyecto Spring Boot
+# Unidad 00: Entorno y primer proyecto Spring Boot
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -152,7 +152,30 @@ Continúa con Spring e IoC.
 
 ---
 
+## Caso desarrollado: Arrancar una aplicación y reconocer el puerto
+
+El proyecto fundamentos contiene solo MVC, validación y pruebas. Inicia en 127.0.0.1:8080; GET /api/saludos?nombre=Leli devuelve mensaje Hola, Leli y la fecha UTC actual. Un 404 indica que respondió un servidor, no que Java esté caído. mvn package ejecuta las fases anteriores del ciclo, incluidas pruebas; no necesitas repetir mvn test antes de cada package.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f laboratorios/fundamentos/pom.xml "-Dtest=ContenedorTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Ejecuta el mismo JAR en 8081 y escribe el comando que prueba que cambió el puerto.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 01 — Spring, Spring Boot y contenedor IoC](../unidad01-spring-ioc/README.md)
+- **Siguiente unidad:** [Unidad 01: Spring, Spring Boot y contenedor IoC](../unidad01-spring-ioc/README.md)

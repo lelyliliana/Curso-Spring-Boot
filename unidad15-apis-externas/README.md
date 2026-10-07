@@ -1,4 +1,4 @@
-# Unidad 15 — Consumo de APIs externas
+# Unidad 15: Consumo de APIs externas
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -126,8 +126,31 @@ Continúa con resiliencia.
 
 ---
 
+## Caso desarrollado: Consumir una API con límite y contrato propio
+
+ProveedorClient usa RestClient y un HttpClient con tiempos de conexión/lectura. La URL base es configuración, el SKU restringido forma solo un segmento y el proveedor se simula localmente en pruebas. Un 200 con JSON del tipo esperado todavía requiere validar SKU y precio. No se llama Internet para que una prueba de tu aplicación pase.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProveedorClientTest#contratoValido" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Traduce proveedor 404, 429, 503 y JSON inválido al contrato local.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 14 — Base de datos real y migraciones](../unidad14-base-datos/README.md)
+- **Unidad anterior:** [Unidad 14: Base de datos real y migraciones](../unidad14-base-datos/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 16 — Timeouts, retries y resiliencia básica](../unidad16-resiliencia/README.md)
+- **Siguiente unidad:** [Unidad 16: Timeouts, retries y resiliencia básica](../unidad16-resiliencia/README.md)

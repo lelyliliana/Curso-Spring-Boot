@@ -1,4 +1,4 @@
-# Unidad 16 — Timeouts, retries y resiliencia básica
+# Unidad 16: Timeouts, retries y resiliencia básica
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -114,8 +114,31 @@ Continúa con tareas.
 
 ---
 
+## Caso desarrollado: Acotar fallos y reintentos
+
+Por defecto intentos=1. Para el experimento se admite 2 y se repiten solo respuestas 502/503/504 de este GET. 404, 429, timeout y JSON inválido no se reintentan automáticamente. El ejemplo no implementa circuit breaker ni un presupuesto de tiempo global; dos intentos pueden aumentar la latencia. En un sistema real define backoff/jitter, presupuesto total y política de Retry-After si aplica.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProveedorClientTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Justifica por qué no copiar este retry a un POST de pago.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 15 — Consumo de APIs externas](../unidad15-apis-externas/README.md)
+- **Unidad anterior:** [Unidad 15: Consumo de APIs externas](../unidad15-apis-externas/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 17 — Tareas programadas y procesamiento periódico](../unidad17-tareas/README.md)
+- **Siguiente unidad:** [Unidad 17: Tareas programadas y procesamiento periódico](../unidad17-tareas/README.md)

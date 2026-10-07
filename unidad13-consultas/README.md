@@ -1,4 +1,4 @@
-# Unidad 13 — Consultas, paginación y N+1
+# Unidad 13: Consultas, paginación y N+1
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -135,8 +135,31 @@ Continúa con migraciones.
 
 ---
 
+## Caso desarrollado: Filtrar y paginar sin perder el significado del resultado
+
+findByNombreContainingIgnoreCase filtra texto; Page incluye consulta de conteo además de los datos; Slice permite preguntar si hay una página siguiente sin total exacto. El curso expone metadatos propios y un límite 100. El orden por id evita empate indeterminado, pero no convierte varias páginas en una fotografía estable si llegan filas entre peticiones. No se pagina un fetch join de colección sin analizar multiplicación de filas.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoRepositoryTest#filtroYPaginaEstable" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Compara Page y Slice para un feed y un reporte que necesita total.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 12 — Relaciones JPA y cardinalidad](../unidad12-relaciones/README.md)
+- **Unidad anterior:** [Unidad 12: Relaciones JPA y cardinalidad](../unidad12-relaciones/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 14 — Base de datos real y migraciones](../unidad14-base-datos/README.md)
+- **Siguiente unidad:** [Unidad 14: Base de datos real y migraciones](../unidad14-base-datos/README.md)

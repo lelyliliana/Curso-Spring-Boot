@@ -1,0 +1,54 @@
+name: Verificar curso
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  curso:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        java: ['21', '25']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+          cache: maven
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - uses: ankane/setup-postgres@v1
+        with:
+          postgres-version: '17'
+          user: postgres
+      - run: python -m pip install -r requirements.txt
+      - run: mvn -B -f laboratorios/fundamentos/pom.xml verify
+      - run: mvn -B -f ejemplos/api-productos/pom.xml verify
+      - if: matrix.os == 'ubuntu-latest' && matrix.java == '21'
+        run: docker build -t curso-spring-check ejemplos/api-productos
+      - if: matrix.os == 'ubuntu-latest' && matrix.java == '21'
+        run: python scripts/verificar.py --skip-build --postgres --docker
+        env:
+          PGHOST: 127.0.0.1
+          PGPORT: '5432'
+          PGUSER: postgres
+      - if: matrix.os != 'ubuntu-latest' || matrix.java != '21'
+        run: python scripts/verificar.py --skip-build --postgres
+        env:
+          PGHOST: 127.0.0.1
+          PGPORT: '5432'
+          PGUSER: postgres
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resultados-${{ matrix.os }}-java${{ matrix.java }}
+          path: |
+            salidas/
+            laboratorios/fundamentos/target/surefire-reports/
+            ejemplos/api-productos/target/surefire-reports/

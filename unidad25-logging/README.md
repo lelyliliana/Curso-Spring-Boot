@@ -1,4 +1,4 @@
-# Unidad 25 — Logging y trazabilidad
+# Unidad 25: Logging y trazabilidad
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -114,8 +114,31 @@ Continúa con rendimiento.
 
 ---
 
+## Caso desarrollado: Correlacionar solicitudes sin registrar credenciales
+
+RequestIdFilter admite header de hasta 64 caracteres alfanuméricos/guion, genera UUID si no cumple y devuelve X-Request-Id. MDC se limpia en finally para no contaminar otro trabajo del hilo. El log registra método y status; no Authorization ni cuerpo. La correlación no autentica al emisor y MDC no se propaga automáticamente a tareas asíncronas o llamadas externas.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest#requestIdAcotado" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Envía un id inválido y verifica que no se refleja literalmente en el log/respuesta.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 24 — Métricas y observabilidad](../unidad24-metricas/README.md)
+- **Unidad anterior:** [Unidad 24: Métricas y observabilidad](../unidad24-metricas/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 26 — Rendimiento y pruebas de carga](../unidad26-rendimiento/README.md)
+- **Siguiente unidad:** [Unidad 26: Rendimiento y pruebas de carga](../unidad26-rendimiento/README.md)

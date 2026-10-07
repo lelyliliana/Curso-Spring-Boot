@@ -1,29 +1,7 @@
-# Versión 1.0
+# Versión 2.0
 
-Estado: **completa, autodidacta y disponible**.
+Referencia: Java 21, Spring Boot 4.1.1 y Maven. Se conservan las 31 unidades y sus rutas. Cada unidad contiene lección, laboratorio, práctica y solución razonada.
 
-## Alcance
-- 31 unidades en siete niveles;
-- Java 21 y Spring Boot 3.x;
-- IoC, configuración e inyección;
-- HTTP/REST, DTO, validación y errores;
-- arquitectura por responsabilidades;
-- JPA, relaciones, consultas, paginación y migraciones;
-- APIs externas y resiliencia básica;
-- pruebas unitarias, MockMvc, JPA e integración;
-- Spring Security;
-- Actuator, métricas, logging y rendimiento;
-- configuración de producción y Docker;
-- API ejecutable de referencia;
-- taller integrador;
-- proyecto final con plantilla, rúbrica y checklist;
-- diagnóstico por capas.
+Se incorporan un proyecto de fundamentos y una API con DTO, validación, categorías, paginación, migraciones, bloqueo optimista, seguridad con CSRF, observabilidad y un cliente HTTP con límites de tiempo. Hay 52 pruebas Maven y un verificador del contrato sobre JAR, H2 y PostgreSQL. La automatización incluye Ubuntu, Windows y macOS con Java 21/25, y una ejecución de imagen Docker en Linux.
 
-## Criterio de cierre
-El curso cubre el recorrido definido desde fundamentos Spring Boot hasta construcción, prueba, operación y entrega de una API backend.
-
-Las correcciones posteriores se consideran mantenimiento.
-
-## Experiencia de aprendizaje
-
-El curso puede recorrerse de forma autónoma desde HTTP, IoC y configuración hasta persistencia, integraciones, pruebas, seguridad, observabilidad, rendimiento y ejecución en contenedores. Las unidades priorizan contratos, comprensión de lo que Spring automatiza, práctica guiada, diagnóstico y decisiones justificadas.
+Consulta [verificación](docs/VERIFICACION.md) y los resultados del commit que estás estudiando. La base H2 ayuda a aprender; la comprobación PostgreSQL se ejecuta de forma independiente. El proyecto educativo necesita decisiones adicionales antes de exponerse en un sistema público (identidad, TLS, secretos, límites y respaldos).

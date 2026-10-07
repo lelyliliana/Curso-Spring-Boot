@@ -1,4 +1,4 @@
-# Unidad 24 — Métricas y observabilidad
+# Unidad 24: Métricas y observabilidad
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -121,8 +121,31 @@ Continúa con logging.
 
 ---
 
+## Caso desarrollado: Leer métricas con etiquetas acotadas
+
+Micrometer registra http.server.requests con método, status y URI normalizada por ruta. Un id de producto o request id como tag puede crear una serie por cada solicitud. Timer cuenta y acumula duración; no todos los backends exponen percentiles automáticamente. Métricas resumen comportamiento; logs correlacionan eventos y trazas conectan fronteras.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest#saludPublicaYMetricasProtegidas" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Define cinco métricas y estima cardinalidad.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 23 — Actuator y health checks](../unidad23-actuator/README.md)
+- **Unidad anterior:** [Unidad 23: Actuator y health checks](../unidad23-actuator/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 25 — Logging y trazabilidad](../unidad25-logging/README.md)
+- **Siguiente unidad:** [Unidad 25: Logging y trazabilidad](../unidad25-logging/README.md)

@@ -1,19 +1,16 @@
-# Rúbrica técnica — Proyecto final Spring Boot
+# Rúbrica del proyecto final
 
-Total: **100 puntos**.
+| Criterio | Puntos | Evidencia de logro |
+|---|---:|---|
+| Problema y contrato | 15 | Recursos claros, entradas/salidas, status, permisos, límites y ejemplos coherentes |
+| Reglas y arquitectura | 20 | DTO, capas, relaciones, transacciones, restricciones y concurrencia justificadas |
+| Persistencia | 15 | Migraciones, integridad y pruebas PostgreSQL reales sin depender solo de H2 |
+| Pruebas | 20 | Casos normales, límites, rechazo y conflicto; resultados reproducibles en capas apropiadas |
+| Seguridad y errores | 10 | Acceso probado, CSRF según autenticación, secretos externos y respuestas sin filtraciones |
+| Operación y rendimiento | 10 | Salud, logs correlacionados, timeouts y carga con interpretación y límites |
+| Entrega y explicación | 10 | JAR/contenedor, pasos multiplataforma y demostración con decisiones sustentadas |
+| **Total** | **100** | |
 
-| Criterio | Puntos |
-|---|---:|
-| Contrato HTTP y REST | 10 |
-| Arquitectura y responsabilidades | 10 |
-| DTO, validación y errores | 10 |
-| Persistencia y modelo | 15 |
-| Integraciones/resiliencia | 10 |
-| Pruebas | 15 |
-| Seguridad | 10 |
-| Observabilidad/logging | 5 |
-| Configuración/Docker | 10 |
-| Documentación | 5 |
+En cada criterio: logro completo recibe los puntos indicados; logro parcial con evidencia incompleta recibe hasta la mitad; ausencia o comportamiento incorrecto recibe cero. La evaluación considera el comportamiento observado y la explicación, no el número de archivos. Una credencial real publicada debe retirarse y revocarse antes de presentar el proyecto.
 
-## Regla
-Una API que responde en el caso feliz no está terminada. Debe representar errores, probar reglas y poder diagnosticarse.
+[Plantilla](PLANTILLA.md) · [Checklist](CHECKLIST.md)

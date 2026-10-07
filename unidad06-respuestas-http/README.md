@@ -1,4 +1,4 @@
-# Unidad 06 — ResponseEntity, headers y códigos HTTP
+# Unidad 06: ResponseEntity, headers y códigos HTTP
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -129,8 +129,31 @@ Continúa con DTO.
 
 ---
 
+## Caso desarrollado: Controlar status, headers y cuerpo
+
+ResponseEntity.created recibe una URI y genera 201/Location. ResponseEntity.noContent no debe contener un objeto de error ni el producto eliminado. Content-Type describe el cuerpo; Accept pide formatos que el cliente entiende. Las respuestas JSON se contrastan en propiedades relevantes, no con una cadena rígida sensible al orden de campos.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#creacionContrato" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Comprueba Location, Content-Type y version en una creación, además del status.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 05 — Controllers y endpoints](../unidad05-controllers/README.md)
+- **Unidad anterior:** [Unidad 05: Controllers y endpoints](../unidad05-controllers/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 07 — DTO y mapeo](../unidad07-dto/README.md)
+- **Siguiente unidad:** [Unidad 07: DTO y mapeo](../unidad07-dto/README.md)

@@ -1,4 +1,4 @@
-# Unidad 07 — DTO y mapeo
+# Unidad 07: DTO y mapeo
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -133,8 +133,31 @@ Continúa con validación.
 
 ---
 
+## Caso desarrollado: Separar entrada, salida y entidad persistente
+
+ProductoRequest no admite id ni version; ProductoUpdateRequest exige version; ProductoResponse incluye datos de categoría sin devolver la entidad lazy. El mapeo ocurre dentro de la transacción del servicio y open-in-view=false impide depender de una sesión JPA abierta durante serialización. Los records son útiles como DTO, pero no convierten automáticamente todo objeto en inmutable si contienen referencias mutables.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest#creaConsultaActualizaYElimina" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Justifica por qué no se devuelve Producto directamente desde el controller.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 06 — ResponseEntity, headers y códigos HTTP](../unidad06-respuestas-http/README.md)
+- **Unidad anterior:** [Unidad 06: ResponseEntity, headers y códigos HTTP](../unidad06-respuestas-http/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 08 — Validación de entrada y reglas de negocio](../unidad08-validacion/README.md)
+- **Siguiente unidad:** [Unidad 08: Validación de entrada y reglas de negocio](../unidad08-validacion/README.md)

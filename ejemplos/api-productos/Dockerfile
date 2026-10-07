@@ -1,5 +1,6 @@
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY target/api-productos-1.0.0.jar app.jar
+COPY target/api-productos.jar app.jar
+USER 10001:10001
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]

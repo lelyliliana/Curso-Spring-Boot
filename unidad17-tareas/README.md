@@ -1,4 +1,4 @@
-# Unidad 17 — Tareas programadas y procesamiento periódico
+# Unidad 17: Tareas programadas y procesamiento periódico
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -131,8 +131,31 @@ Continúa con pruebas.
 
 ---
 
+## Caso desarrollado: Ejecutar una tarea periódica sin prometer exclusión distribuida
+
+ResumenJob se activa solo con app.tareas-habilitadas=true. fixedDelay espera desde el final de una ejecución antes de programar la siguiente según scheduler; fixedRate refiere una frecuencia de programación distinta. Cada instancia de la aplicación puede ejecutar su propia tarea. @Scheduled no garantiza una única ejecución en un clúster ni persistencia de trabajo ante una caída.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ConfiguracionTest#jobPuedeProbarseSinEsperarReloj" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Diseña qué cambiar si dos réplicas deben ejecutar una sola tarea de facturación.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 16 — Timeouts, retries y resiliencia básica](../unidad16-resiliencia/README.md)
+- **Unidad anterior:** [Unidad 16: Timeouts, retries y resiliencia básica](../unidad16-resiliencia/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 18 — Pruebas unitarias de servicios](../unidad18-pruebas-unitarias/README.md)
+- **Siguiente unidad:** [Unidad 18: Pruebas unitarias de servicios](../unidad18-pruebas-unitarias/README.md)

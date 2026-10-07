@@ -1,4 +1,4 @@
-# Unidad 21 — Pruebas de integración
+# Unidad 21: Pruebas de integración
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -112,8 +112,31 @@ Continúa con seguridad.
 
 ---
 
+## Caso desarrollado: Comprobar colaboración de capas y un flujo completo
+
+La prueba SpringBootTest+MockMvc integra MVC, servicio, JPA, Flyway y H2; sus cambios se revierten en el hilo del test. La comprobación operativa del JAR abre servidor TCP real y no se revierte con @Transactional en el cliente: elimina su recurso y usa una base propia. No dependas del orden de pruebas ni de una base manual compartida.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Prueba actualización con una versión vieja y comprueba que no cambió el valor guardado.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 20 — Pruebas de persistencia JPA](../unidad20-pruebas-jpa/README.md)
+- **Unidad anterior:** [Unidad 20: Pruebas de persistencia JPA](../unidad20-pruebas-jpa/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 22 — Seguridad básica con Spring Security](../unidad22-seguridad/README.md)
+- **Siguiente unidad:** [Unidad 22: Seguridad básica con Spring Security](../unidad22-seguridad/README.md)

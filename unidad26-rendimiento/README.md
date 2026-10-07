@@ -1,4 +1,4 @@
-# Unidad 26 — Rendimiento y pruebas de carga
+# Unidad 26: Rendimiento y pruebas de carga
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -131,8 +131,31 @@ Continúa con producción.
 
 ---
 
+## Caso desarrollado: Medir antes de modificar consultas o índices
+
+La consulta paginada conserva orden y usa EntityGraph para categoría. No se concluye rendimiento por tener cuatro filas. scripts/carga.py mide GET público sobre un servidor local elegido, reporta latencia y errores y limita cantidad/concurrencia. No es una prueba distribuida ni demuestra capacidad en producción. Incluye calentamiento y registra versión, datos y hardware al comparar.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoRepositoryTest#filtroYPaginaEstable" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Propón experimento N+1 y una mejora sin cambiar cinco cosas a la vez.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 25 — Logging y trazabilidad](../unidad25-logging/README.md)
+- **Unidad anterior:** [Unidad 25: Logging y trazabilidad](../unidad25-logging/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 27 — Empaquetado y configuración de producción](../unidad27-produccion/README.md)
+- **Siguiente unidad:** [Unidad 27: Empaquetado y configuración de producción](../unidad27-produccion/README.md)

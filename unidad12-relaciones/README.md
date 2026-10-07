@@ -1,4 +1,4 @@
-# Unidad 12 — Relaciones JPA y cardinalidad
+# Unidad 12: Relaciones JPA y cardinalidad
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -124,8 +124,31 @@ Continúa con consultas.
 
 ---
 
+## Caso desarrollado: Decidir relaciones, fetch y acciones de borrado
+
+Producto es dueño del ManyToOne mediante categoria_id; la FK es obligatoria. Fetch LAZY no equivale a prometer cero consultas extra, y JPA puede usar proxies o consultas adicionales. No hay cascada REMOVE de producto a categoría: eliminar un producto no debe borrar la categoría compartida. La FK impide borrar una categoría con hijos. @EntityGraph permite cargar categoría para el reporte sin serializar proxies.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoRepositoryTest#categoriaConHijosProtegida" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Explica cascada JPA y ON DELETE y modela Pedido/Detalle sin copiar CascadeType.ALL indiscriminadamente.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 11 — Spring Data JPA y persistencia](../unidad11-jpa/README.md)
+- **Unidad anterior:** [Unidad 11: Spring Data JPA y persistencia](../unidad11-jpa/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 13 — Consultas, paginación y N+1](../unidad13-consultas/README.md)
+- **Siguiente unidad:** [Unidad 13: Consultas, paginación y N+1](../unidad13-consultas/README.md)

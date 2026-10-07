@@ -1,4 +1,4 @@
-# Unidad 05 — Controllers y endpoints
+# Unidad 05: Controllers y endpoints
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -138,8 +138,31 @@ Continúa con respuestas.
 
 ---
 
+## Caso desarrollado: Enlazar rutas y parámetros con casos de uso
+
+ProductoController conoce DTO y HTTP, y delega al servicio. @PathVariable identifica recurso; @RequestParam pagina/filtra; @RequestBody recibe JSON. La colección devuelve una envoltura propia con contenido y metadatos para evitar exponer la representación interna de Page. El endpoint no acepta una URL arbitraria de proveedor.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#listaPaginada" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Consulta nombre=base y pagina=0,tamano=2; identifica cuántos productos entran.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 04 — HTTP y diseño de APIs REST](../unidad04-http-rest/README.md)
+- **Unidad anterior:** [Unidad 04: HTTP y diseño de APIs REST](../unidad04-http-rest/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 06 — ResponseEntity, headers y códigos HTTP](../unidad06-respuestas-http/README.md)
+- **Siguiente unidad:** [Unidad 06: ResponseEntity, headers y códigos HTTP](../unidad06-respuestas-http/README.md)

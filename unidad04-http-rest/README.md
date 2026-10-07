@@ -1,4 +1,4 @@
-# Unidad 04 — HTTP y diseño de APIs REST
+# Unidad 04: HTTP y diseño de APIs REST
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -135,8 +135,31 @@ Continúa con controllers.
 
 ---
 
+## Caso desarrollado: Diseñar una creación antes de escribir anotaciones
+
+POST /api/productos crea un recurso con 201 y Location. GET no pide crear ni modificar recursos. PUT reemplaza los campos del contrato de actualización y exige la versión leída; se utiliza 409 si esa versión está desactualizada. DELETE exitoso devuelve 204 sin cuerpo; repetirlo puede devolver 404 y seguir siendo idempotente en el efecto (el recurso permanece ausente). REST no equivale a cualquier JSON sobre HTTP: incluye restricciones arquitectónicas además de convenciones de rutas.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#creacionContrato" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Define contrato para un SKU duplicado y un id ausente.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 03 — Inyección de dependencias y componentes](../unidad03-dependencias/README.md)
+- **Unidad anterior:** [Unidad 03: Inyección de dependencias y componentes](../unidad03-dependencias/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 05 — Controllers y endpoints](../unidad05-controllers/README.md)
+- **Siguiente unidad:** [Unidad 05: Controllers y endpoints](../unidad05-controllers/README.md)

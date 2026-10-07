@@ -1,4 +1,4 @@
-# Plantilla — Proyecto final Spring Boot
+# Plantilla: Proyecto final Spring Boot
 
 ## Problema y alcance
 ## Recursos y contrato HTTP

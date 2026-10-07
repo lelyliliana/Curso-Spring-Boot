@@ -1,4 +1,4 @@
-# Unidad 08 — Validación de entrada y reglas de negocio
+# Unidad 08: Validación de entrada y reglas de negocio
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -113,8 +113,31 @@ Continúa con manejo global.
 
 ---
 
+## Caso desarrollado: Distinguir forma válida de regla de negocio
+
+@Valid activa restricciones del DTO: SKU en mayúsculas, nombre no vacío, precio mínimo 0.01 con hasta dos decimales y categoría positiva. Esas restricciones no verifican existencia de categoría ni unicidad bajo concurrencia. El dominio vuelve a validar invariantes para llamadas fuera de MVC. La base añade constraints. Ninguna capa conoce reglas que no se escribieron.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#postInvalido" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Prueba precio 1.001, categoría 99999 y SKU ya existente; explica los tres errores.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 07 — DTO y mapeo](../unidad07-dto/README.md)
+- **Unidad anterior:** [Unidad 07: DTO y mapeo](../unidad07-dto/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 09 — Manejo global de errores](../unidad09-errores/README.md)
+- **Siguiente unidad:** [Unidad 09: Manejo global de errores](../unidad09-errores/README.md)

@@ -1,4 +1,4 @@
-# Unidad 18 — Pruebas unitarias de servicios
+# Unidad 18: Pruebas unitarias de servicios
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -112,8 +112,31 @@ Continúa con MockMvc.
 
 ---
 
+## Caso desarrollado: Probar reglas sin cargar el contexto
+
+ProductoServiceTest construye servicio con repositorios Mockito. Usa objetos reales de dominio y BigDecimal; no mockea valores simples. Comprueba que SKU duplicado y categoría ausente no persisten. Un test unitario no demuestra UNIQUE ni transacción real: esos riesgos van a repository/integración. No se afirma 404 en el servicio; se afirma una excepción de dominio.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoServiceTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Añade caso válido en el dominio y un precio inválido, y justifica qué no se prueba.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 17 — Tareas programadas y procesamiento periódico](../unidad17-tareas/README.md)
+- **Unidad anterior:** [Unidad 17: Tareas programadas y procesamiento periódico](../unidad17-tareas/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 19 — Pruebas web con MockMvc](../unidad19-mockmvc/README.md)
+- **Siguiente unidad:** [Unidad 19: Pruebas web con MockMvc](../unidad19-mockmvc/README.md)

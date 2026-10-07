@@ -1,4 +1,4 @@
-# Unidad 03 — Inyección de dependencias y componentes
+# Unidad 03: Inyección de dependencias y componentes
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -128,8 +128,31 @@ Continúa con HTTP.
 
 ---
 
+## Caso desarrollado: Construir y probar dependencias explícitas
+
+SaludoServiceTest crea el servicio con new, un Clock fijo y configuración. La respuesta de enero de 2026 es determinista sin contexto Spring. Spring puede ensamblar los mismos objetos en producción; la lógica no necesita buscar beans. Un único constructor no requiere @Autowired. Si aparecen dos Clock compatibles, declara una selección consciente con @Qualifier, @Primary o configuración explícita.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f laboratorios/fundamentos/pom.xml "-Dtest=SaludoServiceTest#constructorSinSpring" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Comprueba nombres vacíos y el límite de 40 caracteres sin arrancar el servidor.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 02 — Configuración, properties y perfiles](../unidad02-configuracion/README.md)
+- **Unidad anterior:** [Unidad 02: Configuración, properties y perfiles](../unidad02-configuracion/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 04 — HTTP y diseño de APIs REST](../unidad04-http-rest/README.md)
+- **Siguiente unidad:** [Unidad 04: HTTP y diseño de APIs REST](../unidad04-http-rest/README.md)

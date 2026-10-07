@@ -1,4 +1,4 @@
-# Unidad 23 — Actuator y health checks
+# Unidad 23: Actuator y health checks
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -100,8 +100,31 @@ Continúa con métricas.
 
 ---
 
+## Caso desarrollado: Separar salud del proceso y disponibilidad de dependencias
+
+health público no revela components. Liveness no se acopla al proveedor opcional; readiness incluye db además de readinessState. Actuator expone solo health,info,metrics y protege los no públicos con OPS_READ. UP no prueba cada regla del negocio. Sacar todas las réplicas de tráfico por un proveedor opcional caído puede empeorar una degradación.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest#saludPublicaYMetricasProtegidas" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Explica qué cambia si la DB falla y el proceso sigue vivo.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 22 — Seguridad básica con Spring Security](../unidad22-seguridad/README.md)
+- **Unidad anterior:** [Unidad 22: Seguridad básica con Spring Security](../unidad22-seguridad/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 24 — Métricas y observabilidad](../unidad24-metricas/README.md)
+- **Siguiente unidad:** [Unidad 24: Métricas y observabilidad](../unidad24-metricas/README.md)

@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: productos
+      POSTGRES_USER: curso
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD fuera de Git}
+    volumes:
+      - datos_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  api:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:postgresql://db:5432/productos
+      DB_USER: curso
+      DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD fuera de Git}
+      APP_EDITOR_PASSWORD: ${APP_EDITOR_PASSWORD:?Define APP_EDITOR_PASSWORD}
+      APP_LECTOR_PASSWORD: ${APP_LECTOR_PASSWORD:?Define APP_LECTOR_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  datos_pg:

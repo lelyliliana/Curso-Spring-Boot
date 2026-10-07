@@ -1,4 +1,4 @@
-# Unidad 02 — Configuración, properties y perfiles
+# Unidad 02: Configuración, properties y perfiles
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -118,8 +118,31 @@ Continúa con inyección.
 
 ---
 
+## Caso desarrollado: Sobrescribir una propiedad sin recompilar
+
+SaludoProperties es un record @ConfigurationProperties validado; @EnableConfigurationProperties lo registra. application.properties fija Hola y máximo 40; la prueba sobrescribe el prefijo por Bienvenida. Una propiedad tipada no se registra automáticamente por ser record. En la API las contraseñas esenciales deben existir y los timeouts se validan al arrancar. Un perfil activa configuración, no almacena secretos de forma segura.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f laboratorios/fundamentos/pom.xml "-Dtest=ContenedorTest#configuracionExterna" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Arranca el saludo con --saludo.prefijo=Buen día y prueba un máximo de nombre inválido.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 01 — Spring, Spring Boot y contenedor IoC](../unidad01-spring-ioc/README.md)
+- **Unidad anterior:** [Unidad 01: Spring, Spring Boot y contenedor IoC](../unidad01-spring-ioc/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 03 — Inyección de dependencias y componentes](../unidad03-dependencias/README.md)
+- **Siguiente unidad:** [Unidad 03: Inyección de dependencias y componentes](../unidad03-dependencias/README.md)

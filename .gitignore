@@ -1,0 +1,7 @@
+target/
+.venv/
+__pycache__/
+salidas/
+.env
+*.log
+*.dump

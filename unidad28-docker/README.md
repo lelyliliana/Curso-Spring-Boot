@@ -1,4 +1,4 @@
-# Unidad 28 — Docker para una API Spring Boot
+# Unidad 28: Docker para una API Spring Boot
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
@@ -10,7 +10,7 @@ Construir una imagen reproducible, entender imagen/contenedor/red y pasar config
 **Imagen:** artefacto inmutable por capas.  
 **Contenedor:** instancia en ejecución de una imagen.
 
-Docker no es una máquina virtual completa; comparte kernel del host bajo su modelo de aislamiento.
+Un contenedor Linux comparte el kernel Linux del entorno donde se ejecuta. En Ubuntu puede ser el del host; Docker Desktop en Windows/macOS utiliza un entorno Linux virtualizado.
 
 # 2. Dockerfile simple
 
@@ -120,8 +120,31 @@ Continúa con taller.
 
 ---
 
+## Caso desarrollado: Construir imagen y comprender red y persistencia
+
+Dockerfile copia el JAR y ejecuta UID 10001. La imagen base tiene una etiqueta de Java 21 y se debe actualizar deliberadamente o fijar digest en un release; etiqueta no garantiza los mismos bytes para siempre. localhost dentro del contenedor es ese contenedor. En Docker Desktop los contenedores Linux usan un kernel Linux de su entorno virtual, no el kernel Windows/macOS directamente.
+
+### Ejecutar y comprender
+
+1. Prepara el [entorno de tu sistema](../docs/ENTORNO.md).
+2. Sigue el [laboratorio completo](LABORATORIO.md), que identifica código, prueba y resultado.
+3. Ejecuta desde la raíz:
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest" test
+```
+
+4. Resuelve la [práctica](PRACTICA.md).
+5. Compara después con las [soluciones razonadas](SOLUCIONES.md).
+
+### Reto explicado
+
+Conecta PostgreSQL como servicio db y evita exponer la DB a Internet.
+
+El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
+
 ## Continuar el curso
 
-- **Unidad anterior:** [Unidad 27 — Empaquetado y configuración de producción](../unidad27-produccion/README.md)
+- **Unidad anterior:** [Unidad 27: Empaquetado y configuración de producción](../unidad27-produccion/README.md)
 - **Volver al índice:** [Todas las unidades](../README.md)
-- **Siguiente unidad:** [Unidad 29 — Taller integrador de APIs](../unidad29-taller/README.md)
+- **Siguiente unidad:** [Unidad 29: Taller integrador de APIs](../unidad29-taller/README.md)
