@@ -1,5 +1,7 @@
 # Soluciones razonadas 22: Probar identidad, autoridad y CSRF por separado
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Decisión de referencia
 
 GET del catálogo es público. Escritura exige PRODUCT_WRITE; métricas OPS_READ. Basic es educativo y necesita TLS fuera del entorno local. CSRF permanece activo porque los navegadores pueden reenviar credenciales Basic automáticamente. /api/csrf genera token ligado a sesión; el cliente conserva cookie y envía el header indicado. Un anónimo con token válido recibe 401; una petición sin CSRF puede recibir 403 antes de autenticación.
@@ -21,3 +23,16 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Matriz comprobable
+
+| Solicitud de escritura | Resultado | Responsable |
+|---|---:|---|
+| Anónimo + CSRF válido | 401 | Autenticación |
+| Lector + CSRF válido | 403 | Permiso PRODUCT_WRITE |
+| Editor sin CSRF | 403 | Protección CSRF |
+| Editor + CSRF válido + entrada válida | 201 | Controller/servicio |
+
+ProductoControllerTest incluye los tres rechazos y creacionContrato. El cliente peticion.py obtiene el token y conserva cookie en cada escritura. --sin-csrf se usa para las etapas educativas que no tienen Security o para probar un rechazo explícito; no es una corrección de permisos en la API integrada.

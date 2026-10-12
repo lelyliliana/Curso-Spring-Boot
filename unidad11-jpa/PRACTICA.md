@@ -1,5 +1,7 @@
 # Práctica 11: Observar SQL, identidad y unidad transaccional
 
+**Proyecto de esta unidad:** [laboratorios/jpa-productos](../laboratorios/jpa-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Describe dónde se confirma la creación y por qué se usa saveAndFlush.

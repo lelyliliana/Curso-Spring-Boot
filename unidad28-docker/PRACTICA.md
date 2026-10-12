@@ -1,5 +1,7 @@
 # Práctica 28: Construir imagen y comprender red y persistencia
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Conecta PostgreSQL como servicio db y evita exponer la DB a Internet.

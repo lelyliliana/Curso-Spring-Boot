@@ -1,5 +1,7 @@
 # Soluciones razonadas 24: Leer métricas con etiquetas acotadas
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Decisión de referencia
 
 Micrometer registra http.server.requests con método, status y URI normalizada por ruta. Un id de producto o request id como tag puede crear una serie por cada solicitud. Timer cuenta y acumula duración; no todos los backends exponen percentiles automáticamente. Métricas resumen comportamiento; logs correlacionan eventos y trazas conectan fronteras.
@@ -21,3 +23,17 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Métricas con etiquetas acotadas
+
+| Métrica | Tipo | Etiquetas sugeridas |
+|---|---|---|
+| Peticiones HTTP | Contador del timer | Ruta plantilla, método, status |
+| Latencia HTTP | Timer | Las mismas combinaciones acotadas |
+| Conexiones activas | Gauge | Pool conocido |
+| Duración del proveedor | Timer adicional | Resultado entre éxito/fallo/timeout |
+| Confirmaciones de pedido | Contador adicional | Resultado éxito/conflicto |
+
+Ejemplo: 8 rutas × 4 métodos × 5 grupos de status = hasta 160 combinaciones para esas dimensiones, antes de otras etiquetas/series del timer. Un SKU o request id añadiría valores sin un límite pequeño. Los últimos dos instrumentos son una ampliación propuesta; no declares que ya están registrados solo porque existe Actuator.

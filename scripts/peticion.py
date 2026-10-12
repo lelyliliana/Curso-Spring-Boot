@@ -26,14 +26,16 @@ def enviar(opener,headers,url,metodo='GET',cuerpo=None,csrf=True):
         return response.status,dict(response.headers),json.loads(raw) if raw else None
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('metodo');p.add_argument('url');p.add_argument('--json');p.add_argument('--usuario');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('metodo');p.add_argument('url');p.add_argument('--json');p.add_argument('--usuario')
+    p.add_argument('--sin-csrf',action='store_true',help='Solo etapas REST/JPA sin Spring Security, o prueba explícita de rechazo CSRF')
+    args=p.parse_args()
     target=urllib.parse.urlsplit(args.url)
     if target.scheme!='http' or target.hostname not in ('localhost','127.0.0.1','::1'):p.error('Este cliente de práctica usa HTTP local')
     payload=None
     if args.json:
         with open(args.json,encoding='utf-8') as f:payload=json.load(f)
     clave=getpass.getpass('Contraseña local: ') if args.usuario else None
-    status,headers,body=enviar(*cliente(args.usuario,clave),args.url,args.metodo.upper(),payload)
+    status,headers,body=enviar(*cliente(args.usuario,clave),args.url,args.metodo.upper(),payload,csrf=not args.sin_csrf)
     print('HTTP',status)
     for key in ('Content-Type','Location','X-Request-Id'):
         if key in headers:print(key+':',headers[key])

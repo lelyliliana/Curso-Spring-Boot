@@ -1,5 +1,7 @@
 # Práctica 20: Probar una consulta y una restricción del modelo
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Enumera los riesgos que H2 no cubre y cómo se verifica PostgreSQL.

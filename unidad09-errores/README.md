@@ -2,6 +2,10 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Qué aprenderás
 Traducir fallos de aplicación a un contrato HTTP consistente sin filtrar detalles internos.
 
@@ -135,9 +139,9 @@ Continúa con capas y persistencia.
 
 ---
 
-## Caso desarrollado: Representar errores sin divulgar información interna
+## Caso desarrollado: Traducir errores al contrato HTTP
 
-ApiErrorHandler usa ProblemDetail para 400/404/409/503 y fallos inesperados 500. ResponseEntityExceptionHandler conserva manejo de errores del protocolo como JSON ilegible, tipo incorrecto, método no permitido o formato no soportado. No se retorna e.getMessage de una excepción SQL. Los errores de la cadena de seguridad requieren handlers propios porque ocurren antes de MVC.
+El advice de REST representa 400, 404 y 409 mediante ProblemDetail. La respuesta permite actuar al cliente sin exponer estructuras internas. La validación puede incluir campos; errores de protocolo no necesariamente incluyen el mismo code.
 
 ### Ejecutar y comprender
 
@@ -146,7 +150,7 @@ ApiErrorHandler usa ProblemDetail para 400/404/409/503 y fallos inesperados 500.
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#jsonMalformado400" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#erroresNoFiltranInternos" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

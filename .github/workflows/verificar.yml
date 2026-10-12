@@ -29,6 +29,8 @@ jobs:
           user: postgres
       - run: python -m pip install -r requirements.txt
       - run: mvn -B -f laboratorios/fundamentos/pom.xml verify
+      - run: mvn -B -f laboratorios/rest-memoria/pom.xml verify
+      - run: mvn -B -f laboratorios/jpa-productos/pom.xml verify
       - run: mvn -B -f ejemplos/api-productos/pom.xml verify
       - if: matrix.os == 'ubuntu-latest' && matrix.java == '21'
         run: docker build -t curso-spring-check ejemplos/api-productos
@@ -51,4 +53,6 @@ jobs:
           path: |
             salidas/
             laboratorios/fundamentos/target/surefire-reports/
+            laboratorios/rest-memoria/target/surefire-reports/
+            laboratorios/jpa-productos/target/surefire-reports/
             ejemplos/api-productos/target/surefire-reports/

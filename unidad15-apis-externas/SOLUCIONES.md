@@ -1,5 +1,7 @@
 # Soluciones razonadas 15: Consumir una API con límite y contrato propio
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Decisión de referencia
 
 ProveedorClient usa RestClient y un HttpClient con tiempos de conexión/lectura. La URL base es configuración, el SKU restringido forma solo un segmento y el proveedor se simula localmente en pruebas. Un 200 con JSON del tipo esperado todavía requiere validar SKU y precio. No se llama Internet para que una prueba de tu aplicación pase.
@@ -21,3 +23,16 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Traducir fallos sin depender de internet
+
+| Respuesta del proveedor | Respuesta local | Reintento de referencia |
+|---|---|---|
+| 404 | 404 NOT_FOUND | No |
+| 429 | 503 PROVIDER_UNAVAILABLE | No; el ejemplo no implementa Retry-After |
+| 503 | 503 si se agotan intentos | Acotado para GET |
+| JSON inválido | 503 PROVIDER_UNAVAILABLE | No convierte basura en un producto |
+
+ProveedorClientTest inicia un servidor HTTP local y cambia status/cuerpo. Ejecuta esa clase y lee noEncontrado, rateLimitNoReintenta, falloPermanente y jsonInvalido. El 503 local informa que esta dependencia no permite completar la consulta; no debe devolver su cuerpo sin validar.

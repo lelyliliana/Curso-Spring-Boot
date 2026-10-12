@@ -1,5 +1,7 @@
 # Soluciones razonadas 20: Probar una consulta y una restricción del modelo
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Decisión de referencia
 
 DataJpaTest utiliza base embebida aislada y rollback por prueba. Flyway se importa para que el esquema/migraciones sean el objeto de la prueba, no un DDL creado libremente por Hibernate. saveAndFlush fuerza una restricción en el momento observado. categoriaConHijosProtegida demuestra la FK; duplicadoReal demuestra UNIQUE. Una prueba que inserta y consulta sin límite de negocio puede limitarse a repetir funcionalidad del framework.
@@ -21,3 +23,15 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Comprobación sobre base real
+
+```text
+python -m pip install -r requirements.txt
+python scripts/verificar.py --postgres
+```
+Prepara PostgreSQL local y PGHOST/PGPORT/PGUSER según [verificación](../docs/VERIFICACION.md). La comprobación crea identidades/bases temporales propias y las elimina al terminar. Verifica ambas etapas JPA/integrada, migraciones y restricciones; en la integrada también enfrenta creaciones y confirmaciones concurrentes.
+
+H2 no demuestra planes de ejecución PostgreSQL, bloqueos exactos, collation, rendimiento, permisos de producción ni compatibilidad de toda sentencia futura. Añadir una consulta nativa nueva exige probarla en el motor objetivo.

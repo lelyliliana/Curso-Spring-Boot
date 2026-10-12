@@ -2,6 +2,10 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Qué aprenderás
 Mapear HTTP a métodos Java, extraer parámetros y mantener controllers como adaptadores delgados.
 
@@ -138,9 +142,9 @@ Continúa con respuestas.
 
 ---
 
-## Caso desarrollado: Enlazar rutas y parámetros con casos de uso
+## Caso desarrollado: Leer parámetros y filtrar resultados
 
-ProductoController conoce DTO y HTTP, y delega al servicio. @PathVariable identifica recurso; @RequestParam pagina/filtra; @RequestBody recibe JSON. La colección devuelve una envoltura propia con contenido y metadatos para evitar exponer la representación interna de Page. El endpoint no acepta una URL arbitraria de proveedor.
+ProductoController recibe nombre, pagina y tamano. El servicio filtra sin distinguir mayúsculas, ordena por id y aplica límite. El catálogo inicia vacío: crea primero Bases de datos y Algoritmos con SKU distintos para poder predecir el resultado.
 
 ### Ejecutar y comprender
 
@@ -149,7 +153,7 @@ ProductoController conoce DTO y HTTP, y delega al servicio. @PathVariable identi
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#listaPaginada" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#paginacionYFiltro" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

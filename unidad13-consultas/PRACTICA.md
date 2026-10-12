@@ -1,5 +1,7 @@
 # Práctica 13: Filtrar y paginar sin perder el significado del resultado
 
+**Proyecto de esta unidad:** [laboratorios/jpa-productos](../laboratorios/jpa-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Compara Page y Slice para un feed y un reporte que necesita total.

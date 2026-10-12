@@ -1,5 +1,7 @@
 # Práctica 02: Sobrescribir una propiedad sin recompilar
 
+**Proyecto de esta unidad:** [laboratorios/fundamentos](../laboratorios/fundamentos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Arranca el saludo con --saludo.prefijo=Buen día y prueba un máximo de nombre inválido.

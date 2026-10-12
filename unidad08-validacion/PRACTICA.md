@@ -1,5 +1,9 @@
 # Práctica 08: Distinguir forma válida de regla de negocio
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Problema
 
 Prueba precio 1.001, categoría 99999 y SKU ya existente; explica los tres errores.

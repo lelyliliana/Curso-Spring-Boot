@@ -1,10 +1,14 @@
 # Soluciones razonadas 04: Diseñar una creación antes de escribir anotaciones
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Decisión de referencia
 
 POST /api/productos crea un recurso con 201 y Location. GET no pide crear ni modificar recursos. PUT reemplaza los campos del contrato de actualización y exige la versión leída; se utiliza 409 si esa versión está desactualizada. DELETE exitoso devuelve 204 sin cuerpo; repetirlo puede devolver 404 y seguir siendo idempotente en el efecto (el recurso permanece ausente). REST no equivale a cualquier JSON sobre HTTP: incluye restricciones arquitectónicas además de convenciones de rutas.
 
-El código completo y sus imports están en [ejemplos/api-productos](../ejemplos/api-productos/README.md). La prueba `ProductoControllerTest#creacionContrato` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
+El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#skuUnico` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 
 ## Práctica independiente
 
@@ -21,3 +25,15 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Contrato resuelto
+
+| Situación | Operación | Status | Código |
+|---|---|---:|---|
+| SKU existente | POST /api/productos | 409 | CONFLICT |
+| Id inexistente | GET /api/productos/{id} | 404 | NOT_FOUND |
+| Producto nuevo | POST /api/productos | 201 | No es error; Location apunta al recurso |
+
+En REST usa producto-memoria.json con --sin-csrf para crear y repetir. En JPA usa producto.json con --sin-csrf. En la API integrada añade --usuario editor y conserva CSRF. No cambies el status para ocultar un conflicto ni reveles el mapa/SQL interno.

@@ -2,6 +2,10 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Qué aprenderás
 Diseñar contratos HTTP antes de controllers: recursos, métodos, códigos, headers e idempotencia.
 
@@ -135,9 +139,9 @@ Continúa con controllers.
 
 ---
 
-## Caso desarrollado: Diseñar una creación antes de escribir anotaciones
+## Caso desarrollado: SKU duplicado e id ausente
 
-POST /api/productos crea un recurso con 201 y Location. GET no pide crear ni modificar recursos. PUT reemplaza los campos del contrato de actualización y exige la versión leída; se utiliza 409 si esa versión está desactualizada. DELETE exitoso devuelve 204 sin cuerpo; repetirlo puede devolver 404 y seguir siendo idempotente en el efecto (el recurso permanece ausente). REST no equivale a cualquier JSON sobre HTTP: incluye restricciones arquitectónicas además de convenciones de rutas.
+La etapa REST conserva productos en un mapa. POST válido responde 201 con Location; repetir SKU genera Conflicto y el advice devuelve 409. GET de un id que no existe genera NoEncontrado y devuelve 404. No se necesita base, usuario ni token.
 
 ### Ejecutar y comprender
 
@@ -146,7 +150,7 @@ POST /api/productos crea un recurso con 201 y Location. GET no pide crear ni mod
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#creacionContrato" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#skuUnico" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

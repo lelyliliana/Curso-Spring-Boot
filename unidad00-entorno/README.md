@@ -2,6 +2,8 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/fundamentos](../laboratorios/fundamentos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Qué aprenderás
 Crear, ejecutar, probar y diagnosticar una aplicación Spring Boot con Java 21 y Maven.
 
@@ -66,7 +68,7 @@ public class Aplicacion {
 # 6. Ejecutar
 
 ```bash
-mvn spring-boot:run
+mvn -f laboratorios/fundamentos/pom.xml spring-boot:run
 ```
 
 Observa logs:
@@ -80,14 +82,14 @@ No ignores logs hasta que aparezca “error”.
 # 7. Empaquetar
 
 ```bash
-mvn test
-mvn package
+mvn -f laboratorios/fundamentos/pom.xml test
+mvn -f laboratorios/fundamentos/pom.xml package
 ```
 
 Después podrás ejecutar el JAR generado según nombre:
 
 ```bash
-java -jar target/archivo.jar
+java -jar laboratorios/fundamentos/target/fundamentos.jar
 ```
 
 # 8. Puerto

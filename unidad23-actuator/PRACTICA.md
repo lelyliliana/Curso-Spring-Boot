@@ -1,5 +1,7 @@
 # Práctica 23: Separar salud del proceso y disponibilidad de dependencias
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Explica qué cambia si la DB falla y el proceso sigue vivo.

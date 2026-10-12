@@ -1,5 +1,7 @@
 # Práctica 03: Construir y probar dependencias explícitas
 
+**Proyecto de esta unidad:** [laboratorios/fundamentos](../laboratorios/fundamentos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Comprueba nombres vacíos y el límite de 40 caracteres sin arrancar el servidor.

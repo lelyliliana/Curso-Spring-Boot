@@ -151,8 +151,8 @@ No:
 Debe pasar:
 
 ```bash
-mvn test
-mvn package
+mvn -f ejemplos/api-productos/pom.xml test
+mvn -f ejemplos/api-productos/pom.xml package
 ```
 
 Documenta Java y Maven.

@@ -1,5 +1,7 @@
 # Práctica 17: Ejecutar una tarea periódica sin prometer exclusión distribuida
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Diseña qué cambiar si dos réplicas deben ejecutar una sola tarea de facturación.

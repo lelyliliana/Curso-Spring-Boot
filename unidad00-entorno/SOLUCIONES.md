@@ -1,5 +1,7 @@
 # Soluciones razonadas 00: Arrancar una aplicación y reconocer el puerto
 
+**Proyecto de esta unidad:** [laboratorios/fundamentos](../laboratorios/fundamentos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Decisión de referencia
 
 El proyecto fundamentos contiene solo MVC, validación y pruebas. Inicia en 127.0.0.1:8080; GET /api/saludos?nombre=Leli devuelve mensaje Hola, Leli y la fecha UTC actual. Un 404 indica que respondió un servidor, no que Java esté caído. mvn package ejecuta las fases anteriores del ciclo, incluidas pruebas; no necesitas repetir mvn test antes de cada package.
@@ -10,7 +12,7 @@ El código completo y sus imports están en [laboratorios/fundamentos](../labora
 
 **Enunciado:** Ejecuta el mismo JAR en 8081 y escribe el comando que prueba que cambió el puerto.
 
-**Solución y justificación:** java -jar target/fundamentos.jar --server.port=8081; consulta http://localhost:8081/api/saludos. Cambió configuración externa, no el código ni el artefacto.
+**Solución y justificación:** java -jar laboratorios/fundamentos/target/fundamentos.jar --server.port=8081; consulta http://localhost:8081/api/saludos. Cambió configuración externa, no el código ni el artefacto.
 
 ## Revisar tu alternativa
 
@@ -21,3 +23,21 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Reproducir la solución
+
+1. Construye el JAR desde la raíz:
+```text
+mvn -f laboratorios/fundamentos/pom.xml package
+```
+2. Inícialo en 8081:
+```text
+java -jar laboratorios/fundamentos/target/fundamentos.jar --server.port=8081
+```
+3. En otra terminal desde la raíz:
+```text
+python scripts/peticion.py GET http://localhost:8081/api/saludos?nombre=Leli
+```
+Espera 200 y mensaje Hola, Leli. Un error de conexión a 8080 solo prueba que allí no hay un servidor accesible; la petición a 8081 prueba el puerto utilizado.

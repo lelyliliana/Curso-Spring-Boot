@@ -1,8 +1,10 @@
 # Laboratorio 13: Filtrar y paginar sin perder el significado del resultado
 
+**Proyecto de esta unidad:** [laboratorios/jpa-productos](../laboratorios/jpa-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Preparar
 
-Sigue [ENTORNO.md](../docs/ENTORNO.md). Esta práctica usa [ejemplos/api-productos](../ejemplos/api-productos/README.md). Los comandos parten de la raíz del repositorio; no necesitas mover archivos a una ruta personal ni cambiar paquetes Java.
+Sigue [ENTORNO.md](../docs/ENTORNO.md). Esta práctica usa [ejemplos/api-productos](../laboratorios/jpa-productos/README.md). Los comandos parten de la raíz del repositorio; no necesitas mover archivos a una ruta personal ni cambiar paquetes Java.
 
 ## Observar una decisión concreta
 
@@ -18,15 +20,15 @@ Abre el proyecto indicado y localiza controller, servicio, configuración o prue
 
 ### Archivos que debes localizar
 
-- [ProductoRepository.java](../ejemplos/api-productos/src/main/java/com/lelyliliana/productos/ProductoRepository.java)
-- [ProductoService.java](../ejemplos/api-productos/src/main/java/com/lelyliliana/productos/ProductoService.java)
+- [ProductoRepository.java](../laboratorios/jpa-productos/src/main/java/com/lelyliliana/productos/ProductoRepository.java)
+- [ProductoService.java](../laboratorios/jpa-productos/src/main/java/com/lelyliliana/productos/ProductoService.java)
 
 Anota qué método o propiedad realiza la decisión descrita y qué parte depende del framework. Sigue su recorrido desde entrada hasta resultado; identifica un rechazo antes de ejecutar.
 
 ## Paso 3: ejecutar la prueba
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoRepositoryTest#filtroYPaginaEstable" test
+mvn -f laboratorios/jpa-productos/pom.xml "-Dtest=ProductoRepositoryTest#filtroYPaginaEstable" test
 ```
 
 En Windows usa PowerShell; en Ubuntu/macOS usa terminal. Mantén comillas en -Dtest si incluye # para que se envíe como un solo argumento. Maven debe terminar con BUILD SUCCESS y cero fallos. La prueba comprueba la decisión descrita, no todas las capacidades de la aplicación. Lee qué dobles, base o contexto usa antes de atribuirle otra garantía.

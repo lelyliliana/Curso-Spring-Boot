@@ -1,10 +1,14 @@
 # Soluciones razonadas 08: Distinguir forma válida de regla de negocio
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Decisión de referencia
 
 @Valid activa restricciones del DTO: SKU en mayúsculas, nombre no vacío, precio mínimo 0.01 con hasta dos decimales y categoría positiva. Esas restricciones no verifican existencia de categoría ni unicidad bajo concurrencia. El dominio vuelve a validar invariantes para llamadas fuera de MVC. La base añade constraints. Ninguna capa conoce reglas que no se escribieron.
 
-El código completo y sus imports están en [ejemplos/api-productos](../ejemplos/api-productos/README.md). La prueba `ProductoControllerTest#postInvalido` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
+El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#validaDatos` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 
 ## Práctica independiente
 
@@ -21,3 +25,15 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Tres errores distintos
+
+| Entrada en JPA/integración | Frontera | Resultado |
+|---|---|---|
+| precio 1.001 | @Digits en DTO | 400 VALIDATION_ERROR |
+| categoriaId 99999 inexistente | Servicio | 404 NOT_FOUND |
+| sku LIB-01 de datos originales | Regla/UNIQUE | 409 CONFLICT |
+
+En REST solo se reproducen precio y SKU porque aún no hay categoría. Modifica una copia del JSON en cada petición, dejando válidos los demás campos. En la API integrada usa editor con CSRF; un 403 no demuestra que @Digits haya sido ejecutado. Después de cada rechazo consulta el catálogo para comprobar que no apareció un producto inválido.

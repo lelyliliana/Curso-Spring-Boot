@@ -1,12 +1,16 @@
 # Laboratorio 04: Diseñar una creación antes de escribir anotaciones
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Preparar
 
-Sigue [ENTORNO.md](../docs/ENTORNO.md). Esta práctica usa [ejemplos/api-productos](../ejemplos/api-productos/README.md). Los comandos parten de la raíz del repositorio; no necesitas mover archivos a una ruta personal ni cambiar paquetes Java.
+Sigue [ENTORNO.md](../docs/ENTORNO.md). Esta práctica usa [REST en memoria](../laboratorios/rest-memoria/README.md). Los comandos parten de la raíz del repositorio; no necesitas mover archivos a una ruta personal ni cambiar paquetes Java.
 
 ## Observar una decisión concreta
 
-POST /api/productos crea un recurso con 201 y Location. GET no pide crear ni modificar recursos. PUT reemplaza los campos del contrato de actualización y exige la versión leída; se utiliza 409 si esa versión está desactualizada. DELETE exitoso devuelve 204 sin cuerpo; repetirlo puede devolver 404 y seguir siendo idempotente en el efecto (el recurso permanece ausente). REST no equivale a cualquier JSON sobre HTTP: incluye restricciones arquitectónicas además de convenciones de rutas.
+La etapa REST conserva productos en un mapa. POST válido responde 201 con Location; repetir SKU genera Conflicto y el advice devuelve 409. GET de un id que no existe genera NoEncontrado y devuelve 404. No se necesita base, usuario ni token.
 
 ## Paso 1: predecir
 
@@ -18,22 +22,22 @@ Abre el proyecto indicado y localiza controller, servicio, configuración o prue
 
 ### Archivos que debes localizar
 
-- [ProductoController.java](../ejemplos/api-productos/src/main/java/com/lelyliliana/productos/ProductoController.java)
-- [ProductoDto.java](../ejemplos/api-productos/src/main/java/com/lelyliliana/productos/ProductoDto.java)
+- [ProductoController.java](../laboratorios/rest-memoria/src/main/java/com/lelyliliana/rest/ProductoController.java)
+- [ProductoService.java](../laboratorios/rest-memoria/src/main/java/com/lelyliliana/rest/ProductoService.java)
 
 Anota qué método o propiedad realiza la decisión descrita y qué parte depende del framework. Sigue su recorrido desde entrada hasta resultado; identifica un rechazo antes de ejecutar.
 
 ## Paso 3: ejecutar la prueba
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#creacionContrato" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#skuUnico" test
 ```
 
 En Windows usa PowerShell; en Ubuntu/macOS usa terminal. Mantén comillas en -Dtest si incluye # para que se envíe como un solo argumento. Maven debe terminar con BUILD SUCCESS y cero fallos. La prueba comprueba la decisión descrita, no todas las capacidades de la aplicación. Lee qué dobles, base o contexto usa antes de atribuirle otra garantía.
 
 ## Paso 4: contrastar
 
-Compara con la explicación del caso. Cuando hay HTTP, usa también [CONTRATO_API.md](../docs/CONTRATO_API.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
+Compara con la explicación del caso. Cuando hay HTTP, usa también [CONTRATO_API.md](../docs/CONTRATO_ETAPAS.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
 
 ## Paso 5: aplicar
 

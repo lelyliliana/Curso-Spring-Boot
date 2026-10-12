@@ -1,5 +1,7 @@
 # Práctica 22: Probar identidad, autoridad y CSRF por separado
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Construye la matriz de cuatro solicitudes y explica qué control las rechaza.

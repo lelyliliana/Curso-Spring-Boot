@@ -19,7 +19,7 @@ Configura SPRING_PROFILES_ACTIVE=prod, DB_URL=jdbc:postgresql://localhost:5432/c
 java -jar ejemplos/api-productos/target/api-productos.jar
 ```
 
-Flyway aplica V1 y V2; no V3 de datos dev. Comprueba las tablas, columnas, FK, UNIQUE y flyway_schema_history. Crea categoría mediante POST /api/categorias con editor y CSRF; usa el id devuelto al crear producto. No supongas que categoría 1 existe en producción vacía. Reutiliza [peticion.py](../scripts/peticion.py) con un archivo JSON ficticio.
+Flyway aplica V1, V2 y V4; no V3 de datos dev. La etapa JPA independiente aplica solo V1/V2. Comprueba las tablas, columnas, FK, UNIQUE y flyway_schema_history. Crea categoría mediante POST /api/categorias con editor y CSRF; usa el id devuelto al crear producto. No supongas que categoría 1 existe en producción vacía. Reutiliza [peticion.py](../scripts/peticion.py) con un archivo JSON ficticio.
 
 ## 3. Imagen
 

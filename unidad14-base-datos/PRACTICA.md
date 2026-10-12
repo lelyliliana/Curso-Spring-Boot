@@ -1,5 +1,7 @@
 # Práctica 14: Evolucionar un esquema con migraciones
 
+**Proyecto de esta unidad:** [laboratorios/jpa-productos](../laboratorios/jpa-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Explica qué ocurre al promover el JAR a prod y por qué no se promueve también la base dev.

@@ -1,10 +1,14 @@
 # Soluciones razonadas 06: Controlar status, headers y cuerpo
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Decisión de referencia
 
 ResponseEntity.created recibe una URI y genera 201/Location. ResponseEntity.noContent no debe contener un objeto de error ni el producto eliminado. Content-Type describe el cuerpo; Accept pide formatos que el cliente entiende. Las respuestas JSON se contrastan en propiedades relevantes, no con una cadena rígida sensible al orden de campos.
 
-El código completo y sus imports están en [ejemplos/api-productos](../ejemplos/api-productos/README.md). La prueba `ProductoControllerTest#creacionContrato` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
+El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#contratoCRUD` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 
 ## Práctica independiente
 
@@ -21,3 +25,9 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Comprobar más que el status
+
+En ProductoRestTest#contratoCRUD observa isCreated, header Location y contentTypeCompatibleWith. Usa el id de la respuesta para GET; ese recurso debe tener los mismos datos. La etapa REST no devuelve version. Al repetir en JPA/integración, la creación devuelve version 0 y PUT correcto la aumenta a 1. Content-Type application/json y Location del recurso forman parte del contrato de éxito; los errores usan application/problem+json.

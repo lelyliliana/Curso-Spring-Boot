@@ -2,6 +2,8 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/jpa-productos](../laboratorios/jpa-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Qué aprenderás
 Diseñar consultas Spring Data desde necesidades reales, paginar y observar el SQL para detectar N+1.
 
@@ -146,7 +148,7 @@ findByNombreContainingIgnoreCase filtra texto; Page incluye consulta de conteo a
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoRepositoryTest#filtroYPaginaEstable" test
+mvn -f laboratorios/jpa-productos/pom.xml "-Dtest=ProductoRepositoryTest#filtroYPaginaEstable" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

@@ -1,5 +1,7 @@
 # Práctica 16: Acotar fallos y reintentos
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Justifica por qué no copiar este retry a un POST de pago.

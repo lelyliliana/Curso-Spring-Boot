@@ -1,6 +1,6 @@
 # Taller integrador: del catálogo al pedido
 
-Parte de la API ejecutable y crea una rama de práctica. Conserva el contrato existente; desarrolla las ampliaciones de forma gradual. Entrega cada punto con solicitud/respuesta ficticia, código, pruebas y explicación de decisiones. El repositorio incluye la solución ejecutable del catálogo; pedidos es una ampliación que debes implementar.
+Parte de la API ejecutable y crea una rama de práctica. Conserva el contrato existente; desarrolla las ampliaciones de forma gradual. Entrega cada punto con solicitud/respuesta ficticia, código, pruebas y explicación de decisiones. El repositorio incluye catálogo y una [solución ejecutable de pedidos](../docs/PEDIDOS.md). Intenta la ampliación antes de consultar sus clases.
 
 ## 1. Catálogo verificable
 

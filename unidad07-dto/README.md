@@ -2,6 +2,10 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Qué aprenderás
 Diseñar modelos de entrada/salida independientes del dominio/persistencia y mapearlos explícitamente.
 
@@ -133,9 +137,9 @@ Continúa con validación.
 
 ---
 
-## Caso desarrollado: Separar entrada, salida y entidad persistente
+## Caso desarrollado: Separar entrada y salida
 
-ProductoRequest no admite id ni version; ProductoUpdateRequest exige version; ProductoResponse incluye datos de categoría sin devolver la entidad lazy. El mapeo ocurre dentro de la transacción del servicio y open-in-view=false impide depender de una sesión JPA abierta durante serialización. Los records son útiles como DTO, pero no convierten automáticamente todo objeto en inmutable si contienen referencias mutables.
+ProductoRequest solo recibe sku, nombre y precio; ProductoResponse añade el id asignado por el servidor. Son records, no beans ni entidades JPA. Al llegar a JPA se incorporan categoría y versión al contrato.
 
 ### Ejecutar y comprender
 
@@ -144,7 +148,7 @@ ProductoRequest no admite id ni version; ProductoUpdateRequest exige version; Pr
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest#creaConsultaActualizaYElimina" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#contratoCRUD" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

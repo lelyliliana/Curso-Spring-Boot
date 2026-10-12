@@ -2,6 +2,10 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Qué aprenderás
 Usar Bean Validation para forma de entrada y separar esas restricciones de reglas que requieren estado/negocio.
 
@@ -113,9 +117,9 @@ Continúa con manejo global.
 
 ---
 
-## Caso desarrollado: Distinguir forma válida de regla de negocio
+## Caso desarrollado: Validar sin una base de datos
 
-@Valid activa restricciones del DTO: SKU en mayúsculas, nombre no vacío, precio mínimo 0.01 con hasta dos decimales y categoría positiva. Esas restricciones no verifican existencia de categoría ni unicidad bajo concurrencia. El dominio vuelve a validar invariantes para llamadas fuera de MVC. La base añade constraints. Ninguna capa conoce reglas que no se escribieron.
+@Valid activa las reglas del DTO: SKU con formato, nombre no vacío y precio positivo con hasta dos decimales. @Digits rechaza 1.001 antes del servicio. La verificación de categoría comienza en JPA, porque la etapa REST no la modela.
 
 ### Ejecutar y comprender
 
@@ -124,7 +128,7 @@ Continúa con manejo global.
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#postInvalido" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#validaDatos" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

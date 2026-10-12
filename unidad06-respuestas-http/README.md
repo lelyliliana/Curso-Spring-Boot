@@ -2,6 +2,10 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Qué aprenderás
 Construir respuestas explícitas y representar creación, ausencia, eliminación y conflictos con semántica HTTP.
 
@@ -129,9 +133,9 @@ Continúa con DTO.
 
 ---
 
-## Caso desarrollado: Controlar status, headers y cuerpo
+## Caso desarrollado: Representar creación y eliminación
 
-ResponseEntity.created recibe una URI y genera 201/Location. ResponseEntity.noContent no debe contener un objeto de error ni el producto eliminado. Content-Type describe el cuerpo; Accept pide formatos que el cliente entiende. Las respuestas JSON se contrastan en propiedades relevantes, no con una cadena rígida sensible al orden de campos.
+ResponseEntity.created establece 201 y Location con el id generado. El GET de ese recurso demuestra que se guardó; DELETE devuelve 204 sin cuerpo. Esta etapa no expone version; el campo se incorpora en JPA.
 
 ### Ejecutar y comprender
 
@@ -140,7 +144,7 @@ ResponseEntity.created recibe una URI y genera 201/Location. ResponseEntity.noCo
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#creacionContrato" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#contratoCRUD" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

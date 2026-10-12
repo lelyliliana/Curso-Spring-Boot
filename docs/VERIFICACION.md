@@ -8,13 +8,15 @@ Desde la raíz, con Java 21, Maven y Python 3.11 o superior:
 python scripts/verificar.py
 ```
 
-En Ubuntu/macOS puedes usar python3. El programa revisa enlaces locales y los cuatro archivos de cada una de las 31 unidades; ejecuta mvn verify en ambos proyectos, lee informes de pruebas y arranca los JAR en puertos locales temporales. Usa claves ficticias generadas durante la ejecución, conserva cookies y obtiene el token CSRF antes de escribir. Detiene los procesos al terminar.
+En Ubuntu/macOS puedes usar python3. El programa revisa enlaces locales y los cuatro archivos de cada una de las 31 unidades; ejecuta mvn verify en los cuatro proyectos, lee informes de pruebas y arranca los JAR en puertos locales temporales. Usa claves ficticias generadas durante la ejecución, conserva cookies y obtiene el token CSRF antes de escribir. Detiene los procesos al terminar.
 
 Mockito se carga mediante un agente declarado en Surefire, en lugar de depender de adjuntarlo dinámicamente durante la ejecución. El parent de Spring Boot administra su versión y el agente solo pertenece al proceso de pruebas. No lo agregues al comando del JAR de producción.
 
-Las 52 pruebas Maven cubren configuración, servicios, validación, controllers, repositorios, seguridad, integración y respuestas de un proveedor simulado en un servidor HTTP local. No dependen de una API pública ni de credenciales reales.
+Las pruebas Maven de las cuatro etapas cubren configuración, servicios, validación, controllers, repositorios, seguridad, integración y respuestas de un proveedor simulado en un servidor HTTP local. No dependen de una API pública ni de credenciales reales.
 
 La comprobación HTTP adicional prueba creación/consulta/actualización/eliminación, 201 y Location, validación, permisos, CSRF, paginación, 409 por versión antigua, métricas protegidas, salud y fallo controlado del proveedor. Los archivos de salidas contienen registros y resultado.json; están excluidos de Git.
+
+También ejecuta los JAR de REST en memoria y JPA, y el ciclo de pedidos con precio histórico, cancelación y confirmaciones concurrentes. [Ruta progresiva](RUTA_PROGRESIVA.md) y [pedidos](PEDIDOS.md) explican cómo reproducirlo manualmente.
 
 ## 2. PostgreSQL real
 
@@ -27,7 +29,7 @@ python scripts/verificar.py --skip-build --postgres
 
 Antes configura PGHOST, PGPORT y PGUSER para una identidad administrativa de tu base local de práctica; suministra PGPASSWORD externamente si tu autenticación lo exige. Ejemplo de parámetros sin claves: PGHOST=127.0.0.1, PGPORT=5432. --skip-build reutiliza informes y JAR del último mvn verify; omítelo cuando hayas modificado código.
 
-El programa permite solo un servidor PostgreSQL local. Crea un rol y una base con nombres aleatorios, aplica V1/V2 con el mismo JAR en perfil prod, comprueba datos/migraciones y enfrenta dos creaciones del mismo SKU. Al terminar elimina exclusivamente el rol y la base que creó. No lo dirijas a tu base personal ni a una base de producción. Una terminación forzada del sistema puede impedir la limpieza; revisa los nombres curso_check_ si ocurrió.
+El programa permite solo un servidor PostgreSQL local. Crea un rol y una base con nombres aleatorios, aplica V1/V2/V4 con el mismo JAR en perfil prod, comprueba datos/migraciones y enfrenta dos creaciones del mismo SKU. Al terminar elimina exclusivamente el rol y la base que creó. No lo dirijas a tu base personal ni a una base de producción. Una terminación forzada del sistema puede impedir la limpieza; revisa los nombres curso_check_ si ocurrió.
 
 ## 3. Automatización en tres sistemas
 

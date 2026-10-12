@@ -37,3 +37,17 @@ No se devuelve SQL, stacktrace ni cuerpo bruto del proveedor. X-Request-Id permi
 GET consulta y no actualiza el precio persistido. 404 se traduce a recurso no encontrado; rate limit, respuestas transitorias e inválidas a 503. Por defecto no se reintenta. La configuración permite como máximo dos intentos para 502/503/504 de este GET; no aplica a pagos ni a escrituras. No se implementa breaker ni presupuesto global.
 
 [Cliente y entorno](ENTORNO.md) · [Arquitectura](ARQUITECTURA.md)
+
+
+## Pedidos de referencia (taller/proyecto final)
+
+| Método/ruta | Entrada | Éxito | Rechazos |
+|---|---|---|---|
+| POST /api/pedidos | detalles: productoId y cantidad | 201, Location y BORRADOR | 400 datos/duplicado; 404 producto; 401/403 acceso |
+| GET /api/pedidos/{id} | id | 200, detalles y precios históricos | 404; 401/403 acceso |
+| POST /api/pedidos/{id}/confirmacion | version | 200, CONFIRMADO, precios/total y nueva versión | 404; 409 versión/estado/producto inactivo; 401/403 |
+| POST /api/pedidos/{id}/cancelacion | version | 200, CANCELADO y nueva versión | 404; 409 versión/estado; 401/403 |
+
+Todas las rutas de pedidos requieren PRODUCT_WRITE; las escrituras también CSRF. Los detalles aceptan 1–50 productos distintos, cantidades 1–10000. Un detalle vacío/nulo o cantidad fuera de rango devuelve 400. El catálogo es público; los pedidos no lo son. El ejemplo no modela propiedad por usuario.
+
+Los precios/subtotales en BORRADOR son null, total 0. Se captura precio actual al confirmar, con COP fija. Confirmar de nuevo no es idempotente: devuelve 409 incluso si se envía la versión vigente del confirmado. Cancelar conserva el historial; no hay endpoint DELETE de pedidos. [Reglas, clases y pruebas](PEDIDOS.md).

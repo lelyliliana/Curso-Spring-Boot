@@ -1,5 +1,7 @@
 # Práctica 27: Promover un artefacto con configuración distinta
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Documenta el arranque prod y distingue valor secreto de una opción no secreta.

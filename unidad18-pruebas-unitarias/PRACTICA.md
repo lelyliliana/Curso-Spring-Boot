@@ -1,5 +1,7 @@
 # Práctica 18: Probar reglas sin cargar el contexto
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Problema
 
 Añade caso válido en el dominio y un precio inválido, y justifica qué no se prueba.

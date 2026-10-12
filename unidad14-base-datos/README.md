@@ -2,6 +2,8 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/jpa-productos](../laboratorios/jpa-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Qué aprenderás
 Configurar PostgreSQL, versionar el esquema y separar ciclo de vida de datos del arranque de la aplicación.
 
@@ -131,7 +133,7 @@ V1 crea tablas, FK y UNIQUE; V2 agrega activo y un índice; Hibernate ddl-auto=v
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=FlujoIntegrationTest" test
+mvn -f laboratorios/jpa-productos/pom.xml "-Dtest=FlujoIntegrationTest" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

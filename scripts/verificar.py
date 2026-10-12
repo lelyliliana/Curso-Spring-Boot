@@ -7,6 +7,8 @@ from peticion import cliente, enviar
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'salidas';OUT.mkdir(exist_ok=True)
 checks=0
+MODULOS=('laboratorios/fundamentos','laboratorios/rest-memoria','laboratorios/jpa-productos','ejemplos/api-productos')
+JARS=dict(zip(MODULOS,('fundamentos','rest-memoria','jpa-productos','api-productos')))
 
 def comprobar(ok, mensaje):
     global checks
@@ -31,14 +33,14 @@ def documentos():
 
 def pruebas():
     total=0
-    for module in ('laboratorios/fundamentos','ejemplos/api-productos'):
+    for module in MODULOS:
         reports=list((ROOT/module/'target/surefire-reports').glob('TEST-*.xml'))
         comprobar(bool(reports),'Faltan informes Maven '+module)
         for report in reports:
             data=ET.parse(report).getroot().attrib
             comprobar(int(data.get('failures',0))+int(data.get('errors',0))+int(data.get('skipped',0))==0,report.name)
             total+=int(data['tests'])
-    comprobar(total>=52,'Se esperan al menos 52 casos Maven')
+    comprobar(total>=76,'Se esperan al menos 76 casos Maven')
     return total
 
 @contextlib.contextmanager
@@ -52,13 +54,13 @@ def aplicacion(module,env,label,args=(),docker=False):
         for key in keys:command+=['-e',key]
         command+=['curso-spring-check']
     else:
-        jar='fundamentos' if module.startswith('laboratorios') else 'api-productos'
+        jar=JARS[module]
         command=['java','-jar',str(ROOT/module/'target'/f'{jar}.jar'),*args]
     with (OUT/f'{label}.log').open('wb') as log:
         process=subprocess.Popen(command,env=settings,stdout=log,stderr=subprocess.STDOUT)
         base=f'http://127.0.0.1:{port}'
         try:
-            ready='/api/saludos' if module.startswith('laboratorios') else '/actuator/health'
+            ready='/api/saludos' if module=='laboratorios/fundamentos' else ('/api/productos' if module.startswith('laboratorios') else '/actuator/health')
             for _ in range(180):
                 if process.poll() is not None:raise RuntimeError(f'{label} terminó; consulta salidas/{label}.log')
                 try:
@@ -108,7 +110,66 @@ def contrato(base,editor,lector,category,expected):
 def base_env():
     return {'APP_EDITOR_PASSWORD':secrets.token_urlsafe(24),'APP_LECTOR_PASSWORD':secrets.token_urlsafe(24),'PROVEEDOR_URL':f'http://127.0.0.1:{puerto()}'}
 
-def postgres(docker=False):
+def contrato_etapa(base,jpa=False,vacio=False):
+    session=cliente()
+    def call(path,method='GET',body=None,status=200):
+        actual,headers,result=enviar(*session,base+path,method,body,csrf=False)
+        comprobar(actual==status,f'Etapa {method} {path}: {actual}, esperado {status}')
+        return headers,result
+    call('/api/productos')
+    payload={'sku':'ETAPA-01','nombre':'Libro de etapa','precio':15}
+    if jpa:
+        if vacio:
+            _,cat=call('/api/categorias','POST',{'nombre':'Etapa'},201)
+            payload['categoriaId']=cat['id']
+        else:payload['categoriaId']=1
+    headers,item=call('/api/productos','POST',payload,201)
+    path='/api/productos/'+str(item['id'])
+    comprobar(headers['Location'].endswith(path),'Location etapa')
+    call('/api/productos','POST',payload,409)
+    call('/api/productos','POST',{**payload,'precio':1.001},400)
+    _,page=call('/api/productos?nombre=etapa&pagina=0&tamano=2')
+    comprobar(page['total']==1 and len(page['contenido'])==1,'Filtro etapa')
+    update={**payload,'precio':20}
+    if jpa:update['version']=item['version']
+    _,changed=call(path,'PUT',update)
+    comprobar(changed['precio']==20,'Actualización etapa')
+    if jpa:call(path,'PUT',update,409)
+    call(path,'DELETE',status=204);call(path,status=404)
+
+def contrato_pedido(base,env,categoria,docker=False):
+    writer=cliente('editor',env['APP_EDITOR_PASSWORD'])
+    def call(path,method='GET',body=None,status=200,session=None):
+        actual,headers,result=enviar(*(session or writer),base+path,method,body)
+        comprobar(actual==status,f'Pedido {method} {path}: {actual}, esperado {status}: {result}')
+        return result
+    payload={'sku':'PED-'+uuid.uuid4().hex[:8].upper(),'nombre':'Histórico','precio':10,'categoriaId':categoria}
+    producto=call('/api/productos','POST',payload,201)
+    pedido=call('/api/pedidos','POST',{'detalles':[{'productoId':producto['id'],'cantidad':2}]},201)
+    path='/api/pedidos/'+str(pedido['id'])
+    call(path,session=cliente(),status=401)
+    call(path,session=cliente('lector',env['APP_LECTOR_PASSWORD']),status=403)
+    call('/api/productos/'+str(producto['id']),'PUT',{**payload,'precio':15,'version':producto['version']})
+    version={'version':pedido['version']}
+    if docker:
+        confirmado=call(path+'/confirmacion','POST',version)
+    else:
+        def confirmar(_):return enviar(*cliente('editor',env['APP_EDITOR_PASSWORD']),base+path+'/confirmacion','POST',version)
+        with ThreadPoolExecutor(max_workers=2) as pool:resultados=list(pool.map(confirmar,range(2)))
+        comprobar(sorted(r[0] for r in resultados)==[200,409],'Dos confirmaciones: un éxito y un conflicto')
+        confirmado=next(r[2] for r in resultados if r[0]==200)
+    comprobar(confirmado['estado']=='CONFIRMADO' and confirmado['total']==30,'Precio capturado al confirmar')
+    call(path+'/cancelacion','POST',version,409)
+    actual=call('/api/productos/'+str(producto['id']))
+    call('/api/productos/'+str(producto['id']),'PUT',{**payload,'precio':99,'version':actual['version']})
+    historico=call(path)
+    comprobar(historico['total']==30 and historico['detalles'][0]['precioUnitario']==15,'Precio histórico estable')
+    call('/api/productos/'+str(producto['id']),'DELETE',status=409)
+    cancelado=call(path+'/cancelacion','POST',{'version':historico['version']})
+    comprobar(cancelado['estado']=='CANCELADO' and cancelado['total']==30,'Cancelar conserva historial')
+    call(path+'/confirmacion','POST',{'version':cancelado['version']},409)
+
+def postgres(docker=False,module='ejemplos/api-productos'):
     import psycopg
     from psycopg import sql
     host=os.environ.get('PGHOST','127.0.0.1');port=os.environ.get('PGPORT','5432')
@@ -120,18 +181,26 @@ def postgres(docker=False):
         admin.execute(sql.SQL('CREATE ROLE {} LOGIN PASSWORD {}').format(sql.Identifier(role),sql.Literal(password)));created_role=True
         admin.execute(sql.SQL('CREATE DATABASE {} OWNER {}').format(sql.Identifier(db),sql.Identifier(role)));created_db=True
         env=base_env();env.update(SPRING_PROFILES_ACTIVE='prod',DB_URL=f'jdbc:postgresql://{host}:{port}/{db}',DB_USER=role,DB_PASSWORD=password)
-        with aplicacion('ejemplos/api-productos',env,'postgres-docker' if docker else 'postgres',docker=docker) as base:
+        label='postgres-docker' if docker else ('postgres-jpa' if module.startswith('laboratorios') else 'postgres')
+        with aplicacion(module,env,label,docker=docker) as base:
+            if module=='laboratorios/jpa-productos':
+                contrato_etapa(base,jpa=True,vacio=True)
+                with psycopg.connect(host=host,port=port,dbname=db,user=role,password=password) as connection:
+                    versions=connection.execute('SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank').fetchall()
+                    comprobar(versions==[('1',),('2',)],'Migraciones etapa JPA')
+                return
             writer=cliente('editor',env['APP_EDITOR_PASSWORD'])
             status,_,cat=enviar(*writer,base+'/api/categorias','POST',{'nombre':'Pruebas'});comprobar(status==201,'Crear categoría en base vacía')
             contrato(base,env['APP_EDITOR_PASSWORD'],env['APP_LECTOR_PASSWORD'],cat['id'],0)
             with psycopg.connect(host=host,port=port,dbname=db,user=role,password=password) as connection:
                 versions=connection.execute('SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank').fetchall()
-                comprobar(versions==[('1',),('2',)],'Solo migraciones V1 y V2 en prod')
+                comprobar(versions==[('1',),('2',),('4',)],'Migraciones V1, V2 y V4 en prod, sin V3 ficticia')
                 comprobar(connection.execute('SELECT count(*) FROM producto').fetchone()[0]==0,'Eliminación persistida en PostgreSQL')
             payload={'sku':'RACE-01','nombre':'Carrera','precio':10,'categoriaId':cat['id']}
             def crear(_):return enviar(*cliente('editor',env['APP_EDITOR_PASSWORD']),base+'/api/productos','POST',payload)[0]
             with ThreadPoolExecutor(max_workers=2) as pool:statuses=sorted(pool.map(crear,range(2)))
             comprobar(statuses==[201,409],'UNIQUE protege creación concurrente')
+            contrato_pedido(base,env,cat['id'],docker)
     finally:
         if created_db:admin.execute(sql.SQL('DROP DATABASE {} WITH (FORCE)').format(sql.Identifier(db)))
         if created_role:admin.execute(sql.SQL('DROP ROLE {}').format(sql.Identifier(role)))
@@ -143,14 +212,20 @@ if __name__=='__main__':
     if not args.skip_build:
         mvn=shutil.which('mvn.cmd' if os.name=='nt' else 'mvn')
         if not mvn:parser.error('Instala Maven y comprueba PATH')
-        for module in ('laboratorios/fundamentos','ejemplos/api-productos'):subprocess.run([mvn,'-B','-f',str(ROOT/module/'pom.xml'),'verify'],check=True)
+        for module in MODULOS:subprocess.run([mvn,'-B','-f',str(ROOT/module/'pom.xml'),'verify'],check=True)
     tests=pruebas()
     with aplicacion('laboratorios/fundamentos',{},'fundamentos',('--saludo.prefijo=Bienvenida',)) as base:
         status,_,data=enviar(*cliente(),base+'/api/saludos?nombre=Leli')
         comprobar(status==200 and data['mensaje']=='Bienvenida, Leli','Configuración externa del JAR')
     env=base_env()
-    with aplicacion('ejemplos/api-productos',env,'h2') as base:contrato(base,env['APP_EDITOR_PASSWORD'],env['APP_LECTOR_PASSWORD'],1,4)
-    if args.postgres:postgres()
+    with aplicacion('laboratorios/rest-memoria',{},'rest-memoria') as base:contrato_etapa(base)
+    with aplicacion('laboratorios/jpa-productos',{},'jpa-h2') as base:contrato_etapa(base,jpa=True)
+    with aplicacion('ejemplos/api-productos',env,'h2') as base:
+        contrato(base,env['APP_EDITOR_PASSWORD'],env['APP_LECTOR_PASSWORD'],1,4)
+        contrato_pedido(base,env,1)
+    if args.postgres:
+        postgres(module='laboratorios/jpa-productos')
+        postgres()
     if args.docker:
         if sys.platform!='linux':parser.error('--docker utiliza red host en Linux; usa Compose para práctica en otros sistemas')
         postgres(docker=True)

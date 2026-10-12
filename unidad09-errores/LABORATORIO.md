@@ -1,12 +1,16 @@
 # Laboratorio 09: Representar errores sin divulgar información interna
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Preparar
 
-Sigue [ENTORNO.md](../docs/ENTORNO.md). Esta práctica usa [ejemplos/api-productos](../ejemplos/api-productos/README.md). Los comandos parten de la raíz del repositorio; no necesitas mover archivos a una ruta personal ni cambiar paquetes Java.
+Sigue [ENTORNO.md](../docs/ENTORNO.md). Esta práctica usa [REST en memoria](../laboratorios/rest-memoria/README.md). Los comandos parten de la raíz del repositorio; no necesitas mover archivos a una ruta personal ni cambiar paquetes Java.
 
 ## Observar una decisión concreta
 
-ApiErrorHandler usa ProblemDetail para 400/404/409/503 y fallos inesperados 500. ResponseEntityExceptionHandler conserva manejo de errores del protocolo como JSON ilegible, tipo incorrecto, método no permitido o formato no soportado. No se retorna e.getMessage de una excepción SQL. Los errores de la cadena de seguridad requieren handlers propios porque ocurren antes de MVC.
+El advice de REST representa 400, 404 y 409 mediante ProblemDetail. La respuesta permite actuar al cliente sin exponer estructuras internas. La validación puede incluir campos; errores de protocolo no necesariamente incluyen el mismo code.
 
 ## Paso 1: predecir
 
@@ -18,21 +22,21 @@ Abre el proyecto indicado y localiza controller, servicio, configuración o prue
 
 ### Archivos que debes localizar
 
-- [ApiErrorHandler.java](../ejemplos/api-productos/src/main/java/com/lelyliliana/productos/ApiErrorHandler.java)
+- [ApiErrorHandler.java](../laboratorios/rest-memoria/src/main/java/com/lelyliliana/rest/ApiErrorHandler.java)
 
 Anota qué método o propiedad realiza la decisión descrita y qué parte depende del framework. Sigue su recorrido desde entrada hasta resultado; identifica un rechazo antes de ejecutar.
 
 ## Paso 3: ejecutar la prueba
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoControllerTest#jsonMalformado400" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#erroresNoFiltranInternos" test
 ```
 
 En Windows usa PowerShell; en Ubuntu/macOS usa terminal. Mantén comillas en -Dtest si incluye # para que se envíe como un solo argumento. Maven debe terminar con BUILD SUCCESS y cero fallos. La prueba comprueba la decisión descrita, no todas las capacidades de la aplicación. Lee qué dobles, base o contexto usa antes de atribuirle otra garantía.
 
 ## Paso 4: contrastar
 
-Compara con la explicación del caso. Cuando hay HTTP, usa también [CONTRATO_API.md](../docs/CONTRATO_API.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
+Compara con la explicación del caso. Cuando hay HTTP, usa también [CONTRATO_API.md](../docs/CONTRATO_ETAPAS.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
 
 ## Paso 5: aplicar
 

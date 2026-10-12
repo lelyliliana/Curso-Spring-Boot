@@ -1,6 +1,6 @@
 # API de productos: referencia completa
 
-Java 21 y Spring Boot 4.1.1. CRUD con actualización y versión, búsqueda paginada, categoría, validación, errores ProblemDetail, Flyway, H2/PostgreSQL, proveedor HTTP con límites, CSRF/Basic, Actuator y correlación local.
+Java 21 y Spring Boot 4.1.1. Esta es la etapa integrada; antes estudia [REST en memoria](../../laboratorios/rest-memoria/README.md) y [JPA](../../laboratorios/jpa-productos/README.md). CRUD con actualización y versión, búsqueda paginada, categoría, validación, errores ProblemDetail, Flyway, H2/PostgreSQL, proveedor HTTP con límites, CSRF/Basic, Actuator y correlación local.
 
 1. Sigue [ENTORNO.md](../../docs/ENTORNO.md) para Java/Maven y claves locales.
 2. Ejecuta desde raíz: `mvn -f ejemplos/api-productos/pom.xml verify`.
@@ -24,3 +24,7 @@ Java 21 y Spring Boot 4.1.1. CRUD con actualización y versión, búsqueda pagin
 Pruebas de servicio, MVC, JPA, integración, proveedor local y configuración están en src/test. No se necesita proveedor de Internet para testear. La configuración prod exige PostgreSQL y no carga los datos ficticios. Basic/cuentas en memoria son una elección educativa; no se presenta como identidad de producción. El ejemplo no implementa stock físico ni pagos.
 
 [Arquitectura y límites](../../docs/ARQUITECTURA.md) · [Proyecto final](../../unidad30-proyecto-final/README.md)
+
+## Solución de pedidos
+
+[Guía completa](../../docs/PEDIDOS.md): borrador, confirmación, cancelación, precio histórico y versión; código, migración y pruebas incluidos. Los pedidos requieren PRODUCT_WRITE también en lectura. No incluyen stock físico ni pagos.

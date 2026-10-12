@@ -1,5 +1,7 @@
 # Soluciones razonadas 02: Sobrescribir una propiedad sin recompilar
 
+**Proyecto de esta unidad:** [laboratorios/fundamentos](../laboratorios/fundamentos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Decisión de referencia
 
 SaludoProperties es un record @ConfigurationProperties validado; @EnableConfigurationProperties lo registra. application.properties fija Hola y máximo 40; la prueba sobrescribe el prefijo por Bienvenida. Una propiedad tipada no se registra automáticamente por ser record. En la API las contraseñas esenciales deben existir y los timeouts se validan al arrancar. Un perfil activa configuración, no almacena secretos de forma segura.
@@ -21,3 +23,13 @@ Una alternativa es válida si conserva la regla, población, errores y límites 
 Comando desde la raíz, resultado observado, caso de frontera y explicación de la decisión central. Para una modificación conserva antes/después; para un fallo conserva status o excepción de dominio; para operación documenta preparación y configuración sin credenciales reales.
 
 [Práctica](PRACTICA.md) · [Laboratorio](LABORATORIO.md) · [Unidad](README.md)
+
+## Resolución desarrollada
+
+### Comando y contraejemplo
+
+```text
+mvn -f laboratorios/fundamentos/pom.xml package
+java -jar laboratorios/fundamentos/target/fundamentos.jar "--saludo.prefijo=Buen día" --saludo.longitud-maxima=0
+```
+SaludoProperties declara longitudMaxima (en configuración, saludo.longitud-maxima). El valor 0 viola @Min(1) y debe rechazar la configuración al arrancar, no devolver 400 después de iniciar. Para el caso válido elimina la opción del máximo y consulta /api/saludos?nombre=Leli: espera Buen día, Leli. Configuración inválida y entrada HTTP inválida son fronteras diferentes.

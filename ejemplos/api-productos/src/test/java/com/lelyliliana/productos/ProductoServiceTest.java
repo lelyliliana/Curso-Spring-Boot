@@ -4,6 +4,7 @@ import static org.mockito.Mockito.*;
 import java.math.BigDecimal;import java.util.Optional;
 import org.junit.jupiter.api.Test;
 class ProductoServiceTest {
+ @Test void precioInvalidoEnDominio(){assertThrows(IllegalArgumentException.class,()->new Producto("LIB-TEST","Libro",new BigDecimal("-1.00"),new Categoria("Libros")));}
  private final ProductoRepository repo=mock(ProductoRepository.class);
  private final CategoriaRepository categorias=mock(CategoriaRepository.class);
  private final ProductoService service=new ProductoService(repo,categorias);

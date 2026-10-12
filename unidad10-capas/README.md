@@ -2,6 +2,10 @@
 
 [Volver al índice del curso](../README.md) · [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
+**Proyecto de esta unidad:** [laboratorios/rest-memoria](../laboratorios/rest-memoria/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
+En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado menciona esos campos, resuelve primero el caso REST y completa esa comparación al llegar a JPA/integración.
+
 ## Qué aprenderás
 Separar HTTP, casos de uso, dominio y persistencia sin convertir la arquitectura en carpetas vacías.
 
@@ -112,9 +116,9 @@ Continúa con JPA.
 
 ---
 
-## Caso desarrollado: Asignar una responsabilidad concreta a cada capa
+## Caso desarrollado: Repartir responsabilidades
 
-Controller adapta transporte; Service delimita crear/actualizar/eliminar y transacciones; Repository expresa consultas; Producto protege invariantes; ProveedorClient adapta HTTP externo. El servicio devuelve DTO sin ResponseEntity y no conoce status. CategoriaController es deliberadamente un CRUD pequeño de catálogo que usa repository directamente; explica ese compromiso antes de añadir una capa vacía.
+El controller transforma HTTP en una llamada de servicio; el servicio guarda y consulta el mapa con SKU único; el DTO define JSON y el advice traduce excepciones. synchronized protege una JVM; en la siguiente etapa la base añade UNIQUE y transacciones.
 
 ### Ejecutar y comprender
 
@@ -123,7 +127,7 @@ Controller adapta transporte; Service delimita crear/actualizar/eliminar y trans
 3. Ejecuta desde la raíz:
 
 ```text
-mvn -f ejemplos/api-productos/pom.xml "-Dtest=ProductoServiceTest" test
+mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#actualizarRechazaSkuAjeno" test
 ```
 
 4. Resuelve la [práctica](PRACTICA.md).

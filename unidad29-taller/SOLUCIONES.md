@@ -1,5 +1,7 @@
 # Soluciones razonadas 29: Integrar contrato, persistencia, seguridad y operación
 
+**Proyecto de esta unidad:** [ejemplos/api-productos](../ejemplos/api-productos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Decisión de referencia
 
 Resuelve primero PROBLEMAS.md. La referencia existente demuestra CRUD y actualización con versión, filtro paginado, categoría relacionada, migrations, proveedor con fallos, seguridad y Actuator. No basta que una ruta responda 200: deben coincidir los límites del contrato, las garantías de datos y los permisos. Conserva evidencia de un caso válido y un fallo por frontera.
@@ -45,4 +47,16 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 6. Prueba fallo en el segundo detalle: el primer detalle tampoco debe quedar confirmado parcialmente. La prueba debe verificar el estado persistido, no solo la excepción.
 7. Para cancelar, registra la transición permitida sin borrar el historial. Si incorporas pago/inventario remoto, una transacción de base local no revierte automáticamente ese sistema: necesitas diseñar coordinación/compensación fuera del alcance del catálogo.
 
-Los puntos de pedidos son una solución de diseño para implementar; no hay un endpoint de pedidos oculto en la API de referencia. La entrega debe incluir tus clases y pruebas nuevas. Las variantes son válidas si el contrato, las reglas y la evidencia son coherentes.
+Los puntos de pedidos tienen [implementación completa y pruebas](../docs/PEDIDOS.md). La entrega propia debe justificar sus reglas y pruebas; usa la referencia después de intentar tu solución. Las variantes son válidas si el contrato, las reglas y la evidencia son coherentes.
+
+## Resolución desarrollada
+
+### Solución ejecutable del taller
+
+Sigue [PEDIDOS.md](../docs/PEDIDOS.md). Ya incluye clases, migración y pruebas completas de los puntos catálogo, pedido/detalle, transacción y acceso. Las referencias proveedor, logs, carga y Compose completan los otros problemas.
+
+```text
+mvn -f ejemplos/api-productos/pom.xml "-Dtest=PedidoIntegrationTest" test
+python scripts/verificar.py --postgres
+```
+El segundo comando requiere la base local de práctica. Un README de entrega debe indicar cómo reproducir cada evidencia; no basta enumerar tecnologías. Los pedidos de referencia no contienen stock ni pago: esos cambios exigen reglas nuevas.

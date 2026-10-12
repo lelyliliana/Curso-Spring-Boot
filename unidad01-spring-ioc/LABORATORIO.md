@@ -1,5 +1,7 @@
 # Laboratorio 01: Ver qué objetos administra el contenedor
 
+**Proyecto de esta unidad:** [laboratorios/fundamentos](../laboratorios/fundamentos/README.md). Sigue la [ruta progresiva](../docs/RUTA_PROGRESIVA.md) para saber qué componentes aparecen en cada etapa. Los comandos se ejecutan desde la raíz del curso.
+
 ## Preparar
 
 Sigue [ENTORNO.md](../docs/ENTORNO.md). Esta práctica usa [laboratorios/fundamentos](../laboratorios/fundamentos/README.md). Los comandos parten de la raíz del repositorio; no necesitas mover archivos a una ruta personal ni cambiar paquetes Java.
