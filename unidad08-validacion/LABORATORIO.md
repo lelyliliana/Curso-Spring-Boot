@@ -37,11 +37,11 @@ En Windows usa PowerShell; en Ubuntu/macOS usa terminal. Mantén comillas en -Dt
 
 ## Paso 4: contrastar
 
-Compara con la explicación del caso. Cuando hay HTTP, usa también [CONTRATO_API.md](../docs/CONTRATO_ETAPAS.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
+Compara con la explicación del caso. Cuando hay HTTP, usa también [Contrato de la etapa](../docs/CONTRATO_ETAPAS.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
 
 ## Paso 5: aplicar
 
-Prueba precio 1.001, categoría 99999 y SKU ya existente; explica los tres errores.
+Prueba precio 1.001 y un SKU ya existente en REST; explica 400 y 409. Al llegar a JPA, añade categoría 99999 inexistente y explica 404.
 
 Entrega predicción, comando o cambio, resultado y explicación. Resuelve [PRACTICA.md](PRACTICA.md) antes de abrir [SOLUCIONES.md](SOLUCIONES.md).
 

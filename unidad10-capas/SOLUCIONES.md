@@ -6,7 +6,7 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Decisión de referencia
 
-Controller adapta transporte; Service delimita crear/actualizar/eliminar y transacciones; Repository expresa consultas; Producto protege invariantes; ProveedorClient adapta HTTP externo. El servicio devuelve DTO sin ResponseEntity y no conoce status. CategoriaController es deliberadamente un CRUD pequeño de catálogo que usa repository directamente; explica ese compromiso antes de añadir una capa vacía.
+El controller transforma HTTP en una llamada de servicio; el servicio guarda y consulta el mapa con SKU único; el DTO define JSON y el advice traduce excepciones. synchronized protege una JVM; en la siguiente etapa la base añade UNIQUE y transacciones.
 
 El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#actualizarRechazaSkuAjeno` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 

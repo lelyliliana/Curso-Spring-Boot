@@ -36,11 +36,11 @@ En Windows usa PowerShell; en Ubuntu/macOS usa terminal. Mantén comillas en -Dt
 
 ## Paso 4: contrastar
 
-Compara con la explicación del caso. Cuando hay HTTP, usa también [CONTRATO_API.md](../docs/CONTRATO_ETAPAS.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
+Compara con la explicación del caso. Cuando hay HTTP, usa también [Contrato de la etapa](../docs/CONTRATO_ETAPAS.md) y el cliente de práctica; cuando hay persistencia, identifica la migración y el SQL. Los errores de permisos o entorno no se corrigen eliminando validación o desactivando controles.
 
 ## Paso 5: aplicar
 
-Comprueba Location, Content-Type y version en una creación, además del status.
+Comprueba Location y Content-Type en una creación, además del status. Al llegar a JPA, añade la comprobación de version.
 
 Entrega predicción, comando o cambio, resultado y explicación. Resuelve [PRACTICA.md](PRACTICA.md) antes de abrir [SOLUCIONES.md](SOLUCIONES.md).
 

@@ -6,13 +6,13 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Decisión de referencia
 
-ResponseEntity.created recibe una URI y genera 201/Location. ResponseEntity.noContent no debe contener un objeto de error ni el producto eliminado. Content-Type describe el cuerpo; Accept pide formatos que el cliente entiende. Las respuestas JSON se contrastan en propiedades relevantes, no con una cadena rígida sensible al orden de campos.
+ResponseEntity.created establece 201 y Location con el id generado. El GET de ese recurso demuestra que se guardó; DELETE devuelve 204 sin cuerpo. Esta etapa no expone version; el campo se incorpora en JPA.
 
 El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#contratoCRUD` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 
 ## Práctica independiente
 
-**Enunciado:** Comprueba Location, Content-Type y version en una creación, además del status.
+**Enunciado:** Comprueba Location y Content-Type en una creación, además del status. Al llegar a JPA, añade la comprobación de version.
 
 **Solución y justificación:** creacionContrato exige /api/productos/5 y version=0 en la slice. En ejecución real utiliza el id devuelto; las secuencias pueden dejar huecos. Un cliente sigue Location, no supone que el siguiente id será 5.
 

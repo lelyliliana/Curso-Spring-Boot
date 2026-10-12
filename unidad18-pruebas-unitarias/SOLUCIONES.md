@@ -28,7 +28,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 
 ### Implementación de prueba de dominio
 
-Añade en ProductoServiceTest (mismo paquete):
+Esta prueba ya está incluida en ProductoServiceTest (mismo paquete). Léela, ejecútala y crea otra variante con un nombre diferente para experimentar:
 
 ```java
 @Test void precioInvalidoEnDominio() {

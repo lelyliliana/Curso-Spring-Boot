@@ -6,7 +6,7 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Decisión de referencia
 
-ApiErrorHandler usa ProblemDetail para 400/404/409/503 y fallos inesperados 500. ResponseEntityExceptionHandler conserva manejo de errores del protocolo como JSON ilegible, tipo incorrecto, método no permitido o formato no soportado. No se retorna e.getMessage de una excepción SQL. Los errores de la cadena de seguridad requieren handlers propios porque ocurren antes de MVC.
+El advice de REST representa 400, 404 y 409 mediante ProblemDetail. La respuesta permite actuar al cliente sin exponer estructuras internas. La validación puede incluir campos; errores de protocolo no necesariamente incluyen el mismo code.
 
 El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#erroresNoFiltranInternos` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 

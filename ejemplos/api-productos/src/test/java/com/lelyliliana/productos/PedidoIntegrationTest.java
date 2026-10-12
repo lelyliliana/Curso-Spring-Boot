@@ -105,8 +105,13 @@ class PedidoIntegrationTest {
     }
 
     @Test void cantidadesYListaInvalidas400() throws Exception {
-        for (String cuerpo : List.of("{"detalles":[]}", "{"detalles":[null]}",
-            "{"detalles":[{"productoId":1,"cantidad":0}]}")) {
+        for (String cuerpo : List.of("""
+            {"detalles":[]}
+            """, """
+            {"detalles":[null]}
+            """, """
+            {"detalles":[{"productoId":1,"cantidad":0}]}
+            """)) {
             mvc.perform(post("/api/pedidos").with(user("editor").authorities(() -> "PRODUCT_WRITE"))
                 .with(csrf()).contentType("application/json").content(cuerpo)).andExpect(status().isBadRequest());
         }
@@ -121,17 +126,18 @@ class PedidoIntegrationTest {
     @Test void creacionYConfirmacionHttp() throws Exception {
         var producto = producto("PED-HTTP");
         var editor = user("editor").authorities(() -> "PRODUCT_WRITE");
-        String cuerpo = "{"detalles":[{"productoId":" + producto.id() + ","cantidad":2}]}";
+        String cuerpo = mapper.writeValueAsString(new PedidoRequest(
+            List.of(new DetalleRequest(producto.id(), 2))));
         var respuesta = mvc.perform(post("/api/pedidos").with(editor).with(csrf())
             .contentType("application/json").content(cuerpo)).andExpect(status().isCreated())
             .andExpect(header().exists("Location")).andExpect(jsonPath("$.estado").value("BORRADOR"))
             .andReturn().getResponse().getContentAsString();
         long id = mapper.readTree(respuesta).get("id").asLong();
         mvc.perform(post("/api/pedidos/" + id + "/confirmacion").with(editor).with(csrf())
-            .contentType("application/json").content("{"version":0}"))
+            .contentType("application/json").content(mapper.writeValueAsString(new VersionRequest(0L))))
             .andExpect(status().isOk()).andExpect(jsonPath("$.total").value(20));
         mvc.perform(post("/api/pedidos/" + id + "/confirmacion").with(editor).with(csrf())
-            .contentType("application/json").content("{"version":0}"))
+            .contentType("application/json").content(mapper.writeValueAsString(new VersionRequest(0L))))
             .andExpect(status().isConflict());
     }
 }

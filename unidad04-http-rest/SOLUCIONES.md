@@ -6,7 +6,7 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Decisión de referencia
 
-POST /api/productos crea un recurso con 201 y Location. GET no pide crear ni modificar recursos. PUT reemplaza los campos del contrato de actualización y exige la versión leída; se utiliza 409 si esa versión está desactualizada. DELETE exitoso devuelve 204 sin cuerpo; repetirlo puede devolver 404 y seguir siendo idempotente en el efecto (el recurso permanece ausente). REST no equivale a cualquier JSON sobre HTTP: incluye restricciones arquitectónicas además de convenciones de rutas.
+La etapa REST conserva productos en un mapa. POST válido responde 201 con Location; repetir SKU genera Conflicto y el advice devuelve 409. GET de un id que no existe genera NoEncontrado y devuelve 404. No se necesita base, usuario ni token.
 
 El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#skuUnico` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 

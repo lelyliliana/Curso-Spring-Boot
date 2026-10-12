@@ -6,7 +6,7 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Decisión de referencia
 
-ProductoController conoce DTO y HTTP, y delega al servicio. @PathVariable identifica recurso; @RequestParam pagina/filtra; @RequestBody recibe JSON. La colección devuelve una envoltura propia con contenido y metadatos para evitar exponer la representación interna de Page. El endpoint no acepta una URL arbitraria de proveedor.
+ProductoController recibe nombre, pagina y tamano. El servicio filtra sin distinguir mayúsculas, ordena por id y aplica límite. El catálogo inicia vacío: crea primero Bases de datos y Algoritmos con SKU distintos para poder predecir el resultado.
 
 El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#paginacionYFiltro` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 

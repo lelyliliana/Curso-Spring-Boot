@@ -6,13 +6,13 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Decisión de referencia
 
-@Valid activa restricciones del DTO: SKU en mayúsculas, nombre no vacío, precio mínimo 0.01 con hasta dos decimales y categoría positiva. Esas restricciones no verifican existencia de categoría ni unicidad bajo concurrencia. El dominio vuelve a validar invariantes para llamadas fuera de MVC. La base añade constraints. Ninguna capa conoce reglas que no se escribieron.
+@Valid activa las reglas del DTO: SKU con formato, nombre no vacío y precio positivo con hasta dos decimales. @Digits rechaza 1.001 antes del servicio. La verificación de categoría comienza en JPA, porque la etapa REST no la modela.
 
 El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#validaDatos` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 
 ## Práctica independiente
 
-**Enunciado:** Prueba precio 1.001, categoría 99999 y SKU ya existente; explica los tres errores.
+**Enunciado:** Prueba precio 1.001 y un SKU ya existente en REST; explica 400 y 409. Al llegar a JPA, añade categoría 99999 inexistente y explica 404.
 
 **Solución y justificación:** 1.001 falla validación con 400; categoría positiva pero inexistente falla con 404; SKU repetido produce 409. Es forma, referencia y conflicto, respectivamente. No conviertas todas las excepciones en 400.
 

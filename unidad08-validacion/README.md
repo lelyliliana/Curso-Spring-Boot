@@ -136,7 +136,7 @@ mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#validaDatos" t
 
 ### Reto explicado
 
-Prueba precio 1.001, categoría 99999 y SKU ya existente; explica los tres errores.
+Prueba precio 1.001 y un SKU ya existente en REST; explica 400 y 409. Al llegar a JPA, añade categoría 99999 inexistente y explica 404.
 
 El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
 

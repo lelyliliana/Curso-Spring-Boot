@@ -6,7 +6,7 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Decisión de referencia
 
-ProductoRequest no admite id ni version; ProductoUpdateRequest exige version; ProductoResponse incluye datos de categoría sin devolver la entidad lazy. El mapeo ocurre dentro de la transacción del servicio y open-in-view=false impide depender de una sesión JPA abierta durante serialización. Los records son útiles como DTO, pero no convierten automáticamente todo objeto en inmutable si contienen referencias mutables.
+ProductoRequest solo recibe sku, nombre y precio; ProductoResponse añade el id asignado por el servidor. Son records, no beans ni entidades JPA. Al llegar a JPA se incorporan categoría y versión al contrato.
 
 El código completo y sus imports están en [REST en memoria](../laboratorios/rest-memoria/README.md). La prueba `ProductoRestTest#contratoCRUD` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 

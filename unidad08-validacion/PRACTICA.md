@@ -6,7 +6,7 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Problema
 
-Prueba precio 1.001, categoría 99999 y SKU ya existente; explica los tres errores.
+Prueba precio 1.001 y un SKU ya existente en REST; explica 400 y 409. Al llegar a JPA, añade categoría 99999 inexistente y explica 404.
 
 ## Ruta de resolución
 

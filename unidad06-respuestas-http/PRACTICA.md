@@ -6,7 +6,7 @@ En esta etapa no existen categoriaId, version ni credenciales. Si el enunciado m
 
 ## Problema
 
-Comprueba Location, Content-Type y version en una creación, además del status.
+Comprueba Location y Content-Type en una creación, además del status. Al llegar a JPA, añade la comprobación de version.
 
 ## Ruta de resolución
 

@@ -19,14 +19,18 @@ class ProductoRestTest {
 
     @Test void contratoCRUD() throws Exception {
         var cuerpo = mvc.perform(post("/api/productos").contentType("application/json")
-            .content("{"sku":"CRUD","nombre":"Libro","precio":10}"))
+            .content("""
+                {"sku":"CRUD","nombre":"Libro","precio":10}
+                """))
             .andExpect(status().isCreated()).andExpect(header().exists("Location"))
             .andExpect(content().contentTypeCompatibleWith("application/json"))
             .andReturn().getResponse().getContentAsString();
         long id = mapper.readTree(cuerpo).get("id").asLong();
         mvc.perform(get("/api/productos/" + id)).andExpect(jsonPath("$.nombre").value("Libro"));
         mvc.perform(put("/api/productos/" + id).contentType("application/json")
-            .content("{"sku":"CRUD","nombre":"Nuevo","precio":15}"))
+            .content("""
+                {"sku":"CRUD","nombre":"Nuevo","precio":15}
+                """))
             .andExpect(status().isOk()).andExpect(jsonPath("$.precio").value(15));
         mvc.perform(delete("/api/productos/" + id)).andExpect(status().isNoContent())
             .andExpect(content().string(""));
@@ -35,7 +39,9 @@ class ProductoRestTest {
 
     @Test void validaDatos() throws Exception {
         mvc.perform(post("/api/productos").contentType("application/json")
-            .content("{"sku":"bad","nombre":"","precio":1.001}"))
+            .content("""
+                {"sku":"bad","nombre":"","precio":1.001}
+                """))
             .andExpect(status().isBadRequest()).andExpect(jsonPath("$.campos.precio").exists());
     }
 

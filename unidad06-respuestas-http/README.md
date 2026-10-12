@@ -152,7 +152,7 @@ mvn -f laboratorios/rest-memoria/pom.xml "-Dtest=ProductoRestTest#contratoCRUD" 
 
 ### Reto explicado
 
-Comprueba Location, Content-Type y version en una creación, además del status.
+Comprueba Location y Content-Type en una creación, además del status. Al llegar a JPA, añade la comprobación de version.
 
 El objetivo es justificar una decisión con evidencia. No necesitas memorizar todas las anotaciones del proyecto avanzado para estudiar esta unidad.
 
