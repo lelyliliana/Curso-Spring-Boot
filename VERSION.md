@@ -6,4 +6,4 @@ La ruta ahora tiene cuatro proyectos Maven separados: fundamentos, REST en memor
 
 La API integrada incorpora la solución completa de pedidos/detalles, estados, cantidades, precio histórico al confirmar, cancelación, migración V4 y control de versiones. V3 sigue siendo exclusivamente datos ficticios de dev. La solución no implementa pagos ni inventario físico.
 
-La automatización ejecuta las cuatro etapas en Ubuntu, Windows y macOS con Java 21/25, comprueba JAR/contratos, H2 y PostgreSQL real; Linux también prueba Docker. Consulta los resultados del commit que estás estudiando en [verificación](docs/VERIFICACION.md).
+La automatización ejecuta 77 pruebas Maven en las cuatro etapas con Ubuntu, Windows y macOS y Java 21/25; comprueba JAR/contratos, H2 y PostgreSQL real. Linux también prueba Docker. Consulta los resultados del commit que estás estudiando en [verificación](docs/VERIFICACION.md).

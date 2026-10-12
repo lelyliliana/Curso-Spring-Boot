@@ -12,7 +12,7 @@ En Ubuntu/macOS puedes usar python3. El programa revisa enlaces locales y los cu
 
 Mockito se carga mediante un agente declarado en Surefire, en lugar de depender de adjuntarlo dinámicamente durante la ejecución. El parent de Spring Boot administra su versión y el agente solo pertenece al proceso de pruebas. No lo agregues al comando del JAR de producción.
 
-Las pruebas Maven de las cuatro etapas cubren configuración, servicios, validación, controllers, repositorios, seguridad, integración y respuestas de un proveedor simulado en un servidor HTTP local. No dependen de una API pública ni de credenciales reales.
+Las 77 pruebas Maven de las cuatro etapas cubren configuración, servicios, validación, controllers, repositorios, seguridad, integración, pedidos y respuestas de un proveedor simulado en un servidor HTTP local. No dependen de una API pública ni de credenciales reales.
 
 La comprobación HTTP adicional prueba creación/consulta/actualización/eliminación, 201 y Location, validación, permisos, CSRF, paginación, 409 por versión antigua, métricas protegidas, salud y fallo controlado del proveedor. Los archivos de salidas contienen registros y resultado.json; están excluidos de Git.
 
@@ -29,7 +29,7 @@ python scripts/verificar.py --skip-build --postgres
 
 Antes configura PGHOST, PGPORT y PGUSER para una identidad administrativa de tu base local de práctica; suministra PGPASSWORD externamente si tu autenticación lo exige. Ejemplo de parámetros sin claves: PGHOST=127.0.0.1, PGPORT=5432. --skip-build reutiliza informes y JAR del último mvn verify; omítelo cuando hayas modificado código.
 
-El programa permite solo un servidor PostgreSQL local. Crea un rol y una base con nombres aleatorios, aplica V1/V2/V4 con el mismo JAR en perfil prod, comprueba datos/migraciones y enfrenta dos creaciones del mismo SKU. Al terminar elimina exclusivamente el rol y la base que creó. No lo dirijas a tu base personal ni a una base de producción. Una terminación forzada del sistema puede impedir la limpieza; revisa los nombres curso_check_ si ocurrió.
+El programa permite solo un servidor PostgreSQL local. Crea roles y bases con nombres aleatorios: comprueba el JAR de JPA con V1/V2 y el integrado con V1/V2/V4 en perfil prod. Verifica datos/migraciones y, en el integrado, enfrenta dos creaciones del mismo SKU y dos confirmaciones del mismo pedido. Al terminar elimina exclusivamente cada rol y base que creó. No lo dirijas a tu base personal ni a una base de producción. Una terminación forzada del sistema puede impedir la limpieza; revisa los nombres curso_check_ si ocurrió.
 
 ## 3. Automatización en tres sistemas
 

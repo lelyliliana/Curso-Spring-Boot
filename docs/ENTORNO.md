@@ -50,7 +50,35 @@ python scripts/peticion.py GET http://localhost:8080/api/saludos?nombre=Leli
 
 Usa `python3` en Ubuntu/macOS si `python` no apunta a Python 3, y `py` en Windows si corresponde. Respuesta 200 con mensaje Hola, Leli y fecha UTC. Detén el servidor con Ctrl+C antes de iniciar otro en 8080.
 
-## Paso 4: preparar credenciales locales para la API
+### Paso 3.1: REST sin base ni seguridad (unidades 04–10)
+
+Después de fundamentos, detén su servidor con Ctrl+C. Sigue [REST en memoria](../laboratorios/rest-memoria/README.md) y ejecuta desde la raíz:
+
+```text
+mvn -f laboratorios/rest-memoria/pom.xml verify
+mvn -f laboratorios/rest-memoria/pom.xml spring-boot:run
+```
+
+En otra terminal desde la misma raíz crea un producto:
+
+```text
+python scripts/peticion.py POST http://localhost:8080/api/productos --json datos/producto-memoria.json --sin-csrf
+```
+
+Aquí no hay usuario ni endpoint CSRF. El argumento --sin-csrf corresponde a este laboratorio sin Security; en la API integrada se conserva el token. El catálogo empieza vacío, el primer POST devuelve 201 y repetir el SKU devuelve 409. El contrato todavía no tiene categoría ni versión.
+
+### Paso 3.2: JPA antes de integración (unidades 11–14)
+
+Detén REST y sigue [JPA y migraciones](../laboratorios/jpa-productos/README.md):
+
+```text
+mvn -f laboratorios/jpa-productos/pom.xml verify
+mvn -f laboratorios/jpa-productos/pom.xml spring-boot:run
+```
+
+Este laboratorio añade categorías, H2, migraciones y versión, todavía sin Security. Usa datos/producto.json y --sin-csrf para escribir. Compara los [contratos de las etapas](CONTRATO_ETAPAS.md) antes de reutilizar peticiones. Para PostgreSQL de práctica consulta operación y el README del módulo; no se requiere para comenzar con H2.
+
+## Paso 4: preparar credenciales de la API integrada (desde unidad 15)
 
 El ejemplo avanzado requiere dos claves configuradas externamente. Son cuentas educativas en memoria, no un proveedor de identidad de producción. No hay contraseña predeterminada en el código principal.
 

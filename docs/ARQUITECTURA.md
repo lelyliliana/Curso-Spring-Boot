@@ -38,3 +38,7 @@ La cadena de filtros actúa antes de MVC. CSRF sigue activo; errores 401/403 tie
 | CI Docker Linux | imagen ejecutada con DB real | no implica todos los hosts/arquitecturas |
 
 [Contrato](CONTRATO_API.md) · [Verificación](VERIFICACION.md)
+
+## Evolución y pedidos
+
+Los cuatro proyectos de la [ruta progresiva](RUTA_PROGRESIVA.md) separan fundamentos, REST, JPA e integración. En la etapa integrada Pedido posee detalles; DetallePedido referencia productos compartidos sin cascada REMOVE. La confirmación captura precios en la transacción y @Version protege el cambio del pedido. [Reglas, código y pruebas](PEDIDOS.md).
