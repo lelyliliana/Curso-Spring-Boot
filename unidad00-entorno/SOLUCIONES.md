@@ -12,11 +12,11 @@ El código completo y sus imports están en [laboratorios/fundamentos](../labora
 
 **Enunciado:** Ejecuta el mismo JAR en 8081 y escribe el comando que prueba que cambió el puerto.
 
-**Solución y justificación:** java -jar laboratorios/fundamentos/target/fundamentos.jar --server.port=8081; consulta http://localhost:8081/api/saludos. Cambió configuración externa, no el código ni el artefacto.
+**Solución y justificación:** Desde la raíz ejecuta java -jar laboratorios/fundamentos/target/fundamentos.jar --server.port=8081. En otra terminal usa python scripts/peticion.py GET "http://127.0.0.1:8081/api/saludos?nombre=Leli". Debe responder 200 con mensaje y fecha. La consulta a 8080 no comprueba el cambio y podría incluso corresponder a otro proceso. El artefacto es el mismo.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -41,3 +41,7 @@ java -jar laboratorios/fundamentos/target/fundamentos.jar --server.port=8081
 python scripts/peticion.py GET http://localhost:8081/api/saludos?nombre=Leli
 ```
 Espera 200 y mensaje Hola, Leli. Un error de conexión a 8080 solo prueba que allí no hay un servidor accesible; la petición a 8081 prueba el puerto utilizado.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa fundamentos`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

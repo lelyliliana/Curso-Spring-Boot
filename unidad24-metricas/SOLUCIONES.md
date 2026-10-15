@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Define cinco métricas y estima cardinalidad.
 
-**Solución y justificación:** Tasa HTTP (contador), errores por clase de status, duración HTTP (timer), conexiones activas de pool (gauge), duración proveedor (timer). Tags método/ruta plantilla/resultado acotado, sin correos ni SKU. Para proveedor habría que agregar instrumentación propia; no se afirma que el ejemplo ya publique ese timer.
+**Solución y justificación:** Propón contador de peticiones/errores, timer HTTP, gauge de conexiones y timer de proveedor, con etiquetas acotadas de método/ruta/resultado. Para proveedor declara la instrumentación pendiente. Estima cardinalidad con conjuntos concretos, sin SKU ni request id. No confundas una propuesta con cinco métricas personalizadas ya implementadas o percentiles disponibles en cualquier backend.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -37,3 +37,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 | Confirmaciones de pedido | Contador adicional | Resultado éxito/conflicto |
 
 Ejemplo: 8 rutas × 4 métodos × 5 grupos de status = hasta 160 combinaciones para esas dimensiones, antes de otras etiquetas/series del timer. Un SKU o request id añadiría valores sin un límite pequeño. Los últimos dos instrumentos son una ampliación propuesta; no declares que ya están registrados solo porque existe Actuator.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

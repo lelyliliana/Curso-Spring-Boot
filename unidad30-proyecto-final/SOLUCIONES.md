@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Extiende con pedido y detalle guardando precio histórico y cuidando concurrencia.
 
-**Solución y justificación:** Define estados, cantidades y moneda; la referencia no implementa stock físico. No reutilices precio actual para una venta pasada. Protege cambios con transacción, restricciones y control de concurrencia; entrega test de rollback y de dos solicitudes que intentan confirmar el mismo pedido. Si esas reglas no se implementan, no declares la ampliación terminada.
+**Solución y justificación:** La solución completa vive en Pedido,DetallePedido,PedidoService,DTO/controller y migración V4. El precio se captura al confirmar; cancelar conserva el histórico. PedidoIntegrationTest prueba rollback, estados, permisos y contrato. El verificador operativo enfrenta dos confirmaciones con la misma versión y espera un 200 y un 409. No se afirma que la referencia descuente stock físico ni procese pagos.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -31,3 +31,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 La [solución de pedidos](../docs/PEDIDOS.md) ya implementa Pedido, DetallePedido, DTO, servicio, controller, FK, cantidades, precio histórico y version. PedidoIntegrationTest#precioHistorico comprueba el precio antes/después de confirmar y un cambio posterior del catálogo; rollbackDeConfirmacionReviertePrimerDetalle comprueba que un fallo no captura el primer precio parcialmente.
 
 Para tu proyecto cambia el dominio y sus reglas, no solamente nombres. Entrega contrato, pruebas de rollback/conflicto y comandos de reconstrucción. El ejemplo demuestra control concurrente del pedido. No afirma reservar inventario físico; si decides añadir stock, protege esa entidad compartida y prueba dos pedidos que disputen las mismas unidades.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

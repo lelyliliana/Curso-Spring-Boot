@@ -1,9 +1,17 @@
-# Versión 2.1
+# Versión 2.2
 
-Referencia: Java 21, Spring Boot 4.1.1 y Maven. Se conservan las 31 unidades y sus rutas. Cada unidad contiene lección, laboratorio, práctica y solución desarrollada.
+Fecha: 2026-10-14 (America/Bogota).
 
-La ruta ahora tiene cuatro proyectos Maven separados: fundamentos, REST en memoria, JPA sin seguridad y API integrada. Los comandos ejecutables indican el pom.xml o JAR desde la raíz. Las soluciones añaden pasos, ejemplos, resultados y límites de cada prueba.
+Las 31 unidades incorporan DESARROLLO.md con lectura del código, decisiones, contrastes y límites. Se corrigen respuestas que mezclaban la etapa REST en memoria con datos/campos de JPA o de la integrada: REST comienza vacío y no incorpora categoría ni versión.
 
-La API integrada incorpora la solución completa de pedidos/detalles, estados, cantidades, precio histórico al confirmar, cancelación, migración V4 y control de versiones. V3 sigue siendo exclusivamente datos ficticios de dev. La solución no implementa pagos ni inventario físico.
+Doce recorridos ejecutables arrancan los cuatro JAR en procesos locales aislados y muestran peticiones/respuestas esperadas. Comprueban configuración, validación, Location, paginación, conflictos, versiones, permisos, CSRF, correlación, salud, métricas y precio histórico de pedidos. No imprimen credenciales y usan H2 en las etapas persistentes del recorrido.
 
-La automatización ejecuta 77 pruebas Maven en las cuatro etapas con Ubuntu, Windows y macOS y Java 21/25; comprueba JAR/contratos, H2 y PostgreSQL real. Linux también prueba Docker. Consulta los resultados del commit que estás estudiando en [verificación](docs/VERIFICACION.md).
+La verificación exige los desarrollos, detecta marcas internas/codificación dañada y ejecuta los recorridos además de las pruebas y contratos existentes. Puede recibir un settings Maven local mediante CURSO_MAVEN_SETTINGS sin incorporar configuración personal al repositorio.
+
+Se mantienen Java 21, Spring Boot 4.1.1 y las dependencias/artifactId/version de los cuatro proyectos ejecutables. La actualización profundiza la enseñanza y sus comprobaciones sin cambiar contratos ni esquema de la API.
+
+[Recorridos guiados](docs/RECORRIDOS_GUIADOS.md) · [Resultados y límites](docs/VERIFICACION.md)
+
+## Base 2.1
+
+Cuatro etapas independientes: fundamentos, REST en memoria, JPA y API integrada. Pedidos/detalles con estados, precio al confirmar, cancelación, migración V4 y control de versión. Se conserva la matriz CI con H2/PostgreSQL y la prueba Docker de Linux; consulta sus resultados por commit.

@@ -14,11 +14,11 @@ El código completo y sus imports están en [REST en memoria](../laboratorios/re
 
 **Enunciado:** Ubica la comprobación SKU, el UNIQUE y el 409 en capas y explica la carrera.
 
-**Solución y justificación:** Service puede rechazar un duplicado conocido pronto; UNIQUE es la garantía concurrente; advice traduce DataIntegrityViolationException. Dos solicitudes pueden pasar existsBySku; solo una debe confirmar. Transacción debe abarcar el caso de uso, no cada llamada aislada.
+**Solución y justificación:** En REST, comprobarSku y el cambio del mapa se protegen con el mismo monitor; el advice devuelve 409. En JPA el servicio comprueba intención, UNIQUE protege el dato entre transacciones y el advice traduce DataIntegrityViolationException. No atribuyas esa restricción SQL al proyecto de memoria. ProductoRestTest.actualizarRechazaSkuAjeno comprueba conservación tras rechazo.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -36,3 +36,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 4. Advice convierte DataIntegrityViolationException en 409.
 
 En REST synchronized protege el mapa de una JVM; no garantiza unicidad entre dos procesos. En PostgreSQL dos creaciones simultáneas con SKU RACE-01 producen 201 y 409 según scripts/verificar.py. Consultar primero y guardar después sin UNIQUE dejaría abierta la carrera.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa rest`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

@@ -14,11 +14,11 @@ El código completo y sus imports están en [REST en memoria](../laboratorios/re
 
 **Enunciado:** Prueba precio 1.001 y un SKU ya existente en REST; explica 400 y 409. Al llegar a JPA, añade categoría 99999 inexistente y explica 404.
 
-**Solución y justificación:** 1.001 falla validación con 400; categoría positiva pero inexistente falla con 404; SKU repetido produce 409. Es forma, referencia y conflicto, respectivamente. No conviertas todas las excepciones en 400.
+**Solución y justificación:** El precio 1.001 falla antes del servicio con 400 y code VALIDATION_ERROR. El SKU existente produce 409 por estado. En JPA una categoriaId positiva inexistente llega al caso de uso y produce 404. No combines todos los errores en un mismo payload si quieres demostrar qué condición actúa. El recorrido REST comprueba también que los rechazos no crean registros.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -37,3 +37,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 | sku LIB-01 de datos originales | Regla/UNIQUE | 409 CONFLICT |
 
 En REST solo se reproducen precio y SKU porque aún no hay categoría. Modifica una copia del JSON en cada petición, dejando válidos los demás campos. En la API integrada usa editor con CSRF; un 403 no demuestra que @Digits haya sido ejecutado. Después de cada rechazo consulta el catálogo para comprobar que no apareció un producto inválido.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa rest`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

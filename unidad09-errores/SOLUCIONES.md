@@ -14,11 +14,11 @@ El código completo y sus imports están en [REST en memoria](../laboratorios/re
 
 **Enunciado:** Escribe qué debe conocer un cliente de un conflicto sin recibir SQL o stack trace.
 
-**Solución y justificación:** status=409, code=CONFLICT y un detalle estable permiten actuar. El request id correlaciona diagnóstico; no reemplaza un mensaje útil. JSON malformado es 400, no 500; 405 conserva el header Allow de la infraestructura MVC.
+**Solución y justificación:** Para conflicto comunica 409, code CONFLICT y un detalle estable. La respuesta no debe revelar SQL ni stack trace. ProductoRestTest.erroresNoFiltranInternos comprueba la frontera HTTP. El request id pertenece a la integrada; es una ayuda de correlación, no una capacidad ya presente en el advice del laboratorio REST.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -34,3 +34,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 {"status":409,"code":"CONFLICT","detail":"El estado actual impide la operación"}
 ```
 ProblemDetail puede añadir title, type e instance; este fragmento muestra los campos relevantes, no una comparación rígida del cuerpo completo. El cliente puede volver a leer el recurso y pedir al usuario revisar el conflicto. No debe recibir nombre de tabla, sentencia SQL, contraseña ni stack trace. REST ofrece un detalle específico de SKU; la API integrada usa un detalle general para conflictos de integridad/versión.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa rest`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

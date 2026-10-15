@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Justifica por qué no copiar este retry a un POST de pago.
 
-**Solución y justificación:** Un timeout no demuestra que el proveedor no haya procesado el pago. Reintentar puede cobrar dos veces sin una clave de idempotencia y soporte del receptor. Las pruebas transitorioAcotado/falloPermanente verifican dos llamadas máximas y rateLimitNoReintenta verifica una.
+**Solución y justificación:** La referencia reintenta solo la lectura GET para502/503/504 y hasta el límite configurado. No implementa un plazo global ni una política de idempotencia de comandos. Una escritura puede haberse completado aunque su respuesta se pierda, por lo que no se debe copiar este retry sin definir cómo reconocer y tratar una repetición. Las pruebas deben comprobar llamadas y resultado.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -31,3 +31,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 Si un POST de cobro tarda demasiado, el timeout no demuestra que el proveedor no haya cobrado. Repetir puede duplicar el efecto. El cliente GET del curso solo consulta y limita intentos; no debe reutilizarse como política automática de pagos.
 
 Para diseñar un pago define clave de idempotencia, deduplicación del proveedor, consulta de estado y tratamiento del resultado incierto. Comprueba los escenarios con un servidor simulado que procesa antes de cortar la respuesta. Si el proveedor no ofrece esas garantías, no afirmes que el retry es seguro.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Explica qué cambia si la DB falla y el proceso sigue vivo.
 
-**Solución y justificación:** Readiness puede marcar servicio no listo por db; liveness debe seguir reflejando que el proceso no necesita reinicio por esa dependencia externa. El health agregado y los grupos son distintos endpoints; no confundas sus resultados.
+**Solución y justificación:** Si la base falla, readiness puede marcar no listo porque incluye db; liveness no debe convertirse automáticamente en fallo de proceso por esa dependencia. Health agregado y grupos tienen endpoints distintos. La referencia limita detalles públicos y protege métricas. El recorrido comprueba la política de acceso; no afirma haber provocado toda clase de avería de base.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -31,3 +31,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 La configuración readiness incluye db. Si PostgreSQL deja de responder, /actuator/health/readiness debe informar DOWN (normalmente 503), mientras liveness puede continuar UP porque el proceso está vivo. No incluyas una dependencia externa inestable en liveness si eso produce reinicios en cascada.
 
 En un entorno de práctica Compose, consulta ambos endpoints, detén solo db, vuelve a consultar y reinicia db. Registra status y cuerpo. El healthcheck de la imagen PostgreSQL comprueba disponibilidad del servidor, no todas las reglas de tu aplicación. No se promete que el cliente que falla cambie automáticamente readiness.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

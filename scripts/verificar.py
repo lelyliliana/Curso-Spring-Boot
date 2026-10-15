@@ -22,11 +22,13 @@ def documentos():
     unidades=sorted(ROOT.glob('unidad[0-9][0-9]-*'))
     comprobar(len(unidades)==31,'31 unidades')
     for unit in unidades:
-        for name in ('README.md','LABORATORIO.md','PRACTICA.md','SOLUCIONES.md'):
+        for name in ('README.md','LABORATORIO.md','PRACTICA.md','SOLUCIONES.md','DESARROLLO.md'):
             comprobar((unit/name).is_file(),str(unit/name))
     for file in ROOT.rglob('*.md'):
         if any(x in file.parts for x in ('target','salidas','.git')):continue
-        for target in re.findall(r'\]\(([^)]+)\)',file.read_text(encoding='utf-8')):
+        texto=file.read_text(encoding='utf-8')
+        comprobar(not re.search(r'\uFFFD|Ã[\x80-\xBF]|Â[\x80-\xBF]|[\uE200\uE201]|contentReference|oaicite|<\|(?:system|assistant|im_start|im_end)\|>',texto),f'Marca interna o codificación: {file}')
+        for target in re.findall(r'\]\(([^)]+)\)',texto):
             if '://' in target or target.startswith('#'):continue
             target=target.split('#')[0]
             comprobar((file.parent/target).exists(),f'Enlace inexistente: {file.relative_to(ROOT)} -> {target}')
@@ -44,8 +46,14 @@ def pruebas():
     return total
 
 @contextlib.contextmanager
-def aplicacion(module,env,label,args=(),docker=False):
-    port=puerto();settings=os.environ.copy();settings.update(env)
+def aplicacion(module,env,label,args=(),docker=False,aislar=False):
+    port=puerto();settings=os.environ.copy()
+    if aislar:
+        # Los recorridos usan configuración empaquetada, no la de otra aplicación.
+        prefijos=('SPRING_','APP_','DB_','PROVEEDOR_','SERVER_','MANAGEMENT_','SALUDO_','LOGGING_')
+        opciones_java=('JAVA_TOOL_OPTIONS','JDK_JAVA_OPTIONS','_JAVA_OPTIONS')
+        settings={k:v for k,v in settings.items() if not k.upper().startswith(prefijos) and k.upper() not in opciones_java}
+    settings.update(env)
     settings.update(SERVER_PORT=str(port),SERVER_ADDRESS='127.0.0.1')
     name='curso-spring-'+uuid.uuid4().hex[:10]
     if docker:
@@ -212,7 +220,10 @@ if __name__=='__main__':
     if not args.skip_build:
         mvn=shutil.which('mvn.cmd' if os.name=='nt' else 'mvn')
         if not mvn:parser.error('Instala Maven y comprueba PATH')
-        for module in MODULOS:subprocess.run([mvn,'-B','-f',str(ROOT/module/'pom.xml'),'verify'],check=True)
+        comando=[mvn,'-B','-ntp']
+        settings=os.environ.get('CURSO_MAVEN_SETTINGS')
+        if settings:comando+=['-s',settings]
+        for module in MODULOS:subprocess.run(comando+['-f',str(ROOT/module/'pom.xml'),'verify'],check=True)
     tests=pruebas()
     with aplicacion('laboratorios/fundamentos',{},'fundamentos',('--saludo.prefijo=Bienvenida',)) as base:
         status,_,data=enviar(*cliente(),base+'/api/saludos?nombre=Leli')
@@ -229,5 +240,8 @@ if __name__=='__main__':
     if args.docker:
         if sys.platform!='linux':parser.error('--docker utiliza red host en Linux; usa Compose para práctica en otros sistemas')
         postgres(docker=True)
-    result={'pruebas_maven':tests,'comprobaciones':checks,'postgres':args.postgres,'docker':args.docker}
+    from recorridos import recorrer
+    guiados=recorrer('todas')
+    checks+=guiados['comprobaciones']
+    result={'pruebas_maven':tests,'comprobaciones':checks,'recorridos_guiados':guiados,'postgres':args.postgres,'docker':args.docker}
     (OUT/'resultado.json').write_text(json.dumps(result,indent=2),encoding='utf-8');print(json.dumps(result))

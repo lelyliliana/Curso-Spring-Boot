@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Entrega una solución de taller que otro equipo reconstruya sin preguntarte rutas personales.
 
-**Solución y justificación:** Incluye comandos desde raíz, valores de prueba no secretos, JSON de peticiones, resultados, requisitos y preparación de base. SOLUCIONES.md relaciona cada problema con código y test; la comprobación del JAR verifica las fronteras reales.
+**Solución y justificación:** Entrega requisitos, proyecto exacto, comandos desde raíz, preparación de datos, cuerpos JSON y resultados esperados. El índice de desarrollos relaciona cada unidad con fuente y recorrido. scripts/recorridos.py permite repetir doce casos después de construir los cuatro JAR. No exige una ruta personal ni reutiliza una base manual de la usuaria.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -60,3 +60,7 @@ mvn -f ejemplos/api-productos/pom.xml "-Dtest=PedidoIntegrationTest" test
 python scripts/verificar.py --postgres
 ```
 El segundo comando requiere la base local de práctica. Un README de entrega debe indicar cómo reproducir cada evidencia; no basta enumerar tecnologías. Los pedidos de referencia no contienen stock ni pago: esos cambios exigen reglas nuevas.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Propón experimento N+1 y una mejora sin cambiar cinco cosas a la vez.
 
-**Solución y justificación:** Captura SQL y conteo de consultas con datos suficientes, identifica consultas por categoría, compara con EntityGraph y resultados iguales. Después cambia un factor, repite con población comparable y registra buffers/planes de la DB si aplica. Promedio solo puede ocultar cola lenta.
+**Solución y justificación:** El experimento declara población, consulta, página y medida. Compara consultas al mapear categoría con una estrategia alternativa y resultados iguales. Luego cambia solo un factor y repite. No se concluye mejora por el nombre EntityGraph ni se inventa un p95 esperado para cualquier equipo. scripts/carga.py aporta una medición local con sus límites.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -35,3 +35,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 5. Restablece @EntityGraph y repite con los mismos datos/tamaño.
 
 Para tiempos usa scripts/carga.py con URL local y número/concurrencia constantes. No compares una primera ejecución fría con otra ya calentada. Una reducción de SELECT puede explicar la mejora; un índice de FK no elimina por sí solo el N+1 de carga de relaciones.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

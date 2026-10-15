@@ -14,11 +14,11 @@ El código completo y sus imports están en [REST en memoria](../laboratorios/re
 
 **Enunciado:** Define contrato para un SKU duplicado y un id ausente.
 
-**Solución y justificación:** Duplicado: 409 application/problem+json con code CONFLICT. Ausente: 404 NOT_FOUND. La clave única de la base resuelve también una carrera que dos comprobaciones existsBySku no pueden evitar por sí solas.
+**Solución y justificación:** POST válido produce 201 con Location. El segundo POST del mismo SKU produce 409, code CONFLICT; GET de un id ausente produce 404, code NOT_FOUND. El duplicado no crea otra fila. En REST la unicidad se protege con el monitor y mapa; la garantía SQL entre procesos comienza en JPA y no debe atribuirse a esta etapa.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -37,3 +37,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 | Producto nuevo | POST /api/productos | 201 | No es error; Location apunta al recurso |
 
 En REST usa producto-memoria.json con --sin-csrf para crear y repetir. En JPA usa producto.json con --sin-csrf. En la API integrada añade --usuario editor y conserva CSRF. No cambies el status para ocultar un conflicto ni reveles el mapa/SQL interno.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa rest`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

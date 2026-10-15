@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Diseña qué cambiar si dos réplicas deben ejecutar una sola tarea de facturación.
 
-**Solución y justificación:** Necesitas coordinación (job central, cola, lock distribuido o scheduler apropiado) y operación idempotente/persistente. El resumen aquí solo lee count y no necesita liderar un clúster. Prueba ejecutar() directamente en lugar de dormir un minuto.
+**Solución y justificación:** Para una sola ejecución lógica entre réplicas necesitas coordinación compartida o un scheduler externo, identidad persistida del trabajo y una política de recuperación/repetición. @Scheduled actual solo programa el resumen local. La solución de esta unidad es un diseño justificado; no se anuncia un sistema distribuido implementado por activar la propiedad.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -31,3 +31,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 @Scheduled ejecuta en cada proceso habilitado. Un booleano local no coordina réplicas. Para facturación diseña una asignación persistente del trabajo con clave única (por ejemplo, periodo + cliente), reclamación transaccional y registro de resultado. Si el proceso cae, necesitas política de recuperación y operación idempotente.
 
 Prueba dos trabajadores intentando reclamar la misma clave: solo uno debe adquirirla. Prueba también caída después del efecto externo y antes del registro. El curso incluye ResumenJob de lectura y prueba directa ejecutar; no presenta ese resumen como un coordinador distribuido de facturación.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

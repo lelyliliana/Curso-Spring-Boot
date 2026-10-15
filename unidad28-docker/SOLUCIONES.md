@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Conecta PostgreSQL como servicio db y evita exponer la DB a Internet.
 
-**Solución y justificación:** Compose usa jdbc:postgresql://db:5432/productos y volumen para PostgreSQL. Publica solo la API en loopback del equipo y recibe claves del entorno. La CI Linux construye/ejecuta la imagen; Windows/macOS verifican el JAR sin asumir Docker instalado.
+**Solución y justificación:** La referencia conecta con db:5432 y conserva PostgreSQL en datos_pg. Solo publica la API en loopback del equipo y exige variables de claves fuera de Git. depends_on espera el healthcheck de la base, pero los fallos posteriores todavía requieren manejo operativo. El resultado Docker debe identificarse como ejecutado o pendiente; leer Compose no constituye esa ejecución.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -35,3 +35,7 @@ docker compose -f ejemplos/api-productos/compose.yml up --build
 docker compose -f ejemplos/api-productos/compose.yml ps
 ```
 Configura las claves antes según OPERACION. Consulta health y crea categoría/producto. Detén/recrea conservando datos_pg y comprueba que el producto sigue presente. No uses down -v para demostrar persistencia, porque elimina el volumen.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Traduce proveedor 404, 429, 503 y JSON inválido al contrato local.
 
-**Solución y justificación:** 404 se traduce a cotización no encontrada; 429/503 e inválido a 503 PROVIDER_UNAVAILABLE. No publiques cuerpo del proveedor ni sus credenciales. La cotización externa no modifica el precio local automáticamente.
+**Solución y justificación:** Proveedor 404 produce NoEncontrado y 404 local;429 produce ProveedorNoDisponible y 503 local sin retry. Con dos intentos, un 503 seguido de 200 puede terminar correctamente; un 503 permanente hace dos llamadas y falla. JSON inválido o cotización de otro SKU se rechazan. El cliente no convierte fallos en precio 0 ni usa un proveedor público para probar la regla.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -36,3 +36,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 | JSON inválido | 503 PROVIDER_UNAVAILABLE | No convierte basura en un producto |
 
 ProveedorClientTest inicia un servidor HTTP local y cambia status/cuerpo. Ejecuta esa clase y lee noEncontrado, rateLimitNoReintenta, falloPermanente y jsonInvalido. El 503 local informa que esta dependencia no permite completar la consulta; no debe devolver su cuerpo sin validar.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

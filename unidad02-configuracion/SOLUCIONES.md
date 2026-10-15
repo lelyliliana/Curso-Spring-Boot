@@ -12,11 +12,11 @@ El código completo y sus imports están en [laboratorios/fundamentos](../labora
 
 **Enunciado:** Arranca el saludo con --saludo.prefijo=Buen día y prueba un máximo de nombre inválido.
 
-**Solución y justificación:** Usa comillas en el argumento completo si contiene espacios. --saludo.longitud-maxima=0 debe impedir iniciar por @Min; no se convierte silenciosamente en 40. Observa el origen de configuración efectiva.
+**Solución y justificación:** El argumento completo es "--saludo.prefijo=Buen día". El saludo para Leli debe comenzar Buen día, Leli. El máximo 0 viola @Min y hace fallar el arranque. El recorrido fundamentos demuestra el prefijo externo con un JAR real; Configuración y ContenedorTest permiten contrastar enlace y ensamblaje con pruebas específicas.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -33,3 +33,7 @@ mvn -f laboratorios/fundamentos/pom.xml package
 java -jar laboratorios/fundamentos/target/fundamentos.jar "--saludo.prefijo=Buen día" --saludo.longitud-maxima=0
 ```
 SaludoProperties declara longitudMaxima (en configuración, saludo.longitud-maxima). El valor 0 viola @Min(1) y debe rechazar la configuración al arrancar, no devolver 400 después de iniciar. Para el caso válido elimina la opción del máximo y consulta /api/saludos?nombre=Leli: espera Buen día, Leli. Configuración inválida y entrada HTTP inválida son fronteras diferentes.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa fundamentos`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

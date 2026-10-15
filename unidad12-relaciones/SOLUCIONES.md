@@ -6,17 +6,17 @@
 
 Producto es dueño del ManyToOne mediante categoria_id; la FK es obligatoria. Fetch LAZY no equivale a prometer cero consultas extra, y JPA puede usar proxies o consultas adicionales. No hay cascada REMOVE de producto a categoría: eliminar un producto no debe borrar la categoría compartida. La FK impide borrar una categoría con hijos. @EntityGraph permite cargar categoría para el reporte sin serializar proxies.
 
-El código completo y sus imports están en [ejemplos/api-productos](../laboratorios/jpa-productos/README.md). La prueba `ProductoRepositoryTest#categoriaConHijosProtegida` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
+El código completo y sus imports están en [laboratorios/jpa-productos](../laboratorios/jpa-productos/README.md). La prueba `ProductoRepositoryTest#categoriaConHijosProtegida` es evidencia específica para esta frontera. Contrasta datos/headers/valores y no solo el mensaje final de Maven.
 
 ## Práctica independiente
 
 **Enunciado:** Explica cascada JPA y ON DELETE y modela Pedido/Detalle sin copiar CascadeType.ALL indiscriminadamente.
 
-**Solución y justificación:** La cascada JPA propaga operaciones del EntityManager; una acción FK la aplica la base. Pedido puede poseer sus detalles, pero producto compartido no se borra al quitar una línea. Guarda precio histórico en detalle, no lo recalcules desde catálogo. Define la regla antes del mapeo.
+**Solución y justificación:** En catálogo, Producto referencia Categoria sin cascada de borrado hacia ella. En pedidos, Pedido posee DetallePedido y este referencia un Producto compartido. La cascada JPA PERSIST actúa al guardar el grafo; ON DELETE CASCADE de la FK actúa en la base al borrar el padre. La prueba detalleNoBorraProductoCompartido comprueba que no se destruye el catálogo.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -38,3 +38,7 @@ Abre [Pedido](../ejemplos/api-productos/src/main/java/com/lelyliliana/productos/
 | FK detalle.producto_id | Restricción | No borrar un producto referenciado |
 
 La prueba detalleNoBorraProductoCompartido borra un pedido en una transacción real, comprueba cero detalles y consulta el producto todavía existente. La API no ofrece borrado de pedidos porque conserva historial; la eliminación del test sirve para comprobar el modelo.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa jpa`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

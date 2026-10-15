@@ -12,11 +12,11 @@ El código completo y sus imports están en [laboratorios/fundamentos](../labora
 
 **Enunciado:** Comprueba nombres vacíos y el límite de 40 caracteres sin arrancar el servidor.
 
-**Solución y justificación:** nombreObligatorio y limite prueban esos casos. Una frontera 40 es válida y 41 falla. El reloj se fija en UTC; cambiar fecha real del equipo no altera la prueba.
+**Solución y justificación:** Desde la raíz usa mvn -f laboratorios/fundamentos/pom.xml -Dtest=SaludoServiceTest test. La suite construye servicio, reloj y configuración sin contexto Spring. Vacío/blanco y 41 unidades se rechazan; 40 se acepta. La fecha depende del Clock fijo y no de modificar el reloj real del equipo. Una prueba del servicio espera una excepción, no un status HTTP.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -40,3 +40,7 @@ Abre SaludoServiceTest. Se construye el servicio con Clock.fixed y propiedades, 
 mvn -f laboratorios/fundamentos/pom.xml "-Dtest=SaludoServiceTest" test
 ```
 La fecha fija evita que el resultado dependa del día. Esta prueba ejercita la lógica Java; no demuestra que Spring resuelva el constructor ni que el controller responda 400.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa fundamentos`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

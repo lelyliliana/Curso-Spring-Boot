@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Prueba actualización con una versión vieja y comprueba que no cambió el valor guardado.
 
-**Solución y justificación:** Lee version=0, actualiza a otro precio y recibe version=1, reenvía version=0 y espera 409. Consulta después y conserva el precio confirmado de version=1. @Version añade defensa ante carreras que ocurren después de leer la versión.
+**Solución y justificación:** La creación entrega versión 0; el PUT aceptado entrega 1. Reenviar 0 produce 409 y la consulta posterior mantiene precio y versión 1. El recorrido JPA crea y ejecuta esa secuencia en un JAR real. La integración con MockMvc responde otra pregunta complementaria, sin suponer que un rollback del test controle peticiones a un proceso externo.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -34,3 +34,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 4. GET debe devolver precio 30 y version 1.
 
 Ese último paso detecta una implementación que devuelve conflicto después de modificar datos. La comprobación del JAR ya lo realiza en H2/PostgreSQL. La prueba de pedidos versionAntiguaNoCambiaPedido complementa con commit real fuera de una transacción del test.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

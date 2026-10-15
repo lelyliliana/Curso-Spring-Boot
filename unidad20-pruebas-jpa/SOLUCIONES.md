@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Enumera los riesgos que H2 no cubre y cómo se verifica PostgreSQL.
 
-**Solución y justificación:** Tipos, dialecto, consultas y comportamiento de locks pueden diferir. scripts/verificar.py crea una base PostgreSQL exclusiva, ejecuta migraciones con el JAR y realiza el flujo HTTP; no afirma que H2 en MODE=PostgreSQL sea PostgreSQL.
+**Solución y justificación:** H2 no cubre automáticamente dialecto, tipos ni bloqueos de PostgreSQL. --postgres crea recursos locales aleatorios, arranca los JAR y verifica migraciones y operaciones reales antes de limpiarlos. El resultado de una prueba H2 debe nombrarse como tal. La CI mantiene comprobación PostgreSQL; su configuración no equivale por sí sola a un resultado observado de ese commit.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -35,3 +35,7 @@ python scripts/verificar.py --postgres
 Prepara PostgreSQL local y PGHOST/PGPORT/PGUSER según [verificación](../docs/VERIFICACION.md). La comprobación crea identidades/bases temporales propias y las elimina al terminar. Verifica ambas etapas JPA/integrada, migraciones y restricciones; en la integrada también enfrenta creaciones y confirmaciones concurrentes.
 
 H2 no demuestra planes de ejecución PostgreSQL, bloqueos exactos, collation, rendimiento, permisos de producción ni compatibilidad de toda sentencia futura. Añadir una consulta nativa nueva exige probarla en el motor objetivo.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.

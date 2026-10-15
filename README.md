@@ -6,7 +6,7 @@ Puedes leer las lecciones aquí sin conocer GitHub. Al terminar cada unidad, usa
 
 [Ver el curso en Aprende con Leli](https://lelyliliana.github.io/aprende-con-leli/cursos/spring-boot/)
 
-**Versión 2.1**
+**Versión 2.2**
 
 Curso abierto para aprender a construir **aplicaciones backend y APIs REST con Java y Spring Boot**, desde la creación del proyecto hasta persistencia, integración con servicios externos, pruebas, observabilidad, seguridad básica, rendimiento y despliegue en contenedores.
 
@@ -32,6 +32,12 @@ Las versiones exactas de dependencias se fijan en los proyectos Maven del curso.
 5. Consulta [verificación](docs/VERIFICACION.md), [diagnóstico](docs/DIAGNOSTICO_SPRING.md), [arquitectura](docs/ARQUITECTURA.md) y [operación](docs/OPERACION.md).
 
 Los fragmentos conceptuales de las lecciones ilustran decisiones; los cuatro proyectos Maven constituyen las implementaciones ejecutables completas de cada etapa. Las soluciones explican resultados y alternativas, no solo entregan una respuesta.
+
+## Seguir el código y comprobar cada etapa
+
+Las 31 unidades incluyen desarrollos que siguen archivos reales y separan garantías de framework, dominio, HTTP y base. Las soluciones distinguen el catálogo vacío de REST, los campos añadidos en JPA y los controles de la integrada.
+
+El [índice de recorridos guiados](docs/RECORRIDOS_GUIADOS.md) enlaza los desarrollos y doce casos ejecutables sobre JAR locales aislados. Muestran peticiones, status esperado, datos posteriores y rechazos sin depender de una API pública.
 
 ## Objetivo
 

@@ -12,11 +12,11 @@ El código completo y sus imports están en [ejemplos/api-productos](../ejemplos
 
 **Enunciado:** Envía un id inválido y verifica que no se refleja literalmente en el log/respuesta.
 
-**Solución y justificación:** requestIdAcotado comprueba id válido y reemplazo por UUID del excesivamente largo. La expresión impide saltos de línea y evita log injection. En asíncrono necesitas propagación explícita de contexto; no confundir un request id local con una traza distribuida completa.
+**Solución y justificación:** El id válido se conserva y el excesivamente largo se reemplaza por UUID. El recorrido utiliza un header largo válido como transporte, de modo que llega al filtro. La expresión excluye saltos de línea en un valor aceptado. La respuesta puede verificarse directamente; revisar contenido de logs y propagación asíncrona requiere evidencias adicionales, sin registrar credenciales.
 
 ## Revisar tu alternativa
 
-Una alternativa es válida si conserva la regla, población, errores y límites establecidos. Explica qué cambió y qué riesgo cubre cada prueba. Para un cliente HTTP simulado no declares probado SQL; para H2 no declares garantizado PostgreSQL; para un benchmark local no declares capacidad de producción.
+Contrasta la alternativa con el recorrido específico de esta unidad: [seguir datos, decisiones y rechazos](DESARROLLO.md). Explica la frontera que prueba tu evidencia.
 
 ## Evidencia que debes entregar
 
@@ -31,3 +31,7 @@ Comando desde la raíz, resultado observado, caso de frontera y explicación de 
 RequestIdFilter acepta un id acotado; si llega uno demasiado largo o con caracteres inválidos, genera un UUID. Ejecuta FlujoIntegrationTest#requestIdAcotado: envía 100 caracteres y espera patrón UUID en el header de respuesta.
 
 Para la inspección manual, envía X-Request-Id con espacios/caracteres inválidos mediante tu cliente HTTP y compara el header con los logs locales. Nunca permitas saltos de línea del usuario como contenido de logs. El filtro limpia MDC al terminar para no asignar a otra petición el identificador anterior.
+
+## Comparación con un proceso real
+
+Desde la raíz, después de construir la etapa, ejecuta `python scripts/recorridos.py --etapa integrado`. Observa la secuencia y comprueba qué casos complementan esta unidad. Consulta el [desarrollo específico](DESARROLLO.md) para distinguir sus garantías de las que necesitan otra evidencia.
